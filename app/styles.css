@@ -99,7 +99,7 @@ body {
   background-size: 500px 100%, 200% 700%, 300% 100%, 200% 100%;
   background-position: center, 0% var(--posy, 50%), var(--posx, 50%) var(--posy, 50%), var(--posx, 50%) var(--posy, 50%);
   filter: brightness(.8) contrast(2.95) saturate(.5);  
-  will-change: filter;
+  /* will-change: filter; */
 }
 
 .card-wrapper > .color::after {
