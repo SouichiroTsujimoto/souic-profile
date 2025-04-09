@@ -34,6 +34,23 @@ body {
   transform-style: preserve-3d; /* 子要素も3D空間に配置 */
 }
 
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 768px) {
+  .card-wrapper {
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); /* 回転に変更 */
+    transition: transform 0.05s linear; 
+    aspect-ratio: .716;
+    display: grid;
+    width: 80vw; /* 幅は高さに合わせて自動調整 */
+    height: auto; /* 画面の高さの70%に設定 */
+    place-items: center;
+    position: absolute;
+    will-change: transform, filter; /* GPUアクセラレーションのヒント */
+    transform-style: preserve-3d; /* 子要素も3D空間に配置 */
+  }
+}
+
+
 /* 中央に戻るときのトランジション */
 .card-wrapper.return-to-center {
   transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -83,7 +100,8 @@ body {
   background-blend-mode: screen, hue, hard-light;
   background-size: 500px 100%, 200% 700%, 300% 100%, 200% 100%;
   background-position: center, 0% var(--posy, 50%), var(--posx, 50%) var(--posy, 50%), var(--posx, 50%) var(--posy, 50%);
-  filter: brightness(.8) contrast(2.95) saturate(.5);
+  filter: brightness(.8) contrast(2.95) saturate(.5);  
+  will-change: filter;
 }
 
 .card-wrapper > .color::after {
@@ -124,6 +142,7 @@ body {
         rgba(0, 0, 0, .25) 120%
         );
   background-blend-mode: screen, hue, hard-light;
+  will-change: filter;
 }
 
 /*形を整える*/
