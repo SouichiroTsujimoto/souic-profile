@@ -30,7 +30,7 @@ body {
   width: auto; /* 幅は高さに合わせて自動調整 */
   place-items: center;
   position: absolute;
-  will-change: transform; /* GPUアクセラレーションのヒント */
+  will-change: transform, filter; /* GPUアクセラレーションのヒント */
   transform-style: preserve-3d; /* 子要素も3D空間に配置 */
 }
 
@@ -45,7 +45,7 @@ body {
               rgba(255,255,255,.65) 20%, 
               transparent 60%);
   mix-blend-mode: overlay;
-  will-change: background-position; /* GPUアクセラレーションのヒント */
+  will-change: background-position, filter; /* GPUアクセラレーションのヒント */
 }
 
 .color {
