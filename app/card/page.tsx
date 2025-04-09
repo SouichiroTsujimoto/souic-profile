@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { useEffect, useRef, useState } from "react";
 
 export default function Page() {
@@ -25,22 +27,95 @@ export default function Page() {
 		};
 	}, []);
 
-	// カードを中央位置に戻す関数
+	// カードを中央に戻す関数（イージング効果を追加）
 	const setCardCenter = () => {
 		if (!cardWrapperRef.current) return;
 
 		const centerX = 0.5;
 		const centerY = 0.5;
 
+		// 現在の値を取得
 		const wrapper = cardWrapperRef.current;
-		wrapper.style.setProperty("--ratiox", centerX.toString());
-		wrapper.style.setProperty("--ratioy", centerY.toString());
-		wrapper.style.setProperty("--mx", `${centerX * 100}%`);
-		wrapper.style.setProperty("--my", `${centerY * 100}%`);
-		wrapper.style.setProperty("--rx", "0deg");
-		wrapper.style.setProperty("--ry", "0deg");
-		wrapper.style.setProperty("--posx", "50%");
-		wrapper.style.setProperty("--posy", "50%");
+		const currentRatioX =
+			Number.parseFloat(
+				getComputedStyle(wrapper).getPropertyValue("--ratiox"),
+			) || 0.5;
+		const currentRatioY =
+			Number.parseFloat(
+				getComputedStyle(wrapper).getPropertyValue("--ratioy"),
+			) || 0.5;
+		const currentRx =
+			Number.parseFloat(
+				getComputedStyle(wrapper).getPropertyValue("--rx"),
+			) || 0;
+		const currentRy =
+			Number.parseFloat(
+				getComputedStyle(wrapper).getPropertyValue("--ry"),
+			) || 0;
+		const currentPosX =
+			Number.parseFloat(
+				getComputedStyle(wrapper).getPropertyValue("--posx"),
+			) || 50;
+		const currentPosY =
+			Number.parseFloat(
+				getComputedStyle(wrapper).getPropertyValue("--posy"),
+			) || 50;
+
+		// アニメーションの開始時間
+		const startTime = performance.now();
+		const duration = 800; // ミリ秒単位の期間（長めにして滑らかに）
+
+		// イージング関数（easeOutCubic）
+		const easeOutCubic = (t: number): number => 1 - (1 - t) ** 3;
+
+		// アニメーションフレーム内で値を更新
+		const animate = (time: number) => {
+			const elapsed = time - startTime;
+			const progress = Math.min(elapsed / duration, 1);
+			const easeProgress = easeOutCubic(progress);
+
+			// 現在値と目標値の間を補間
+			const newRatioX =
+				currentRatioX + (centerX - currentRatioX) * easeProgress;
+			const newRatioY =
+				currentRatioY + (centerY - currentRatioY) * easeProgress;
+			const newRx = currentRx * (1 - easeProgress); // 0に向かって
+			const newRy = currentRy * (1 - easeProgress); // 0に向かって
+			const newPosX = currentPosX + (50 - currentPosX) * easeProgress;
+			const newPosY = currentPosY + (50 - currentPosY) * easeProgress;
+
+			// 値を設定
+			wrapper.style.setProperty("--ratiox", newRatioX.toString());
+			wrapper.style.setProperty("--ratioy", newRatioY.toString());
+			wrapper.style.setProperty("--mx", `${newRatioX * 100}%`);
+			wrapper.style.setProperty("--my", `${newRatioY * 100}%`);
+			wrapper.style.setProperty("--rx", `${newRx}deg`);
+			wrapper.style.setProperty("--ry", `${newRy}deg`);
+			wrapper.style.setProperty("--posx", `${newPosX}%`);
+			wrapper.style.setProperty("--posy", `${newPosY}%`);
+
+			// アニメーションが完了していない場合は次のフレームを要求
+			if (progress < 1) {
+				rafIdRef.current = requestAnimationFrame(animate);
+			} else {
+				// 最終値を確実に設定
+				wrapper.style.setProperty("--ratiox", centerX.toString());
+				wrapper.style.setProperty("--ratioy", centerY.toString());
+				wrapper.style.setProperty("--mx", `${centerX * 100}%`);
+				wrapper.style.setProperty("--my", `${centerY * 100}%`);
+				wrapper.style.setProperty("--rx", "0deg");
+				wrapper.style.setProperty("--ry", "0deg");
+				wrapper.style.setProperty("--posx", "50%");
+				wrapper.style.setProperty("--posy", "50%");
+				rafIdRef.current = null;
+			}
+		};
+
+		// アニメーションスタート
+		if (rafIdRef.current) {
+			cancelAnimationFrame(rafIdRef.current);
+		}
+		rafIdRef.current = requestAnimationFrame(animate);
 
 		// トランジションクラスを追加
 		setIsReturningToCenter(true);
@@ -124,9 +199,73 @@ export default function Page() {
 				onMouseMove={updateCardPosition}
 				onMouseLeave={handleMouseLeave}
 			>
-				<img src="./azusa.png" className="card" alt="カード画像" />
-				<div className="card color" />
-				<div className="card highlight" />
+				{/* カラーレイヤーを下に配置 */}
+				<div
+					className="card color"
+					style={{
+						zIndex: 20,
+						pointerEvents: "none",
+					}}
+				/>
+
+				{/* メインのカードコンテンツ - 前面レイヤー */}
+				<div
+					className="card main-content"
+					style={{
+						position: "relative",
+					}}
+				>
+					<div
+						className="card-content"
+						style={{
+							display: "flex",
+							flexDirection: "column",
+							justifyContent: "center",
+							alignItems: "center",
+							height: "100%",
+							padding: "20px",
+						}}
+					>
+						{/* 画像を背景として配置 - 中間のレイヤー */}
+						<img
+							src="/azusa.png"
+							alt="カード画像"
+							className="color"
+							style={{
+								zIndex: 10,
+								position: "absolute",
+								pointerEvents: "none",
+							}}
+						/>
+						<Link
+							className="bg-white text-black p-4 rounded-lg mb-4 hover:bg-gray-100 transition-colors"
+							href="https://x.com/wuhu1sland"
+							style={{
+								display: "block",
+								textDecoration: "none",
+								position: "relative",
+								zIndex: 15,
+							}}
+						>
+							カードテキスト
+						</Link>
+						<Link
+							className="bg-white text-black p-2 rounded-full hover:bg-gray-100 transition-colors"
+							href="https://x.com/wuhu1sland"
+							style={{
+								display: "block",
+								textDecoration: "none",
+								position: "relative",
+								zIndex: 15,
+							}}
+						>
+							X
+						</Link>
+					</div>
+
+					{/* ハイライトレイヤーを最上部に配置、ポインターイベントを無効化 */}
+					{/* <div className="card highlight" style={{ zIndex: 5 }} /> */}
+				</div>
 			</div>
 		</>
 	);
