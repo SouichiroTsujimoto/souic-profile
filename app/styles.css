@@ -30,8 +30,8 @@ body {
   width: auto; /* 幅は高さに合わせて自動調整 */
   place-items: center;
   position: absolute;
-  will-change: transform, filter; /* GPUアクセラレーションのヒント */
-  transform-style: preserve-3d; /* 子要素も3D空間に配置 */
+  /* will-change: transform, filter; /* GPUアクセラレーションのヒント */
+  /* transform-style: preserve-3d; 子要素も3D空間に配置 */
 }
 
 /* スマートフォン向けのスタイル */
@@ -45,8 +45,8 @@ body {
     height: auto; /* 画面の高さの70%に設定 */
     place-items: center;
     position: absolute;
-    will-change: transform, filter; /* GPUアクセラレーションのヒント */
-    transform-style: preserve-3d; /* 子要素も3D空間に配置 */
+    /* will-change: transform, filter; /* GPUアクセラレーションのヒント */
+    /* transform-style: preserve-3d; 子要素も3D空間に配置 */
   }
 }
 
