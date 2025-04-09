@@ -40,7 +40,7 @@ body {
 }
 
 .card-wrapper:hover > .highlight {
-  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), 
+  background: radial-gradient(circle at var(--mx, 25%) var(--my, 25%), 
               rgba(255,255,255,.8) 10%, 
               rgba(255,255,255,.65) 20%, 
               transparent 60%);
@@ -128,7 +128,7 @@ body {
 
 /*形を整える*/
 .card {
-  border-radius: 4.5% / 3.5%;
+  border-radius: 5% / 3.5%;
   box-shadow: 0 0px 20px rgba(0,0,0,0.2);
   height: 100%;
   position: absolute;
@@ -228,7 +228,7 @@ body {
   z-index: 25;
   transform-style: preserve-3d; /* 3D効果を維持 */
   background: radial-gradient(
-    circle at var(--posx, 50%) var(--posy, 50%),
+    circle at var(--posx, 25%) var(--posy, 25%),
     rgba(255, 255, 255, 0.8) 0%,
     rgba(255, 255, 255, 0) 50%
   );

@@ -186,11 +186,6 @@ export default function Page() {
 		setCardCenter();
 	};
 
-	// 背景色変更ハンドラー
-	const handleBgColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setBgColor(Number(e.target.value));
-	};
-
 	return (
 		<>
 			<div
@@ -228,7 +223,7 @@ export default function Page() {
 					>
 						{/* 画像を背景として配置 - 中間のレイヤー */}
 						<img
-							src="/azusa.png"
+							src="/souic8.png"
 							alt="カード画像"
 							className="color"
 							style={{
@@ -237,29 +232,68 @@ export default function Page() {
 								pointerEvents: "none",
 							}}
 						/>
+
 						<Link
-							className="bg-white text-black p-4 rounded-lg mb-4 hover:bg-gray-100 transition-colors"
+							className="transition-colors"
 							href="https://x.com/wuhu1sland"
+							target="_blank"
+							rel="noopener noreferrer"
 							style={{
-								display: "block",
-								textDecoration: "none",
-								position: "relative",
-								zIndex: 15,
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								position: "absolute",
+								top: "37%",
+								left: "20%",
+								right: "20%",
+								textAlign: "center",
+								zIndex: 20,
 							}}
 						>
-							カードテキスト
+							<img src="/X.png" alt="X" />
+							{/* X : @wuhu1sland */}
 						</Link>
+
 						<Link
-							className="bg-white text-black p-2 rounded-full hover:bg-gray-100 transition-colors"
-							href="https://x.com/wuhu1sland"
+							className="transition-colors"
+							href="https://www.instagram.com/utf.16/"
+							target="_blank"
+							rel="noopener noreferrer"
 							style={{
-								display: "block",
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
 								textDecoration: "none",
-								position: "relative",
-								zIndex: 15,
+								position: "absolute",
+								top: "47%",
+								left: "20%",
+								right: "20%",
+								textAlign: "center",
+								zIndex: 20,
 							}}
 						>
-							X
+							<img src="/insta.png" alt="instagram" />
+						</Link>
+
+						<Link
+							className="transition-colors"
+							href="https://github.com/SouichiroTsujimoto"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								textDecoration: "none",
+								position: "absolute",
+								top: "57%",
+								left: "20%",
+								right: "20%",
+								textAlign: "center",
+								zIndex: 20,
+							}}
+						>
+							<img src="/github.png" alt="github" />
 						</Link>
 					</div>
 
