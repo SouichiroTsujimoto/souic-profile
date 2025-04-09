@@ -143,7 +143,7 @@ body {
         );
     background-blend-mode: screen, hue, hard-light;
     transform: translateZ(0);
-    backface-visibility: hidden; will-change: filter;
+    backface-visibility: hidden; 
 }
 
 /*形を整える*/
