@@ -191,8 +191,8 @@ export default function Page() {
 			<div
 				className={`card-wrapper ${isReturningToCenter ? "return-to-center" : ""}`}
 				ref={cardWrapperRef}
-				onMouseMove={updateCardPosition}
-				onMouseLeave={handleMouseLeave}
+				onPointerMove={updateCardPosition}
+				onPointerLeave={handleMouseLeave}
 			>
 				{/* カラーレイヤーを下に配置 */}
 				<div
