@@ -62,7 +62,7 @@ body {
               rgba(255,255,255,.65) 20%, 
               transparent 60%);
   mix-blend-mode: overlay;
-  will-change: background-position, filter; /* GPUアクセラレーションのヒント */
+  will-change: filter; /* GPUアクセラレーションのヒント */
 }
 
 .color {
@@ -101,7 +101,7 @@ body {
   background-size: 500px 100%, 200% 700%, 300% 100%, 200% 100%;
   background-position: center, 0% var(--posy, 50%), var(--posx, 50%) var(--posy, 50%), var(--posx, 50%) var(--posy, 50%);
   filter: brightness(.8) contrast(2.95) saturate(.5);  
-  will-change: filter;
+  /* will-change: filter; */
 }
 
 .card-wrapper > .color::after {
@@ -142,7 +142,7 @@ body {
         rgba(0, 0, 0, .25) 120%
         );
   background-blend-mode: screen, hue, hard-light;
-  will-change: filter;
+  /* will-change: filter; */
 }
 
 /*形を整える*/
