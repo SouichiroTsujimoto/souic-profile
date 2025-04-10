@@ -7,9 +7,20 @@ import { useEffect, useRef, useState } from "react";
 export default function Page() {
 	const cardWrapperRef = useRef<HTMLDivElement | null>(null);
 	const [isReturningToCenter, setIsReturningToCenter] = useState(false);
-	const [bgColor, setBgColor] = useState(180);
 	const maxTilt = 20;
 	const rafIdRef = useRef<number | null>(null);
+
+	// CSSカスタムプロパティのための状態
+	const [cardStyles, setCardStyles] = useState({
+		ratioX: 0.5,
+		ratioY: 0.5,
+		mX: "50%",
+		mY: "50%",
+		rotateX: "0deg",
+		rotateY: "0deg",
+		posX: "50%",
+		posY: "50%",
+	});
 
 	// 初期化
 	useEffect(() => {
@@ -35,31 +46,12 @@ export default function Page() {
 		const centerY = 0.5;
 
 		// 現在の値を取得
-		const wrapper = cardWrapperRef.current;
-		const currentRatioX =
-			Number.parseFloat(
-				getComputedStyle(wrapper).getPropertyValue("--ratiox"),
-			) || 0.5;
-		const currentRatioY =
-			Number.parseFloat(
-				getComputedStyle(wrapper).getPropertyValue("--ratioy"),
-			) || 0.5;
-		const currentRx =
-			Number.parseFloat(
-				getComputedStyle(wrapper).getPropertyValue("--rx"),
-			) || 0;
-		const currentRy =
-			Number.parseFloat(
-				getComputedStyle(wrapper).getPropertyValue("--ry"),
-			) || 0;
-		const currentPosX =
-			Number.parseFloat(
-				getComputedStyle(wrapper).getPropertyValue("--posx"),
-			) || 50;
-		const currentPosY =
-			Number.parseFloat(
-				getComputedStyle(wrapper).getPropertyValue("--posy"),
-			) || 50;
+		const currentRatioX = cardStyles.ratioX;
+		const currentRatioY = cardStyles.ratioY;
+		const currentRx = Number.parseFloat(cardStyles.rotateX) || 0;
+		const currentRy = Number.parseFloat(cardStyles.rotateY) || 0;
+		const currentPosX = Number.parseFloat(cardStyles.posX) || 50;
+		const currentPosY = Number.parseFloat(cardStyles.posY) || 50;
 
 		// アニメーションの開始時間
 		const startTime = performance.now();
@@ -85,28 +77,32 @@ export default function Page() {
 			const newPosY = currentPosY + (50 - currentPosY) * easeProgress;
 
 			// 値を設定
-			wrapper.style.setProperty("--ratiox", newRatioX.toString());
-			wrapper.style.setProperty("--ratioy", newRatioY.toString());
-			wrapper.style.setProperty("--mx", `${newRatioX * 100}%`);
-			wrapper.style.setProperty("--my", `${newRatioY * 100}%`);
-			wrapper.style.setProperty("--rx", `${newRx}deg`);
-			wrapper.style.setProperty("--ry", `${newRy}deg`);
-			wrapper.style.setProperty("--posx", `${newPosX}%`);
-			wrapper.style.setProperty("--posy", `${newPosY}%`);
+			setCardStyles({
+				ratioX: newRatioX,
+				ratioY: newRatioY,
+				mX: `${newRatioX * 100}%`,
+				mY: `${newRatioY * 100}%`,
+				rotateX: `${newRx}deg`,
+				rotateY: `${newRy}deg`,
+				posX: `${newPosX}%`,
+				posY: `${newPosY}%`,
+			});
 
 			// アニメーションが完了していない場合は次のフレームを要求
 			if (progress < 1) {
 				rafIdRef.current = requestAnimationFrame(animate);
 			} else {
 				// 最終値を確実に設定
-				wrapper.style.setProperty("--ratiox", centerX.toString());
-				wrapper.style.setProperty("--ratioy", centerY.toString());
-				wrapper.style.setProperty("--mx", `${centerX * 100}%`);
-				wrapper.style.setProperty("--my", `${centerY * 100}%`);
-				wrapper.style.setProperty("--rx", "0deg");
-				wrapper.style.setProperty("--ry", "0deg");
-				wrapper.style.setProperty("--posx", "50%");
-				wrapper.style.setProperty("--posy", "50%");
+				setCardStyles({
+					ratioX: centerX,
+					ratioY: centerY,
+					mX: `${centerX * 100}%`,
+					mY: `${centerY * 100}%`,
+					rotateX: "0deg",
+					rotateY: "0deg",
+					posX: "50%",
+					posY: "50%",
+				});
 				rafIdRef.current = null;
 			}
 		};
@@ -143,26 +139,25 @@ export default function Page() {
 		const ratioX = (pointerX - centerX) / centerX;
 		const ratioY = (pointerY - centerY) / centerY;
 
-		// 必要最小限のCSS変数のみ更新
-		wrapper.style.setProperty("--ratiox", (ratioX + 0.5).toString());
-		wrapper.style.setProperty("--ratioy", (ratioY + 0.5).toString());
-
-		const mX = (ratioX + 0.5) * 100;
-		const mY = (ratioY + 0.5) * 100;
-		wrapper.style.setProperty("--mx", `${mX}%`);
-		wrapper.style.setProperty("--my", `${mY}%`);
-
 		// 回転角度を計算
 		const rotateY = ratioX * maxTilt;
 		const rotateX = -ratioY * maxTilt;
-		wrapper.style.setProperty("--rx", `${rotateX}deg`);
-		wrapper.style.setProperty("--ry", `${rotateY}deg`);
 
 		// ハイライト位置を計算
 		const posX = 50 + ratioX * 50;
 		const posY = 50 + ratioY * 50;
-		wrapper.style.setProperty("--posx", `${posX}%`);
-		wrapper.style.setProperty("--posy", `${posY}%`);
+
+		// 状態を更新
+		setCardStyles({
+			ratioX: ratioX + 0.5,
+			ratioY: ratioY + 0.5,
+			mX: `${(ratioX + 0.5) * 100}%`,
+			mY: `${(ratioY + 0.5) * 100}%`,
+			rotateX: `${rotateX}deg`,
+			rotateY: `${rotateY}deg`,
+			posX: `${posX}%`,
+			posY: `${posY}%`,
+		});
 	};
 
 	// アニメーションフレームでの更新を管理
@@ -186,6 +181,18 @@ export default function Page() {
 		setCardCenter();
 	};
 
+	// CSSカスタムプロパティをインラインスタイルに変換
+	const cardWrapperStyle = {
+		"--ratiox": cardStyles.ratioX,
+		"--ratioy": cardStyles.ratioY,
+		"--mx": cardStyles.mX,
+		"--my": cardStyles.mY,
+		"--rx": cardStyles.rotateX,
+		"--ry": cardStyles.rotateY,
+		"--posx": cardStyles.posX,
+		"--posy": cardStyles.posY,
+	} as React.CSSProperties;
+
 	return (
 		<>
 			<div
@@ -193,6 +200,7 @@ export default function Page() {
 				ref={cardWrapperRef}
 				onPointerMove={updateCardPosition}
 				onPointerLeave={handleMouseLeave}
+				style={cardWrapperStyle}
 			>
 				{/* カラーレイヤーを下に配置 */}
 				<div

@@ -29,7 +29,7 @@ body {
   width: auto; /* 幅は高さに合わせて自動調整 */
   place-items: center;
   position: absolute;
-  /* will-change: transform, filter; /* GPUアクセラレーションのヒント */
+  will-change: transform, filter; /* GPUアクセラレーションのヒント
   /* transform-style: preserve-3d; 子要素も3D空間に配置 */
 }
 
@@ -99,7 +99,7 @@ body {
   background-size: 500px 100%, 200% 700%, 300% 100%, 200% 100%;
   background-position: center, 0% var(--posy, 50%), var(--posx, 50%) var(--posy, 50%), var(--posx, 50%) var(--posy, 50%);
   filter: brightness(.8) contrast(2.95) saturate(.5);  
-  /* will-change: filter; */
+  will-change: filter;
 }
 
 .card-wrapper > .color::after {
