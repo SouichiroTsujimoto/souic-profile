@@ -60,7 +60,7 @@ export default function Iridescence({
 	...rest
 }: IridescenceProps) {
 	const ctnDom = useRef<HTMLDivElement>(null);
-	const mousePos = useRef({ x: 0.5, y: 0.5 });
+	// const mousePos = useRef({ x: 0.5, y: 0.5 });
 
 	useEffect(() => {
 		if (!ctnDom.current) return;
@@ -99,12 +99,12 @@ export default function Iridescence({
 						gl.canvas.width / gl.canvas.height,
 					),
 				},
-				uMouse: {
-					value: new Float32Array([
-						mousePos.current.x,
-						mousePos.current.y,
-					]),
-				},
+				// uMouse: {
+				// 	value: new Float32Array([
+				// 		mousePos.current.x,
+				// 		mousePos.current.y,
+				// 	]),
+				// },
 				uAmplitude: { value: amplitude },
 				uSpeed: { value: speed },
 			},
@@ -121,24 +121,24 @@ export default function Iridescence({
 		animateId = requestAnimationFrame(update);
 		ctn.appendChild(gl.canvas);
 
-		function handleMouseMove(e: MouseEvent) {
-			const rect = ctn.getBoundingClientRect();
-			const x = (e.clientX - rect.left) / rect.width;
-			const y = 1.0 - (e.clientY - rect.top) / rect.height;
-			mousePos.current = { x, y };
-			program.uniforms.uMouse.value[0] = x;
-			program.uniforms.uMouse.value[1] = y;
-		}
-		if (mouseReact) {
-			ctn.addEventListener("mousemove", handleMouseMove);
-		}
+		// function handleMouseMove(e: MouseEvent) {
+		// 	const rect = ctn.getBoundingClientRect();
+		// 	const x = (e.clientX - rect.left) / rect.width;
+		// 	const y = 1.0 - (e.clientY - rect.top) / rect.height;
+		// 	mousePos.current = { x, y };
+		// 	program.uniforms.uMouse.value[0] = x;
+		// 	program.uniforms.uMouse.value[1] = y;
+		// }
+		// if (mouseReact) {
+		// 	ctn.addEventListener("mousemove", handleMouseMove);
+		// }
 
 		return () => {
 			cancelAnimationFrame(animateId);
 			window.removeEventListener("resize", resize);
-			if (mouseReact) {
-				ctn.removeEventListener("mousemove", handleMouseMove);
-			}
+			// if (mouseReact) {
+			// 	ctn.removeEventListener("mousemove", handleMouseMove);
+			// }
 			ctn.removeChild(gl.canvas);
 			gl.getExtension("WEBGL_lose_context")?.loseContext();
 		};
