@@ -274,7 +274,7 @@ export default function Page() {
 
 						<Link
 							className="transition-colors"
-							href="https://x.com/wuhu1sland"
+							href=""
 							target="_blank"
 							rel="noopener noreferrer"
 							style={{
@@ -328,7 +328,7 @@ export default function Page() {
 
 						<Link
 							className="transition-colors"
-							href=""
+							href="https://x.com/wuhu1sland"
 							target="_blank"
 							rel="noopener noreferrer"
 							style={{
