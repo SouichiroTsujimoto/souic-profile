@@ -25,15 +25,32 @@ body {
   transition: transform 0.05s linear; 
   aspect-ratio: .716;
   display: grid;
-  width: 80vw; /* 画面の高さの70%に設定 */
-  height: auto; /* 幅は高さに合わせて自動調整 */
+  width: 80vw; 
+  height: auto; 
   place-items: center;
   position: absolute;
   will-change: transform, filter; /* GPUアクセラレーションのヒント
   /* transform-style: preserve-3d; 子要素も3D空間に配置 */
 }
 
-/* スマートフォン向けのスタイル */
+/* タブレット向けのスタイル */
+@media screen and (min-width: 481px) {
+
+.card-wrapper {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); /* 回転に変更 */
+  transition: transform 0.05s linear; 
+  aspect-ratio: .716;
+  display: grid;
+  height: 70vh;
+  width: auto; 
+  place-items: center;
+  position: absolute;
+  will-change: transform, filter; /* GPUアクセラレーションのヒント
+  /* transform-style: preserve-3d; 子要素も3D空間に配置 */
+}
+}
+
+/* pc向けのスタイル */
 @media screen and (min-width: 960px) {
 
 .card-wrapper {
@@ -41,8 +58,8 @@ body {
   transition: transform 0.05s linear; 
   aspect-ratio: .716;
   display: grid;
-  height: 70vh; /* 画面の高さの70%に設定 */
-  width: auto; /* 幅は高さに合わせて自動調整 */
+  height: 70vh;
+  width: auto; 
   place-items: center;
   position: absolute;
   will-change: transform, filter; /* GPUアクセラレーションのヒント
@@ -63,6 +80,7 @@ body {
         133deg, 
         #0e152e 0%, 
         hsl(180, 10%, 60%) 3.8%, 
+        hsl(180, 29%, 66%) 4.5%, 
         hsl(180, 10%, 60%) 5.2%, 
         #0e152e 10% , 
         #0e152e 12% 
@@ -107,7 +125,8 @@ body {
         repeating-linear-gradient( 
         133deg, 
         #0e152e 0%, 
-        hsl(180, 10%, 60%) 3.8%, 
+        hsl(180, 10%, 60%) 3.8%,
+        hsl(180, 29%, 66%) 4.5%, 
         hsl(180, 10%, 60%) 5.2%, 
         #0e152e 10% , 
         #0e152e 12% 
