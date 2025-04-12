@@ -257,7 +257,7 @@ export default function Page() {
 						/>
 
 						<img
-							src="/tsujimoto6.png"
+							src="/tsujimoto8.png"
 							alt="text"
 							style={{
 								display: "flex",
