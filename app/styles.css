@@ -34,40 +34,7 @@ body {
 }
 
 /* スマートフォン向けのスタイル */
-@media screen and (max-width: 768px) {
-  .card-wrapper {
-    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); /* 回転に変更 */
-    transition: transform 0.05s linear; 
-    aspect-ratio: .716;
-    display: grid;
-    width: 80vw; /* 幅は高さに合わせて自動調整 */
-    height: auto; /* 画面の高さの70%に設定 */
-    place-items: center;
-    position: absolute;
-    /*will-change: transform, filter; /* GPUアクセラレーションのヒント */
-    /* transform-style: preserve-3d; 子要素も3D空間に配置 */
-  }
-}
-
-
-/* 中央に戻るときのトランジション */
-.card-wrapper.return-to-center {
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.card-wrapper:hover > .highlight {
-  background: radial-gradient(circle at var(--mx, 25%) var(--my, 25%), 
-              rgba(255,255,255,.8) 10%, 
-              rgba(255,255,255,.65) 20%, 
-              transparent 60%);
-  mix-blend-mode: overlay;
-  /* will-change: filter; GPUアクセラレーションのヒント */
-}
-
-.color {
-  mix-blend-mode: color-dodge;
-  display: grid;
-}
+@media screen and (min-width: 960px) {
 
 .card-wrapper > .color {
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCI+CjxmaWx0ZXIgaWQ9Im4iPgo8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjEwIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIj48L2ZlVHVyYnVsZW5jZT4KPC9maWx0ZXI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjMDAwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9IjAuMyI+PC9yZWN0Pgo8L3N2Zz4="),
@@ -141,6 +108,28 @@ body {
         );
     background-blend-mode: screen, hue, hard-light;
 }
+}
+
+
+/* 中央に戻るときのトランジション */
+.card-wrapper.return-to-center {
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-wrapper:hover > .highlight {
+  background: radial-gradient(circle at var(--mx, 25%) var(--my, 25%), 
+              rgba(255,255,255,.8) 10%, 
+              rgba(255,255,255,.65) 20%, 
+              transparent 60%);
+  mix-blend-mode: overlay;
+  /* will-change: filter; GPUアクセラレーションのヒント */
+}
+
+.color {
+  mix-blend-mode: color-dodge;
+  display: grid;
+}
+
 
 /*形を整える*/
 .card {
