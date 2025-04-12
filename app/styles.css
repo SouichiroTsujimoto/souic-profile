@@ -25,8 +25,8 @@ body {
   transition: transform 0.05s linear; 
   aspect-ratio: .716;
   display: grid;
-  height: 70vh; /* 画面の高さの70%に設定 */
-  width: auto; /* 幅は高さに合わせて自動調整 */
+  width: 80vw; /* 画面の高さの70%に設定 */
+  height: auto; /* 幅は高さに合わせて自動調整 */
   place-items: center;
   position: absolute;
   will-change: transform, filter; /* GPUアクセラレーションのヒント
@@ -41,8 +41,8 @@ body {
   transition: transform 0.05s linear; 
   aspect-ratio: .716;
   display: grid;
-  width: 80vw; /* 画面の高さの70%に設定 */
-  height: auto; /* 幅は高さに合わせて自動調整 */
+  height: 70vh; /* 画面の高さの70%に設定 */
+  width: auto; /* 幅は高さに合わせて自動調整 */
   place-items: center;
   position: absolute;
   will-change: transform, filter; /* GPUアクセラレーションのヒント
