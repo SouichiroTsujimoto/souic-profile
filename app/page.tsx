@@ -230,13 +230,45 @@ export default function Page() {
 					>
 						{/* 画像を背景として配置 - 中間のレイヤー */}
 						<img
-							src="/souic8.png"
+							src="/newsouic.png"
 							alt="カード画像"
 							className="color"
 							style={{
 								zIndex: 10,
 								position: "absolute",
 								pointerEvents: "none",
+							}}
+						/>
+
+						<img
+							src="/icon.png"
+							alt="icon"
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								position: "absolute",
+								scale: "0.3",
+								top: "-14%",
+								zIndex: 20,
+								textAlign: "center",
+								filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
+							}}
+						/>
+
+						<img
+							src="/tsujimoto6.png"
+							alt="text"
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								position: "absolute",
+								top: "10%",
+								zIndex: 20,
+								textAlign: "center",
+								opacity: "0.8",
+								scale: "0.65",
 							}}
 						/>
 
@@ -250,36 +282,21 @@ export default function Page() {
 								justifyContent: "center",
 								alignItems: "center",
 								position: "absolute",
-								top: "37%",
+								top: "52%",
 								left: "20%",
 								right: "20%",
 								textAlign: "center",
 								zIndex: 20,
 							}}
 						>
-							<img src="/X.png" alt="X" />
+							<img
+								src="/portfolio2.png"
+								alt="portfolio"
+								style={{
+									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
+								}}
+							/>
 							{/* X : @wuhu1sland */}
-						</Link>
-
-						<Link
-							className="transition-colors"
-							href="https://www.instagram.com/utf.16/"
-							target="_blank"
-							rel="noopener noreferrer"
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								textDecoration: "none",
-								position: "absolute",
-								top: "47%",
-								left: "20%",
-								right: "20%",
-								textAlign: "center",
-								zIndex: 20,
-							}}
-						>
-							<img src="/insta.png" alt="instagram" />
 						</Link>
 
 						<Link
@@ -293,14 +310,47 @@ export default function Page() {
 								alignItems: "center",
 								textDecoration: "none",
 								position: "absolute",
-								top: "57%",
+								top: "62%",
 								left: "20%",
 								right: "20%",
 								textAlign: "center",
 								zIndex: 20,
 							}}
 						>
-							<img src="/github.png" alt="github" />
+							<img
+								src="/github2.png"
+								alt="github"
+								style={{
+									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
+								}}
+							/>
+						</Link>
+
+						<Link
+							className="transition-colors"
+							href=""
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								textDecoration: "none",
+								position: "absolute",
+								top: "72%",
+								left: "20%",
+								right: "20%",
+								textAlign: "center",
+								zIndex: 20,
+							}}
+						>
+							<img
+								src="/X2.png"
+								alt="X"
+								style={{
+									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
+								}}
+							/>
 						</Link>
 					</div>
 
