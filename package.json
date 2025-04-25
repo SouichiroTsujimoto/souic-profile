@@ -9,6 +9,7 @@
     "check": "bunx @biomejs/biome check --write ./app"
   },
   "dependencies": {
+    "@react-spring/web": "^9.7.5",
     "next": "15.2.5",
     "ogl": "^1.0.11",
     "react": "^19.0.0",
