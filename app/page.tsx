@@ -274,8 +274,8 @@ export default function Page() {
 
 						<Link
 							className="transition-colors"
-							href=""
-							target="_blank"
+							href="/portfolio"
+							// target="_blank"
 							rel="noopener noreferrer"
 							style={{
 								display: "flex",

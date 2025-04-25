@@ -1,0 +1,27 @@
+.portfolioContainer {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  overflow-y: auto;
+  background: transparent;
+  z-index: 10;
+  padding: 0.5rem;
+}
+
+.projectCard {
+  position: relative;
+  z-index: 20;
+  transition: all 0.2s ease;
+  max-width: 100%;
+  height: 40vh;
+  width: auto;
+  margin-bottom: 3vh;
+}
+
+.projectCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
