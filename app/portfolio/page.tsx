@@ -175,7 +175,7 @@ export default function PortfolioPage() {
 		<div className={styles.portfolioContainer}>
 			<div className="max-w-2xl mx-auto px-4 py-8 relative z-10">
 				{/* ヘッダー */}
-				<header className="mb-10 mt-8">
+				<header className="mb-10 mt-16 sm:mt-8">
 					<div className="flex flex-col items-center">
 						<SplitText
 							text="Works"
