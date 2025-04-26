@@ -214,11 +214,13 @@ export default function PortfolioPage() {
 												)
 											}
 										>
-											<img
+											<Image
 												src={selectedProject.images[0]}
 												alt={`${selectedProject.title}のメイン画像`}
-												className="object-cover rounded-lg shadow-sm cursor-pointer mb-2 w-full"
+												className="object-cover rounded-lg shadow-sm cursor-pointer mb-2"
 												style={{ maxHeight: "300px" }}
+												width={500}
+												height={300}
 											/>
 											<span className="sr-only">
 												画像を拡大
@@ -249,10 +251,12 @@ export default function PortfolioPage() {
 															)
 														}
 													>
-														<img
+														<Image
 															src={image}
 															alt={`${selectedProject.title}の画像 ${index + 2}`}
 															className="object-cover rounded-lg shadow-sm cursor-pointer w-full h-24"
+															width={200}
+															height={96}
 														/>
 														<span className="sr-only">
 															画像を拡大
@@ -366,14 +370,16 @@ export default function PortfolioPage() {
 									}
 									type="button"
 								>
-									<div className="flex flex-row">
-										<div className="h-full w-1/2 overflow-hidden border-r border-gray-200">
+									<div className="flex flex-row h-full">
+										<div className="relative w-1/2 overflow-hidden border-r border-gray-200">
 											{/* メイン画像（最初の画像）のみ表示 */}
 											{project.images.length > 0 && (
-												<img
+												<Image
 													src={project.images[0]}
 													alt={project.title}
-													className="object-cover h-full w-full"
+													height={300}
+													width={500}
+													className="object-cover"
 												/>
 											)}
 										</div>
@@ -449,17 +455,19 @@ export default function PortfolioPage() {
 								<span className="sr-only">Close</span>
 								<XIcon className="w-5 h-5" />
 							</button>
-							<img
+							<Image
 								src={selectedImage}
 								alt={`プロジェクト画像 - ${selectedProject?.title || ""}`}
-								className="max-h-[85vh] w-auto object-contain"
+								className="object-contain"
+								width={1200}
+								height={800}
 							/>
 						</div>
 					</div>
 				)}
 
 				{/* フッター */}
-				<footer className="mt-8 text-center text-gray-600 text-xs">
+				<footer className="mt-8 mb-21 sm:mb-0 text-center text-gray-600 text-xs">
 					<p>© 2025 Tsujimoto Souichiro</p>
 				</footer>
 			</div>

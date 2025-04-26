@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -229,7 +230,7 @@ export default function Page() {
 						}}
 					>
 						{/* 画像を背景として配置 - 中間のレイヤー */}
-						<img
+						<Image
 							src="/newsouic.png"
 							alt="カード画像"
 							className="color"
@@ -238,9 +239,11 @@ export default function Page() {
 								position: "absolute",
 								pointerEvents: "none",
 							}}
+							width={500}
+							height={700}
 						/>
 
-						<img
+						<Image
 							src="/icon.png"
 							alt="icon"
 							style={{
@@ -254,9 +257,11 @@ export default function Page() {
 								textAlign: "center",
 								filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
 							}}
+							width={400}
+							height={400}
 						/>
 
-						<img
+						<Image
 							src="/tsujimoto8.png"
 							alt="text"
 							style={{
@@ -270,6 +275,8 @@ export default function Page() {
 								opacity: "0.8",
 								scale: "0.65",
 							}}
+							width={600}
+							height={150}
 						/>
 
 						<Link
@@ -289,12 +296,14 @@ export default function Page() {
 								zIndex: 20,
 							}}
 						>
-							<img
+							<Image
 								src="/portfolio2.png"
 								alt="portfolio"
 								style={{
 									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
 								}}
+								width={300}
+								height={60}
 							/>
 							{/* X : @wuhu1sland */}
 						</Link>
@@ -317,12 +326,14 @@ export default function Page() {
 								zIndex: 20,
 							}}
 						>
-							<img
+							<Image
 								src="/github2.png"
 								alt="github"
 								style={{
 									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
 								}}
+								width={300}
+								height={60}
 							/>
 						</Link>
 
@@ -344,12 +355,14 @@ export default function Page() {
 								zIndex: 20,
 							}}
 						>
-							<img
+							<Image
 								src="/X2.png"
 								alt="X"
 								style={{
 									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
 								}}
+								width={300}
+								height={60}
 							/>
 						</Link>
 					</div>

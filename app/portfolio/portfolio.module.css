@@ -14,8 +14,8 @@
   position: relative;
   z-index: 20;
   height: 30vh;
-  width: auto;
-  margin-bottom: 3vh;
+  width: 50vw;
+  margin-bottom: 4vh;
 }
 
 .projectDetail {
