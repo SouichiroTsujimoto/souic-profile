@@ -377,9 +377,9 @@ export default function PortfolioPage() {
 												<Image
 													src={project.images[0]}
 													alt={project.title}
-													height={300}
+													height={500}
 													width={500}
-													className="object-cover"
+													className="object-cover h-full sm:w-full"
 												/>
 											)}
 										</div>

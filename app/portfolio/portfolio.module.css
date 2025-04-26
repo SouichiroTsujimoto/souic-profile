@@ -14,7 +14,7 @@
   position: relative;
   z-index: 20;
   height: 30vh;
-  width: 50vw;
+  width: auto;
   margin-bottom: 4vh;
 }
 
