@@ -1,4 +1,4 @@
-import { type SpringConfig, animated, useSprings } from "@react-spring/web";
+import { type SpringConfig, useTrail } from "@react-spring/web";
 import { useEffect, useRef, useState } from "react";
 
 interface SplitTextProps {
@@ -18,8 +18,6 @@ const SplitText: React.FC<SplitTextProps> = ({
 	text = "",
 	className = "",
 	delay = 100,
-	animationFrom = { opacity: 0, transform: "translate3d(0,40px,0)" },
-	animationTo = { opacity: 1, transform: "translate3d(0,0,0)" },
 	easing = (t: number) => t,
 	threshold = 0.1,
 	rootMargin = "-100px",
@@ -29,7 +27,6 @@ const SplitText: React.FC<SplitTextProps> = ({
 	const letters = words.flat();
 	const [inView, setInView] = useState(false);
 	const ref = useRef<HTMLParagraphElement>(null);
-	const animatedCount = useRef(0);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -51,25 +48,14 @@ const SplitText: React.FC<SplitTextProps> = ({
 		return () => observer.disconnect();
 	}, [threshold, rootMargin]);
 
-	const springs = useSprings(
-		letters.length,
-		letters.map((_, i) => ({
-			from: animationFrom,
-			to: inView
-				? async (
-						next: (props: {
-							opacity: number;
-							transform: string;
-						}) => Promise<void>,
-					) => {
-						await next(animationTo);
-						animatedCount.current += 1;
-					}
-				: animationFrom,
-			delay: i * delay,
-			config: { easing },
-		})),
-	);
+	// 単純なスタイルオブジェクトを使用
+	const letterStyles = letters.map((_, i) => ({
+		opacity: inView ? 1 : 0,
+		transform: inView ? "translate3d(0,0,0)" : "translate3d(0,40px,0)",
+		transition: "opacity 0.5s, transform 0.5s",
+		transitionDelay: `${i * delay}ms`,
+		display: "inline-block",
+	}));
 
 	return (
 		<p
@@ -79,7 +65,7 @@ const SplitText: React.FC<SplitTextProps> = ({
 		>
 			{words.map((word, wordIndex) => (
 				<span
-					key={wordIndex}
+					key={`word-${wordIndex}-${word.join("")}`}
 					style={{ display: "inline-block", whiteSpace: "nowrap" }}
 				>
 					{word.map((letter, letterIndex) => {
@@ -90,17 +76,13 @@ const SplitText: React.FC<SplitTextProps> = ({
 							letterIndex;
 
 						return (
-							<animated.span
-								key={index}
-								style={
-									springs[
-										index
-									] as unknown as React.CSSProperties
-								}
-								className="inline-block transform transition-opacity will-change-transform"
+							<span
+								key={`letter-${index}-${letter}`}
+								style={letterStyles[index]}
+								className="transform transition-opacity will-change-transform"
 							>
 								{letter}
-							</animated.span>
+							</span>
 						);
 					})}
 					<span style={{ display: "inline-block", width: "0.3em" }}>

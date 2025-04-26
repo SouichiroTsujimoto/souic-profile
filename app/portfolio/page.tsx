@@ -181,15 +181,6 @@ export default function PortfolioPage() {
 							text="Works"
 							className="text-3xl text-gray-800 font-bold text-center"
 							delay={80}
-							animationFrom={{
-								opacity: 0,
-								transform: "translate3d(0,50px,0)",
-							}}
-							animationTo={{
-								opacity: 1,
-								transform: "translate3d(0,0,0)",
-							}}
-							// easing="easeOutCubic"
 							threshold={0.2}
 							rootMargin="-15px"
 						/>
