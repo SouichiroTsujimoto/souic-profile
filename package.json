@@ -9,6 +9,7 @@
     "check": "bunx @biomejs/biome check --write ./app"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@react-spring/web": "^9.7.5",
     "next": "15.2.5",
     "ogl": "^1.0.11",

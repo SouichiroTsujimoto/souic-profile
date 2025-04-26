@@ -1,8 +1,8 @@
 .portfolioContainer {
   position: absolute;
   top: 0;
-  left: 20%;
-  right: 20%;
+  left: 0%;
+  right: 0%;
   bottom: 0;
   overflow-y: auto;
   background: transparent;
@@ -13,7 +13,6 @@
 .projectCard {
   position: relative;
   z-index: 20;
-  transition: all 0.2s ease;
   height: 30vh;
   width: auto;
   margin-bottom: 3vh;
@@ -22,8 +21,6 @@
 .projectDetail {
   position: relative;
   z-index: 20;
-  transition: all 0.2s ease;
-  min-height: 50vh;
   height: auto;
   width: auto;
   margin-bottom: 3vh;

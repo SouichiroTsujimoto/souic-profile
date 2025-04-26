@@ -1,8 +1,14 @@
 "use client";
 
+import {
+	ChevronDoubleLeftIcon as LeftChevIcon,
+	ArrowUturnLeftIcon as UturnIcon,
+	XMarkIcon as XIcon,
+} from "@heroicons/react/24/outline";
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import AnimatedContent from "./AnimatedContent";
+import { type KeyboardEvent, useRef, useState } from "react";
+import SplitText from "./SplitText";
 import styles from "./portfolio.module.css";
 
 // プロジェクトデータの型定義
@@ -10,10 +16,14 @@ interface Project {
 	id: number;
 	title: string;
 	description: string;
-	imageUrl: string;
+	images: string[]; // 単一のimageUrlから配列に変更
 	technologies: string[];
 	githubUrl?: string;
-	demoUrl?: string;
+	siteUrl?: string;
+	installUrl?: string;
+	installUrlText?: string;
+	installUrl2?: string;
+	installUrl2Text?: string;
 	year: string;
 }
 
@@ -22,228 +32,444 @@ export default function PortfolioPage() {
 	const projects: Project[] = [
 		{
 			id: 1,
-			title: "ポートフォリオサイト",
+			title: "DUET+",
 			description:
-				"Next.jsとTailwind CSSを使用して構築した個人ポートフォリオサイト。3Dカード効果を実装しています。",
-			imageUrl: "/souic19.png",
-			technologies: ["Next.js", "TypeScript", "Tailwind CSS", "OGL"],
-			githubUrl: "https://github.com/SouichiroTsujimoto/portfolio",
-			demoUrl: "https://souic-profile.vercel.app/",
+				"同志社大学の学生用ポータルサイトDUETに、より詳細な情報を表示させます。\n\n自身の成績を確認できるページに、各授業の成績分布情報や、同じ授業を受けた生徒の目安GPAなどを表示します。\n\nパソコン向けにはChrome、スマホ向けにはiOSのSafariの拡張機能として公開しています",
+			images: ["/D+.png", "/duet+.png"],
+			technologies: [
+				"Typescript",
+				"Chrome Extension",
+				"Safari Extension",
+				"Hono",
+			],
+			githubUrl: "https://github.com/SouichiroTsujimoto/duet-plus",
+			installUrl:
+				"https://chromewebstore.google.com/detail/mofjbejpdfdfkbiicjhimkodkijekjdk?utm_source=item-share-cb",
+			installUrlText: "Chromeウェブストア",
+			installUrl2: "https://apps.apple.com/jp/app/duet/id6743043491",
+			installUrl2Text: "App Store (iOS)",
 			year: "2024",
 		},
 		{
 			id: 2,
-			title: "プロジェクト2",
+			title: "w1eX",
 			description:
-				"サンプルプロジェクト2の説明文をここに入力します。プロジェクトの目的や特徴について簡潔に説明します。",
-			imageUrl: "/souic19.png",
-			technologies: ["React", "Node.js", "MongoDB"],
-			githubUrl: "https://github.com/SouichiroTsujimoto/project2",
-			year: "2023",
+				"数学などの授業のノート作成に特化したマークアップ言語です。VSCodeの拡張機能として提供され、.w1exファイルの保存時にリアルタイムでノートを生成します。\n\nMarkDownのような既存のマークアップ言語との差別化として、視覚的なノート作成に特化しています。数学の授業でのノート作成に自分で使用するために作りました。",
+			images: ["/w1ex5.png"],
+			technologies: ["Typescript", "VSCode Extension"],
+			githubUrl: "https://github.com/SouichiroTsujimoto/w1eX",
+			installUrl:
+				"https://marketplace.visualstudio.com/items?itemName=SouichiroTsujimoto.w1ex",
+			installUrlText: "VSCode Marketplace",
+			year: "2024",
 		},
 		{
 			id: 3,
-			title: "プロジェクト3",
+			title: "souic-profile",
 			description:
-				"サンプルプロジェクト3の説明文。実際のプロジェクト内容に合わせて更新してください。",
-			imageUrl: "/souic19.png",
-			technologies: ["Vue.js", "Express", "PostgreSQL"],
-			demoUrl: "https://project3-demo.com",
-			year: "2022",
+				"自身のプロフィールページです。このサイトの8割はCursor AgentでClaude3.7 Sonnetを用いて作りました。\n\nAgentはめちゃ便利でしたが、ReactやNext.jsの知識は正直全く身に付きませんでした。\n\n背景やテキストのアニメーションはreact bitsのものを使用しています。",
+			images: ["/souic-profile4.png"],
+			technologies: [
+				"Typescript",
+				"Next.js",
+				"React",
+				"Tailwind CSS",
+				"Vercel",
+			],
+			siteUrl: "/",
+			year: "2025",
+		},
+		{
+			id: 4,
+			title: "株式会社辻本エンジニアリング ホームページ",
+			description:
+				"株式会社辻本エンジニアリングの公式ホームページを制作しました。",
+			images: ["/tsujimoto-eng4.png"],
+			technologies: ["Typescript", "Astro", "Tailwind CSS", "Netlify"],
+			siteUrl: "https://tsujimoto-engineering.netlify.app",
+			year: "2024",
+		},
+		{
+			id: 5,
+			title: "同志社大学京田辺キャンパス 略称対応マップ",
+			description:
+				"同志社大学は各建物に非常に魅力的な名称を付けています。さらに、シラバス等では簡潔でルールのない略称が使われているため、略称から元の建物を推測するには豊かな想像力が必要です。\n\nそこで、建物名と略称とその位置を対応付けたマップを作成しました。",
+			images: ["/dpmap.png"],
+			technologies: ["Javascript", "Cloudflare Pages"],
+			siteUrl: "https://dpmap-kyotanabe-campus.pages.dev",
+			year: "2024",
+		},
+		{
+			id: 6,
+			title: "Grid",
+			description: "2020年度SecHack365で制作したプログラミング言語です。",
+			images: ["/Grid.png"],
+			technologies: ["Nim", "C++"],
+			siteUrl: "https://sechack365.nict.go.jp/achievement/2020/#c03",
+			githubUrl: "https://github.com/SouichiroTsujimoto/Grid",
+			year: "2020",
 		},
 	];
 
 	const [selectedProject, setSelectedProject] = useState<Project | null>(
 		null,
 	);
+	const [selectedImage, setSelectedImage] = useState<string | null>(null);
+	const modalRef = useRef<HTMLDialogElement>(null);
 
 	const handleProjectSelect = (project: Project) => {
 		setSelectedProject(project);
+	};
+
+	// プロジェクト選択のキーボードハンドラー
+	const handleProjectKeyDown = (
+		e: KeyboardEvent<HTMLButtonElement>,
+		project: Project,
+	) => {
+		if (e.key === "Enter" || e.key === " ") {
+			handleProjectSelect(project);
+		}
+	};
+
+	// 「一覧に戻る」ボタンのキーボードハンドラー
+	const handleBackToListKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+		if (e.key === "Enter" || e.key === " ") {
+			setSelectedProject(null);
+		}
+	};
+
+	// 画像をクリックしたときのハンドラー
+	const handleImageClick = (imageUrl: string) => {
+		setSelectedImage(imageUrl);
+	};
+
+	// キーボードイベントハンドラー（ボタン用）
+	const handleImageKeyDown = (
+		e: KeyboardEvent<HTMLButtonElement>,
+		imageUrl: string,
+	) => {
+		if (e.key === "Enter" || e.key === " ") {
+			handleImageClick(imageUrl);
+		}
+	};
+
+	// モーダルを閉じるハンドラー
+	const closeImageModal = () => {
+		setSelectedImage(null);
+	};
+
+	// モーダルをキーボードで閉じるハンドラー
+	const handleModalKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+		if (e.key === "Escape") {
+			closeImageModal();
+		}
+	};
+
+	// モーダル内部divのキーボードイベントハンドラー
+	const handleModalDivKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+		// イベントの伝播を止めて、モーダル全体のクリックイベントが発火しないようにする
+		e.stopPropagation();
 	};
 
 	return (
 		<div className={styles.portfolioContainer}>
 			<div className="max-w-2xl mx-auto px-4 py-8 relative z-10">
 				{/* ヘッダー */}
-				<header className="mb-6">
-					<div className="flex flex-col items-center mb-6">
-						<h1 className="text-2xl font-bold text-center text-gray-800 mb-4">
-							ポートフォリオ
-						</h1>
-						<Link
-							href="/"
-							className="text-sm font-bold text-gray-800 hover:text-gray-600 transition"
-						>
-							← ホームに戻る
-						</Link>
+				<header className="mb-10 mt-8">
+					<div className="flex flex-col items-center">
+						<SplitText
+							text="Works"
+							className="text-3xl text-gray-800 font-bold text-center"
+							delay={80}
+							animationFrom={{
+								opacity: 0,
+								transform: "translate3d(0,50px,0)",
+							}}
+							animationTo={{
+								opacity: 1,
+								transform: "translate3d(0,0,0)",
+							}}
+							// easing="easeOutCubic"
+							threshold={0.2}
+							rootMargin="-15px"
+						/>
 					</div>
 				</header>
 
 				{/* メインコンテンツ */}
 				<main>
 					{selectedProject ? (
-						<AnimatedContent
-							distance={50}
-							direction="vertical"
-							reverse={false}
-							config={{ tension: 80, friction: 20 }}
-							initialOpacity={0.2}
-							animateOpacity
-							scale={1.1}
-							threshold={0.2}
+						// プロジェクト詳細表示
+						<div
+							className={`${styles.projectDetail} bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm`}
 						>
-							<div
-								className={`${styles.projectDetail} bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm`}
-							>
-								<div className="flex flex-col md:flex-row">
-									<div className="md:w-2/5 p-3">
-										<img
-											src={selectedProject.imageUrl}
-											alt={selectedProject.title}
-											className="object-cover rounded-lg shadow-sm"
-											style={{ maxHeight: "300px" }}
-										/>
-									</div>
-									<div className="md:w-3/5 p-4">
+							<div className="flex flex-col md:flex-row">
+								<div className="md:w-2/5 p-3">
+									{/* メイン画像（最初の画像）を表示 */}
+									{selectedProject.images.length > 0 && (
 										<button
-											onClick={() =>
-												setSelectedProject(null)
-											}
-											className="mb-3 text-xs text-gray-600 hover:text-gray-800 transition"
 											type="button"
+											className="w-full p-0 border-0 bg-transparent"
+											onClick={(e) => {
+												e.stopPropagation();
+												handleImageClick(
+													selectedProject.images[0],
+												);
+											}}
+											onKeyDown={(e) =>
+												handleImageKeyDown(
+													e,
+													selectedProject.images[0],
+												)
+											}
 										>
-											← 一覧に戻る
+											<img
+												src={selectedProject.images[0]}
+												alt={`${selectedProject.title}のメイン画像`}
+												className="object-cover rounded-lg shadow-sm cursor-pointer mb-2 w-full"
+												style={{ maxHeight: "300px" }}
+											/>
+											<span className="sr-only">
+												画像を拡大
+											</span>
 										</button>
-										<h2 className="text-xl font-bold text-gray-800 mb-2">
-											{selectedProject.title}
-										</h2>
-										<p className="text-xs text-gray-500 mb-2">
-											{selectedProject.year}年
-										</p>
-										<p className="text-sm text-gray-700 mb-4">
-											{selectedProject.description}
-										</p>
+									)}
 
-										<div className="mb-4">
-											<h3 className="text-sm font-semibold text-gray-800 mb-2">
-												使用技術
-											</h3>
-											<div className="flex flex-wrap gap-2">
-												{selectedProject.technologies.map(
-													(tech) => (
-														<span
-															key={`tech-${tech}`}
-															className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700"
-														>
-															{tech}
+									{/* サブ画像（2枚目以降）があれば表示 */}
+									{selectedProject.images.length > 1 && (
+										<div className="mt-2 grid grid-cols-2 gap-2">
+											{selectedProject.images
+												.slice(1)
+												.map((image, index) => (
+													<button
+														key={`${selectedProject.id}-sub-image-${index}`}
+														type="button"
+														className="w-full p-0 border-0 bg-transparent"
+														onClick={(e) => {
+															e.stopPropagation();
+															handleImageClick(
+																image,
+															);
+														}}
+														onKeyDown={(e) =>
+															handleImageKeyDown(
+																e,
+																image,
+															)
+														}
+													>
+														<img
+															src={image}
+															alt={`${selectedProject.title}の画像 ${index + 2}`}
+															className="object-cover rounded-lg shadow-sm cursor-pointer w-full h-24"
+														/>
+														<span className="sr-only">
+															画像を拡大
 														</span>
-													),
-												)}
-											</div>
+													</button>
+												))}
 										</div>
+									)}
+								</div>
+								<div className="md:w-3/5 p-4">
+									<button
+										onClick={() => setSelectedProject(null)}
+										onKeyDown={handleBackToListKeyDown}
+										className="absolute right-5 text-xs text-gray-800 hover:text-gray-600 transition cursor-pointer"
+										type="button"
+									>
+										<XIcon className="w-5 h-5" />
+									</button>
+									<h2 className="mt-7 text-xl font-bold text-gray-800 mb-2">
+										{selectedProject.title}
+									</h2>
+									<p className="text-xs text-gray-500 mb-2">
+										{selectedProject.year}年
+									</p>
+									<p className="text-sm text-gray-700 mb-4 whitespace-pre-line">
+										{selectedProject.description}
+									</p>
 
-										<div className="flex flex-wrap gap-3 mb-3">
-											{selectedProject.githubUrl && (
-												<a
-													href={
-														selectedProject.githubUrl
-													}
-													target="_blank"
-													rel="noopener noreferrer"
-													className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition shadow-sm text-xs"
-												>
-													GitHubを見る
-												</a>
-											)}
-											{selectedProject.demoUrl && (
-												<a
-													href={
-														selectedProject.demoUrl
-													}
-													target="_blank"
-													rel="noopener noreferrer"
-													className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition shadow-sm text-xs"
-												>
-													デモを見る
-												</a>
+									<div className="mb-4">
+										<h3 className="text-sm font-semibold text-gray-800 mb-2">
+											使用技術
+										</h3>
+										<div className="flex flex-wrap gap-2">
+											{selectedProject.technologies.map(
+												(tech) => (
+													<span
+														key={`tech-${tech}`}
+														className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700"
+													>
+														{tech}
+													</span>
+												),
 											)}
 										</div>
+									</div>
+
+									<h3 className="text-sm font-semibold text-gray-800 mb-2">
+										外部リンク
+									</h3>
+									<div className="flex flex-wrap gap-3 mb-3">
+										{selectedProject.githubUrl && (
+											<a
+												href={selectedProject.githubUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition shadow-sm text-xs"
+											>
+												GitHub
+											</a>
+										)}
+										{selectedProject.siteUrl && (
+											<a
+												href={selectedProject.siteUrl}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition shadow-sm text-xs"
+											>
+												サイトを見る
+											</a>
+										)}
+										{selectedProject.installUrl && (
+											<a
+												href={
+													selectedProject.installUrl
+												}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="px-3 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-500 transition shadow-sm text-xs"
+											>
+												{selectedProject.installUrlText ||
+													"インストール"}
+											</a>
+										)}
+										{selectedProject.installUrl2 && (
+											<a
+												href={
+													selectedProject.installUrl2
+												}
+												target="_blank"
+												rel="noopener noreferrer"
+												className="px-3 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-500 transition shadow-sm text-xs"
+											>
+												{selectedProject.installUrl2Text ||
+													"インストール"}
+											</a>
+										)}
 									</div>
 								</div>
 							</div>
-						</AnimatedContent>
+						</div>
 					) : (
-						<AnimatedContent
-							distance={50}
-							direction="vertical"
-							reverse={false}
-							config={{ tension: 80, friction: 20 }}
-							initialOpacity={0.2}
-							animateOpacity
-							scale={1.1}
-							threshold={0.2}
-						>
-							<div className="flex flex-col space-y-4">
-								{projects.map((project) => (
-									<button
-										key={project.id}
-										className={`${styles.projectCard} bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left`}
-										onClick={() =>
-											handleProjectSelect(project)
-										}
-										type="button"
-									>
-										<div className="flex flex-row">
-											<div className="w-1/2 h-full overflow-hidden">
+						// プロジェクト一覧表示（縦に並べる）
+						<div className="flex flex-col space-y-4 items-center">
+							{projects.map((project) => (
+								<button
+									key={project.id}
+									className={`${styles.projectCard} bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left`}
+									onClick={() => handleProjectSelect(project)}
+									onKeyDown={(e) =>
+										handleProjectKeyDown(e, project)
+									}
+									type="button"
+								>
+									<div className="flex flex-row">
+										<div className="h-full w-1/2 overflow-hidden border-r border-gray-200">
+											{/* メイン画像（最初の画像）のみ表示 */}
+											{project.images.length > 0 && (
 												<img
-													src={project.imageUrl}
+													src={project.images[0]}
 													alt={project.title}
-													className="object-cover"
+													className="object-cover h-full w-full"
 												/>
-											</div>
-											<div className="w-1/2 p-3">
-												<h2 className="text-base font-semibold text-gray-800 mb-1">
-													{project.title}
-												</h2>
-												<p className="text-xs text-gray-500 mb-1">
-													{project.year}年
-												</p>
-												<p className="text-xs text-gray-600 mb-2 line-clamp-2">
-													{project.description}
-												</p>
-												<div className="flex flex-wrap gap-1">
-													{project.technologies
-														.slice(0, 3)
-														.map((tech) => (
-															<span
-																key={`${project.id}-${tech}`}
-																className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700"
-															>
-																{tech}
-															</span>
-														))}
-													{project.technologies
-														.length > 3 && (
-														<span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
-															+
-															{project
-																.technologies
-																.length - 3}
+											)}
+										</div>
+										<div className="w-1/2 p-3">
+											<h2 className="text-base font-semibold text-gray-800 mb-1">
+												{project.title}
+											</h2>
+											<p className="text-xs text-gray-500 mb-1">
+												{project.year}年
+											</p>
+											<p className="text-xs text-gray-600 mb-2 line-clamp-2">
+												{project.description}
+											</p>
+											<div className="flex flex-wrap gap-1">
+												{project.technologies
+													.slice(0, 3)
+													.map((tech) => (
+														<span
+															key={`${project.id}-${tech}`}
+															className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700"
+														>
+															{tech}
 														</span>
-													)}
-												</div>
+													))}
+												{project.technologies.length >
+													3 && (
+													<span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
+														+
+														{project.technologies
+															.length - 3}
+													</span>
+												)}
 											</div>
 										</div>
-									</button>
-								))}
-							</div>
-						</AnimatedContent>
+									</div>
+								</button>
+							))}
+							<Link
+								href="/"
+								className="text-sm font-bold text-gray-800 hover:text-gray-600 transition mt-7 mb-7"
+							>
+								<UturnIcon className="w-7 h-7" />
+							</Link>
+						</div>
 					)}
 				</main>
 
+				{/* 画像モーダル */}
+				{selectedImage && (
+					<div
+						aria-modal="true"
+						className="fixed inset-0 z-50 flex items-center justify-center p-4 "
+						onClick={(e) => {
+							// クリックイベントでモーダルを閉じる（背景クリック時）
+							if (e.target === e.currentTarget) {
+								closeImageModal();
+							}
+						}}
+						onKeyDown={handleModalKeyDown}
+						tabIndex={-1}
+					>
+						<div
+							className="relative max-w-4xl max-h-[90vh] overflow-auto bg-transparent"
+							onClick={(e) => e.stopPropagation()} // 内側のコンテンツクリックでモーダルが閉じないようにする
+							onKeyDown={(e) => e.stopPropagation()}
+						>
+							<button
+								type="button"
+								className="absolute top-2 right-2 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+								onClick={closeImageModal}
+								aria-label="画像を閉じる"
+							>
+								<span className="sr-only">Close</span>
+								<XIcon className="w-5 h-5" />
+							</button>
+							<img
+								src={selectedImage}
+								alt={`プロジェクト画像 - ${selectedProject?.title || ""}`}
+								className="max-h-[85vh] w-auto object-contain"
+							/>
+						</div>
+					</div>
+				)}
+
 				{/* フッター */}
 				<footer className="mt-8 text-center text-gray-600 text-xs">
-					<p>© 2024 Souichiro Tsujimoto. All rights reserved.</p>
+					<p>© 2025 Tsujimoto Souichiro</p>
 				</footer>
 			</div>
 		</div>
