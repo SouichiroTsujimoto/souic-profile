@@ -17,6 +17,7 @@ export default function RootLayout({
 		<html lang="en">
 			<head>
 				<title>souic</title>
+				<link rel="icon" href="/souic.ico" sizes="any" />
 			</head>
 			<body>
 				<Iridescence
