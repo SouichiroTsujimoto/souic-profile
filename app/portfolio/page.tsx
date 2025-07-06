@@ -9,8 +9,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type KeyboardEvent, useEffect, useRef, useState } from "react";
-import { type Project, projects } from "./[project]/page";
 import styles from "./portfolio.module.css";
+import { type Project, projects } from "./projects";
 import SplitText from "./SplitText";
 import SelectedImage from "./selectedImage";
 
