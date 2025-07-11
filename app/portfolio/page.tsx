@@ -9,9 +9,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { type KeyboardEvent, useEffect, useRef, useState } from "react";
+import SplitText from "./SplitText";
 import styles from "./portfolio.module.css";
 import { type Project, projects } from "./projects";
-import SplitText from "./SplitText";
 import SelectedImage from "./selectedImage";
 
 export default function PortfolioPage() {
@@ -50,7 +50,9 @@ export default function PortfolioPage() {
 	}
 
 	const router = useRouter();
-	const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+	const [selectedProject, setSelectedProject] = useState<Project | null>(
+		null,
+	);
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);
 	const modalRef = useRef<HTMLDialogElement>(null);
 
@@ -138,12 +140,14 @@ export default function PortfolioPage() {
 												辻本 宗一郎
 											</h2>
 											<p className="text-sm text-gray-600 mb-4">
-												2005年5月7日 生まれ ({calculateAge()}
+												2005年5月7日 生まれ (
+												{calculateAge()}
 												歳)
 												<br />
 												京都市在住
 												<br />
-												同志社大学 理工学部 数理システム学科 2回生
+												同志社大学 理工学部
+												数理システム学科 2回生
 												<br />
 												同志社SF研究会(DSFA) 会長
 											</p>
@@ -183,7 +187,11 @@ export default function PortfolioPage() {
 						)}
 
 						<SplitText
-							text={selectedProject ? selectedProject.title : "Works"}
+							text={
+								selectedProject
+									? selectedProject.title
+									: "Works"
+							}
 							className="text-3xl text-gray-800 font-bold text-center"
 							delay={80}
 							threshold={0.2}
@@ -201,7 +209,7 @@ export default function PortfolioPage() {
 								onClick={() => handleProjectClick(project)}
 								type="button"
 							>
-								<div className="flex flex-row h-full">
+								<div className="flex flex-row w-full">
 									<div className="relative w-1/2 overflow-hidden border-r border-gray-200">
 										{project.images.length > 0 && (
 											<Image
@@ -224,17 +232,22 @@ export default function PortfolioPage() {
 											{project.description}
 										</p>
 										<div className="flex flex-wrap gap-1">
-											{project.technologies.slice(0, 3).map((tech) => (
-												<span
-													key={`${project.id}-${tech}`}
-													className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700"
-												>
-													{tech}
-												</span>
-											))}
-											{project.technologies.length > 3 && (
+											{project.technologies
+												.slice(0, 3)
+												.map((tech) => (
+													<span
+														key={`${project.id}-${tech}`}
+														className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700"
+													>
+														{tech}
+													</span>
+												))}
+											{project.technologies.length >
+												3 && (
 												<span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
-													+{project.technologies.length - 3}
+													+
+													{project.technologies
+														.length - 3}
 												</span>
 											)}
 										</div>
