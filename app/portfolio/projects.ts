@@ -52,10 +52,15 @@ export const projects: Project[] = [
 	{
 		id: 3,
 		title: "souic-profile",
-		description:
-			"自身のプロフィールページです。このサイトの8割はCursor AgentでClaude3.7 Sonnetを用いて作りました。\n\nAgentはめちゃ便利でしたが、ReactやNext.jsの知識は正直全く身に付きませんでした。\n\n背景やテキストのアニメーションはreact bitsのものを使用しています。",
+		description: "このサイトです。",
 		images: ["/souic-profile4.png"],
-		technologies: ["Typescript", "Next.js", "React", "Tailwind CSS", "Vercel"],
+		technologies: [
+			"Typescript",
+			"Next.js",
+			"React",
+			"Tailwind CSS",
+			"Vercel",
+		],
 		siteUrl: "/",
 		year: "2025",
 	},
