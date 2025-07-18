@@ -8,11 +8,16 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { type KeyboardEvent, useEffect, useRef, useState } from "react";
+import {
+	type KeyboardEvent,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import SplitText from "./SplitText";
 import styles from "./portfolio.module.css";
 import { type Project, projects } from "./projects";
-import SelectedImage from "./selectedImage";
 
 export default function PortfolioPage() {
 	const birthDate = new Date("2005-05-07");
@@ -32,6 +37,12 @@ export default function PortfolioPage() {
 		return age;
 	};
 
+	const router = useRouter();
+
+	const backToCard = useCallback(() => {
+		router.push("/");
+	}, [router]);
+
 	useEffect(() => {
 		const handleKeyDown = (e: globalThis.KeyboardEvent) => {
 			if (e.key === "Escape") {
@@ -43,62 +54,7 @@ export default function PortfolioPage() {
 		return () => {
 			document.removeEventListener("keydown", handleKeyDown);
 		};
-	}, []);
-
-	function backToCard() {
-		router.push("/");
-	}
-
-	const router = useRouter();
-	const [selectedProject, setSelectedProject] = useState<Project | null>(
-		null,
-	);
-	const [selectedImage, setSelectedImage] = useState<string | null>(null);
-	const modalRef = useRef<HTMLDialogElement>(null);
-
-	const handleProjectSelect = (project: Project) => {
-		setSelectedProject(project);
-	};
-
-	// プロジェクト選択のキーボードハンドラー
-	const handleProjectKeyDown = (
-		e: KeyboardEvent<HTMLButtonElement>,
-		project: Project,
-	) => {
-		if (e.key === "Enter" || e.key === " ") {
-			handleProjectSelect(project);
-		}
-	};
-
-	// 「一覧に戻る」ボタンのキーボードハンドラー
-	const handleBackToListKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
-		if (e.key === "Enter" || e.key === " ") {
-			setSelectedProject(null);
-		}
-	};
-
-	// 画像をクリックしたときのハンドラー
-	const handleImageClick = (imageUrl: string) => {
-		setSelectedImage(imageUrl);
-	};
-
-	// モーダルを閉じるハンドラー
-	const closeImageModal = () => {
-		setSelectedImage(null);
-	};
-
-	// モーダルをキーボードで閉じるハンドラー
-	const handleModalKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-		if (e.key === "Escape") {
-			closeImageModal();
-		}
-	};
-
-	// モーダル内部divのキーボードイベントハンドラー
-	const handleModalDivKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-		// イベントの伝播を止めて、モーダル全体のクリックイベントが発火しないようにする
-		e.stopPropagation();
-	};
+	}, [backToCard]);
 
 	const handleProjectClick = (project: Project) => {
 		router.push(`/portfolio/${project.title}`);
@@ -110,88 +66,82 @@ export default function PortfolioPage() {
 				{/* ヘッダー */}
 				<header className="mb-10 mt-16 sm:mt-8">
 					<div className="flex flex-col items-center">
-						{!selectedProject && (
-							<div className="w-full h-auto z-10 text-center">
-								<SplitText
-									text="About"
-									className="text-3xl text-gray-800 font-bold text-center mb-8"
-									delay={80}
-									threshold={0.2}
-									rootMargin="-15px"
-								/>
+						<div className="w-full h-auto z-10 text-center">
+							<SplitText
+								text="About"
+								className="text-3xl text-gray-800 font-bold text-center mb-8"
+								delay={80}
+								threshold={0.2}
+								rootMargin="-15px"
+							/>
 
-								<div
-									className={
-										"bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm mt-8 mb-16 md:text-left"
-									}
-								>
-									<div className="flex flex-col md:flex-row p-6">
-										<div className="md:w-1/3 flex justify-center items-start md:items-center mb-4 md:mb-0">
-											<Image
-												src="/icon.webp"
-												alt="プロフィール画像"
-												className="rounded-full object-cover shadow-sm h-24 w-24 md:h-32 md:w-32"
-												width={128}
-												height={128}
-											/>
-										</div>
-										<div className="md:w-2/3 md:pl-6">
-											<h2 className="text-xl font-bold text-gray-800 mb-2">
-												辻本 宗一郎
-											</h2>
-											<p className="text-sm text-gray-600 mb-4">
-												2005年5月7日 生まれ (
-												{calculateAge()}
-												歳)
-												<br />
-												京都市在住
-												<br />
-												同志社大学 理工学部
-												数理システム学科 2回生
-												<br />
-												同志社SF研究会(DSFA) 会長
-											</p>
-											<p className="text-sm text-gray-700 mb-4">
-												<strong>取得資格</strong>
-												<br />
-												応用情報技術者試験
-												<br />
-												統計検定2級
-												<br />
-												TOEIC 755点
-												<br />
-												HSK3級
-											</p>
-											<div className="flex gap-3 justify-center md:justify-start">
-												<a
-													href="https://github.com/SouichiroTsujimoto"
-													target="_blank"
-													rel="noopener noreferrer"
-													className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition shadow-sm text-xs"
-												>
-													GitHub
-												</a>
-												<a
-													href="https://x.com/wuhu1sland"
-													target="_blank"
-													rel="noopener noreferrer"
-													className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition shadow-sm text-xs"
-												>
-													X
-												</a>
-											</div>
+							<div
+								className={
+									"bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm mt-8 mb-16 md:text-left"
+								}
+							>
+								<div className="flex flex-col md:flex-row p-6">
+									<div className="md:w-1/3 flex justify-center items-start md:items-center mb-4 md:mb-0">
+										<Image
+											src="/icon.webp"
+											alt="プロフィール画像"
+											className="rounded-full object-cover shadow-sm h-24 w-24 md:h-32 md:w-32"
+											width={128}
+											height={128}
+										/>
+									</div>
+									<div className="md:w-2/3 md:pl-6">
+										<h2 className="text-xl font-bold text-gray-800 mb-2">
+											辻本 宗一郎
+										</h2>
+										<p className="text-sm text-gray-600 mb-4">
+											2005年5月7日 生まれ (
+											{calculateAge()}
+											歳)
+											<br />
+											京都市在住
+											<br />
+											同志社大学 理工学部 数理システム学科
+											2回生
+											<br />
+											同志社SF研究会(DSFA) 会長
+										</p>
+										<p className="text-sm text-gray-700 mb-4">
+											<strong>取得資格</strong>
+											<br />
+											応用情報技術者試験
+											<br />
+											統計検定2級
+											<br />
+											TOEIC 755点
+											<br />
+											HSK3級
+										</p>
+										<div className="flex gap-3 justify-center md:justify-start">
+											<a
+												href="https://github.com/SouichiroTsujimoto"
+												target="_blank"
+												rel="noopener noreferrer"
+												className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition shadow-sm text-xs"
+											>
+												GitHub
+											</a>
+											<a
+												href="https://x.com/wuhu1sland"
+												target="_blank"
+												rel="noopener noreferrer"
+												className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition shadow-sm text-xs"
+											>
+												X
+											</a>
 										</div>
 									</div>
 								</div>
 							</div>
-						)}
+						</div>
 
 						<SplitText
-							text={
-								selectedProject
-									? selectedProject.title
-									: "Works"
-							}
+							text={"Works"}
 							className="text-3xl text-gray-800 font-bold text-center"
 							delay={80}
 							threshold={0.2}
@@ -263,14 +213,6 @@ export default function PortfolioPage() {
 						</Link>
 					</div>
 				</main>
-
-				{/* 画像モーダル */}
-				{selectedImage &&
-					SelectedImage(
-						closeImageModal,
-						selectedImage,
-						selectedProject?.title || "",
-					)}
 
 				{/* フッター */}
 				<footer className="mt-8 mb-21 sm:mb-0 text-center text-gray-600 text-xs">

@@ -2,20 +2,29 @@ import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 export default function SelectedImage(
-	setCloseImageModal: any,
+	setCloseImageModal: () => void,
 	selectedImage: string,
 	selectedProjectTitle: string,
 ) {
+	const handleClose = (e: React.MouseEvent | React.KeyboardEvent) => {
+		// クリックイベントでモーダルを閉じる（背景クリック時）
+		if (e.target === e.currentTarget) {
+			setCloseImageModal();
+		}
+	};
+
+	const handleKeyDown = (e: React.KeyboardEvent) => {
+		if (e.key === "Enter" || e.key === " ") {
+			handleClose(e);
+		}
+	};
+
 	return (
 		<div
 			aria-modal="true"
 			className="fixed inset-0 z-50 flex items-center justify-center p-4 "
-			onClick={(e) => {
-				// クリックイベントでモーダルを閉じる（背景クリック時）
-				if (e.target === e.currentTarget) {
-					setCloseImageModal();
-				}
-			}}
+			onClick={handleClose}
+			onKeyDown={handleKeyDown}
 			tabIndex={-1}
 		>
 			<div

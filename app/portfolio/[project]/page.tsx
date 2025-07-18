@@ -3,7 +3,7 @@
 import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { type KeyboardEvent, useEffect, useState } from "react";
+import { type KeyboardEvent, useCallback, useEffect, useState } from "react";
 import styles from "../portfolio.module.css";
 import { type Project, projects } from "../projects";
 import SelectedImage from "../selectedImage";
@@ -16,7 +16,10 @@ export default function ProjectPage({
 	const router = useRouter();
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);
 	const [projectName, setProjectName] = useState<string>("");
-	const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);
+	const [selectedProject, setSelectedProject] = useState<Project>(
+		projects[0],
+	);
+
 	useEffect(() => {
 		params.then(({ project }) => {
 			setProjectName(decodeURIComponent(project));
@@ -25,7 +28,8 @@ export default function ProjectPage({
 
 	useEffect(() => {
 		setSelectedProject(
-			projects.find((project) => project.title === projectName) || projects[0],
+			projects.find((project) => project.title === projectName) ||
+				projects[0],
 		);
 	}, [projectName]);
 
@@ -33,9 +37,13 @@ export default function ProjectPage({
 		setSelectedImage(imageUrl);
 	};
 
-	const closeImageModal = () => {
+	const closeImageModal = useCallback(() => {
 		setSelectedImage(null);
-	};
+	}, []);
+
+	const backToPortfolio = useCallback(() => {
+		router.push("/portfolio");
+	}, [router]);
 
 	useEffect(() => {
 		const handleKeyDown = (e: globalThis.KeyboardEvent) => {
@@ -54,11 +62,7 @@ export default function ProjectPage({
 		return () => {
 			document.removeEventListener("keydown", handleKeyDown);
 		};
-	}, [selectedImage]);
-
-	function backToPortfolio() {
-		router.push("/portfolio");
-	}
+	}, [selectedImage, closeImageModal, backToPortfolio]);
 
 	return (
 		<div
@@ -77,7 +81,9 @@ export default function ProjectPage({
 									className="w-full p-0 border-0 bg-transparent"
 									onClick={(e) => {
 										e.stopPropagation();
-										handleImageClick(selectedProject.images[0]);
+										handleImageClick(
+											selectedProject.images[0],
+										);
 									}}
 								>
 									<Image
@@ -95,26 +101,30 @@ export default function ProjectPage({
 							{/* サブ画像（2枚目以降）があれば表示 */}
 							{selectedProject.images.length > 1 && (
 								<div className="mt-2 grid grid-cols-2 gap-2">
-									{selectedProject.images.slice(1).map((image, index) => (
-										<button
-											key={`${selectedProject.id}-sub-image-${index}`}
-											type="button"
-											className="w-full p-0 border-0 bg-transparent"
-											onClick={(e) => {
-												e.stopPropagation();
-												handleImageClick(image);
-											}}
-										>
-											<Image
-												src={image}
-												alt={`${selectedProject.title}の画像 ${index + 2}`}
-												className="object-cover rounded-lg shadow-sm cursor-pointer w-full h-24"
-												width={200}
-												height={96}
-											/>
-											<span className="sr-only">画像を拡大</span>
-										</button>
-									))}
+									{selectedProject.images
+										.slice(1)
+										.map((image, index) => (
+											<button
+												key={`${selectedProject.id}-sub-image-${index}`}
+												type="button"
+												className="w-full p-0 border-0 bg-transparent"
+												onClick={(e) => {
+													e.stopPropagation();
+													handleImageClick(image);
+												}}
+											>
+												<Image
+													src={image}
+													alt={`${selectedProject.title}の画像 ${index + 2}`}
+													className="object-cover rounded-lg shadow-sm cursor-pointer w-full h-24"
+													width={200}
+													height={96}
+												/>
+												<span className="sr-only">
+													画像を拡大
+												</span>
+											</button>
+										))}
 								</div>
 							)}
 						</div>
@@ -141,14 +151,16 @@ export default function ProjectPage({
 									使用技術
 								</h3>
 								<div className="flex flex-wrap gap-2">
-									{selectedProject.technologies.map((tech) => (
-										<span
-											key={`tech-${tech}`}
-											className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700"
-										>
-											{tech}
-										</span>
-									))}
+									{selectedProject.technologies.map(
+										(tech) => (
+											<span
+												key={`tech-${tech}`}
+												className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700"
+											>
+												{tech}
+											</span>
+										),
+									)}
 								</div>
 							</div>
 
@@ -183,7 +195,8 @@ export default function ProjectPage({
 										rel="noopener noreferrer"
 										className="px-3 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-500 transition shadow-sm text-xs"
 									>
-										{selectedProject.installUrlText || "インストール"}
+										{selectedProject.installUrlText ||
+											"インストール"}
 									</a>
 								)}
 								{selectedProject.installUrl2 && (
@@ -193,7 +206,8 @@ export default function ProjectPage({
 										rel="noopener noreferrer"
 										className="px-3 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-500 transition shadow-sm text-xs"
 									>
-										{selectedProject.installUrl2Text || "インストール"}
+										{selectedProject.installUrl2Text ||
+											"インストール"}
 									</a>
 								)}
 							</div>
