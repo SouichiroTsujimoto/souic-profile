@@ -231,7 +231,7 @@ export default function Page() {
 					>
 						{/* 画像を背景として配置 - 中間のレイヤー */}
 						<Image
-							src="/newsouic.png"
+							src="/newsouic.webp"
 							alt="カード画像"
 							className="color"
 							style={{
@@ -244,7 +244,7 @@ export default function Page() {
 						/>
 
 						<Image
-							src="/icon.png"
+							src="/icon.webp"
 							alt="icon"
 							style={{
 								display: "flex",
@@ -262,7 +262,7 @@ export default function Page() {
 						/>
 
 						<Image
-							src="/tsujimoto8.png"
+							src="/tsujimoto8.webp"
 							alt="text"
 							style={{
 								display: "flex",
@@ -297,7 +297,7 @@ export default function Page() {
 							}}
 						>
 							<Image
-								src="/portfolio2.png"
+								src="/portfolio2.webp"
 								alt="portfolio"
 								style={{
 									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
@@ -327,7 +327,7 @@ export default function Page() {
 							}}
 						>
 							<Image
-								src="/github2.png"
+								src="/github2.webp"
 								alt="github"
 								style={{
 									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
@@ -356,7 +356,7 @@ export default function Page() {
 							}}
 						>
 							<Image
-								src="/X2.png"
+								src="/X2.webp"
 								alt="X"
 								style={{
 									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",

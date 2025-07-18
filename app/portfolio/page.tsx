@@ -128,7 +128,7 @@ export default function PortfolioPage() {
 									<div className="flex flex-col md:flex-row p-6">
 										<div className="md:w-1/3 flex justify-center items-start md:items-center mb-4 md:mb-0">
 											<Image
-												src="/icon.png"
+												src="/icon.webp"
 												alt="プロフィール画像"
 												className="rounded-full object-cover shadow-sm h-24 w-24 md:h-32 md:w-32"
 												width={128}
