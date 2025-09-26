@@ -2,12 +2,12 @@ import { notFound } from "next/navigation";
 import { projects } from "../projects";
 import ProjectContent from "./ProjectContent";
 
-export default function ProjectPage({
+export default async function ProjectPage({
 	params,
 }: {
-	params: { project: string };
+	params: Promise<{ project: string }>;
 }) {
-	const projectName = decodeURIComponent(params.project);
+	const projectName = decodeURIComponent((await params).project);
 	const normalizedSearch = projectName.normalize("NFKC").toLowerCase();
 
 	let selectedProject = projects.find((project) => {
