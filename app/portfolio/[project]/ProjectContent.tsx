@@ -45,16 +45,16 @@ export default function ProjectContent({
 	}, [selectedImage, closeImageModal, backToPortfolio]);
 
 	return (
-		<div className="absolute flex items-center justify-center min-h-screen">
-			<div className="max-w-2xl mx-auto px-4 py-8 relative z-10">
+		<div className="absolute flex items-center justify-center">
+			<div className="max-w-2xl mx-auto relative z-10">
 				{selectedImage &&
 					SelectedImage(
 						closeImageModal,
 						selectedImage,
 						project.title,
 					)}
-				<div className="bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm">
-					<div className="flex flex-col md:flex-row">
+				<div className="bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm mx-10 md:m-0">
+					<div className="flex flex-col md:flex-row ">
 						<div className="md:w-2/5 p-3">
 							{project.images.length > 0 && (
 								<button
@@ -105,7 +105,7 @@ export default function ProjectContent({
 								</div>
 							)}
 						</div>
-						<div className="md:w-3/5 p-4">
+						<div className="md:w-3/5 p-4 overflow-y-auto max-h-96 md:max-h-none">
 							<button
 								onClick={backToPortfolio}
 								className="absolute right-5 text-xs text-gray-800 hover:text-gray-600 transition cursor-pointer"
