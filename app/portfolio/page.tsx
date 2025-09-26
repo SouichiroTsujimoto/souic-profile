@@ -57,7 +57,7 @@ export default function PortfolioPage() {
 	}, [backToCard]);
 
 	const handleProjectClick = (project: Project) => {
-		router.push(`/portfolio/${project.title}`);
+		router.push(`/portfolio/${encodeURIComponent(project.title)}`);
 	};
 
 	return (
@@ -77,34 +77,34 @@ export default function PortfolioPage() {
 
 							<div
 								className={
-									"bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm mt-8 mb-16 md:text-left"
+									"opacity-95 rounded-lg shadow-2xl backdrop-blur-lg mt-8 mb-16 text-left"
 								}
 							>
-								<div className="flex flex-col md:flex-row p-6">
-									<div className="md:w-1/3 flex justify-center items-start md:items-center mb-4 md:mb-0">
+								<div className="flex flex-row p-6">
+									<div className="w-1/3 flex justify-center items-center mb-4 mb-0">
 										<Image
 											src="/icon.webp"
 											alt="プロフィール画像"
-											className="rounded-full object-cover shadow-sm h-24 w-24 md:h-32 md:w-32"
+											className="rounded-full object-cover shadow-sm"
 											width={128}
 											height={128}
 										/>
 									</div>
-									<div className="md:w-2/3 md:pl-6">
+									<div className="w-2/3 pl-6">
 										<h2 className="text-xl font-bold text-gray-800 mb-2">
 											辻本 宗一郎
 										</h2>
 										<p className="text-sm text-gray-600 mb-4">
-											2005年5月7日 生まれ (
+											生年月日:2005年5月7日(
 											{calculateAge()}
 											歳)
-											<br />
-											京都市在住
 											<br />
 											同志社大学 理工学部 数理システム学科
 											2回生
 											<br />
-											同志社SF研究会(DSFA) 会長
+											同志社SF研究会(DSFA) 2025年度会長
+											<br />
+											京大マイコンクラブ(KMC)
 										</p>
 										<p className="text-sm text-gray-700 mb-4">
 											<strong>取得資格</strong>
@@ -113,11 +113,11 @@ export default function PortfolioPage() {
 											<br />
 											統計検定2級
 											<br />
-											TOEIC 755点
+											TOEIC 765点
 											<br />
 											HSK3級
 										</p>
-										<div className="flex gap-3 justify-center md:justify-start">
+										<div className="flex gap-3 justify-center justify-start">
 											<a
 												href="https://github.com/SouichiroTsujimoto"
 												target="_blank"
@@ -152,59 +152,68 @@ export default function PortfolioPage() {
 
 				<main>
 					<div className="flex flex-col space-y-4 items-center">
-						{projects.map((project) => (
-							<button
-								key={project.id}
-								className={`${styles.projectCard} bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left`}
-								onClick={() => handleProjectClick(project)}
-								type="button"
-							>
-								<div className="flex flex-row w-full">
-									<div className="relative w-1/2 overflow-hidden border-r border-gray-200">
-										{project.images.length > 0 && (
-											<Image
-												src={project.images[0]}
-												alt={project.title}
-												height={500}
-												width={500}
-												className="object-cover h-full sm:w-full"
-											/>
-										)}
-									</div>
-									<div className="w-1/2 p-3">
-										<h2 className="text-base font-semibold text-gray-800 mb-1">
-											{project.title}
-										</h2>
-										<p className="text-xs text-gray-500 mb-1">
-											{project.year}年
-										</p>
-										<p className="text-xs text-gray-600 mb-2 line-clamp-2">
-											{project.description}
-										</p>
-										<div className="flex flex-wrap gap-1">
-											{project.technologies
-												.slice(0, 3)
-												.map((tech) => (
-													<span
-														key={`${project.id}-${tech}`}
-														className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700"
-													>
-														{tech}
-													</span>
-												))}
-											{project.technologies.length >
-												3 && (
-												<span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
-													+
+						{projects.map((project) => {
+							if (project.id !== 0) {
+								return (
+									<button
+										key={project.id}
+										className={
+											"bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left"
+										}
+										onClick={() =>
+											handleProjectClick(project)
+										}
+										type="button"
+									>
+										<div className="flex flex-row">
+											<div className="relative w-1/2 overflow-hidden border-r border-gray-200">
+												{project.images.length > 0 && (
+													<Image
+														src={project.images[0]}
+														alt={project.title}
+														width={500}
+														height={500}
+														className="object-cover w-full h-full object-center"
+													/>
+												)}
+											</div>
+											<div className="relative w-1/2 p-3">
+												<h2 className="text-base font-semibold text-gray-800 mb-1">
+													{project.title}
+												</h2>
+												<p className="text-xs text-gray-500 mb-1">
+													{project.year}年
+												</p>
+												<p className="text-xs text-gray-600 mb-2 line-clamp-2">
+													{project.description}
+												</p>
+												<div className="flex flex-wrap gap-1">
 													{project.technologies
-														.length - 3}
-												</span>
-											)}
+														.slice(0, 6)
+														.map((tech) => (
+															<span
+																key={`${project.id}-${tech}`}
+																className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700"
+															>
+																{tech}
+															</span>
+														))}
+													{project.technologies
+														.length > 6 && (
+														<span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
+															+
+															{project
+																.technologies
+																.length - 6}
+														</span>
+													)}
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-							</button>
-						))}
+									</button>
+								);
+							}
+						})}
 						<Link
 							href="/"
 							className="text-sm font-bold text-gray-800 hover:text-gray-600 transition mt-7 mb-7"
@@ -213,11 +222,6 @@ export default function PortfolioPage() {
 						</Link>
 					</div>
 				</main>
-
-				{/* フッター */}
-				<footer className="mt-8 mb-21 sm:mb-0 text-center text-gray-600 text-xs">
-					<p>© 2025 Tsujimoto Souichiro</p>
-				</footer>
 			</div>
 		</div>
 	);

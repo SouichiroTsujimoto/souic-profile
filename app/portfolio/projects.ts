@@ -7,6 +7,7 @@ export interface Project {
 	technologies: string[];
 	githubUrl?: string;
 	siteUrl?: string;
+	movieUrl?: string;
 	installUrl?: string;
 	installUrlText?: string;
 	installUrl2?: string;
@@ -16,6 +17,14 @@ export interface Project {
 
 // サンプルプロジェクトデータ
 export const projects: Project[] = [
+	{
+		id: 0,
+		title: "",
+		description: "",
+		images: ["/white.png"],
+		technologies: [""],
+		year: "2025",
+	},
 	{
 		id: 1,
 		title: "DUET+",
@@ -48,6 +57,26 @@ export const projects: Project[] = [
 			"https://marketplace.visualstudio.com/items?itemName=SouichiroTsujimoto.w1ex",
 		installUrlText: "VSCode Marketplace",
 		year: "2024",
+	},
+	{
+		id: 7,
+		title: "自主設計 分割キーボード",
+		description:
+			"『自作キーボード設計ガイド』という本を参考に作成しました。設計時にミスをしまくったのと、元々作ること自体が目的だったので常用はせず。",
+		images: ["/w1key.webp", "/w1key-schematic.webp", "/w1key-pcb.webp"],
+		technologies: ["KiCAD", "QMK Toolbox"],
+		movieUrl: "https://x.com/wuhu1sland/status/1970215175161815332",
+		year: "2025",
+	},
+	{
+		id: 8,
+		title: "OS in 1,000 Lines",
+		description:
+			"『OS in 1,000 Lines』というサイトに沿って、RISC-V向けの小規模OSを作成しました。\n\nサイトに載っていない内容として、簡易的なディレクトリ構造とcd, ls, pwd等のコマンドを追加しました。",
+		images: ["/1000os.webp"],
+		technologies: ["C", "RISC-V"],
+		movieUrl: "https://x.com/wuhu1sland/status/1969442391745839255",
+		year: "2025",
 	},
 	{
 		id: 3,

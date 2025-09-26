@@ -5,29 +5,28 @@
   right: 0%;
   bottom: 0;
   overflow-y: auto;
-  background: transparent;
   z-index: 10;
   padding: 0.5rem;
 }
-
+/* 
 .projectCard {
   position: relative;
   z-index: 20;
   height: 30vh;
   width: auto;
   margin-bottom: 4vh;
-}
+} */
 
-.projectDetail {
+/* .projectDetail {
   position: relative;
   z-index: 20;
   height: auto;
   width: auto;
   margin-bottom: 3vh;
-}
-
+} */
+/* 
 .projectCard:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
+} */
