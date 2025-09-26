@@ -46,15 +46,12 @@ export default function ProjectPage({
 				// タイトルで検索できなかった場合、IDで検索（URLがIDの場合）
 				if (!selectedProject) {
 					const projectId = Number.parseInt(projectName);
-					if (!isNaN(projectId)) {
+					if (!Number.isNaN(projectId)) {
 						selectedProject = projects.find(
 							(p) => p.id === projectId,
 						);
 					}
 				}
-
-				// それでも見つからない場合はnull
-				selectedProject = selectedProject || null;
 
 				console.log("ProjectPage: found project:", selectedProject);
 				console.log(
@@ -71,7 +68,7 @@ export default function ProjectPage({
 					console.log("ProjectPage: project found, setting project");
 				}
 
-				setSelectedProject(selectedProject);
+				setSelectedProject(selectedProject || null);
 				setLoading(false);
 			})
 			.catch((err) => {
