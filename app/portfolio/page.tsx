@@ -57,7 +57,7 @@ export default function PortfolioPage() {
 	}, [backToCard]);
 
 	const handleProjectClick = (project: Project) => {
-		router.push(`/portfolio/${encodeURIComponent(project.title)}`);
+		router.push(`/portfolio/${encodeURIComponent(project.id.toString())}`);
 	};
 
 	return (

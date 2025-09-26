@@ -59,7 +59,7 @@ export const projects: Project[] = [
 		year: "2024",
 	},
 	{
-		id: 7,
+		id: 3,
 		title: "自主設計 分割キーボード",
 		description:
 			"『自作キーボード設計ガイド』という本を参考に作成しました。設計時にミスをしまくったのと、元々作ること自体が目的だったので常用はせず。",
@@ -69,7 +69,7 @@ export const projects: Project[] = [
 		year: "2025",
 	},
 	{
-		id: 8,
+		id: 4,
 		title: "OS in 1,000 Lines",
 		description:
 			"『OS in 1,000 Lines』というサイトに沿って、RISC-V向けの小規模OSを作成しました。\n\nサイトに載っていない内容として、簡易的なディレクトリ構造とcd, ls, pwd等のコマンドを追加しました。",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
 		year: "2025",
 	},
 	{
-		id: 3,
+		id: 5,
 		title: "souic-profile",
 		description: "このサイトです。",
 		images: ["/souic-profile4.webp"],
@@ -94,7 +94,7 @@ export const projects: Project[] = [
 		year: "2025",
 	},
 	{
-		id: 4,
+		id: 6,
 		title: "株式会社辻本エンジニアリング ホームページ",
 		description:
 			"株式会社辻本エンジニアリングの公式ホームページを制作しました。",
@@ -104,7 +104,7 @@ export const projects: Project[] = [
 		year: "2024",
 	},
 	{
-		id: 5,
+		id: 7,
 		title: "同志社大学京田辺キャンパス 略称対応マップ",
 		description:
 			"同志社大学は各建物に非常に魅力的な名称を付けています。さらに、シラバス等では簡潔でルールのない略称が使われているため、略称から元の建物を推測するには豊かな想像力が必要です。\n\nそこで、建物名と略称とその位置を対応付けたマップを作成しました。",
@@ -114,7 +114,7 @@ export const projects: Project[] = [
 		year: "2024",
 	},
 	{
-		id: 6,
+		id: 8,
 		title: "Grid",
 		description: "2020年度SecHack365で制作したプログラミング言語です。",
 		images: ["/Grid.webp"],

@@ -7,27 +7,14 @@ export default async function ProjectPage({
 }: {
 	params: Promise<{ project: string }>;
 }) {
-	const projectName = decodeURIComponent((await params).project);
-	const normalizedSearch = projectName.normalize("NFKC").toLowerCase();
+	const projectIndex = (await params).project;
+	const index = Number.parseInt(projectIndex, 10);
 
-	let selectedProject = projects.find((project) => {
-		return (
-			project.title.normalize("NFKC").toLowerCase() === normalizedSearch
-		);
-	});
-
-	if (!selectedProject) {
-		const projectId = Number.parseInt(projectName, 10);
-		if (!Number.isNaN(projectId)) {
-			selectedProject =
-				projects.find((project) => project.id === projectId) ||
-				undefined;
-		}
-	}
-
-	if (!selectedProject) {
+	if (Number.isNaN(index) || index < 0 || index >= projects.length) {
 		notFound();
 	}
+
+	const selectedProject = projects[index];
 
 	return <ProjectContent project={selectedProject} />;
 }
