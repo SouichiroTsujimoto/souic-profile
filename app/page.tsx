@@ -1,7 +1,7 @@
 "use client";
 
+import { TransitionLink } from "@/app/components/TransitionLink";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function Page() {
@@ -279,7 +279,7 @@ export default function Page() {
 							height={150}
 						/>
 
-						<Link
+						<TransitionLink
 							className="transition-colors"
 							href="/portfolio"
 							// target="_blank"
@@ -306,9 +306,9 @@ export default function Page() {
 								height={60}
 							/>
 							{/* X : @wuhu1sland */}
-						</Link>
+						</TransitionLink>
 
-						<Link
+						<TransitionLink
 							className="transition-colors"
 							href="https://github.com/SouichiroTsujimoto"
 							target="_blank"
@@ -335,9 +335,9 @@ export default function Page() {
 								width={300}
 								height={60}
 							/>
-						</Link>
+						</TransitionLink>
 
-						<Link
+						<TransitionLink
 							className="transition-colors"
 							href="https://x.com/wuhu1sland"
 							target="_blank"
@@ -364,7 +364,7 @@ export default function Page() {
 								width={300}
 								height={60}
 							/>
-						</Link>
+						</TransitionLink>
 					</div>
 
 					{/* ハイライトレイヤーを最上部に配置、ポインターイベントを無効化 */}

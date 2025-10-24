@@ -1,6 +1,6 @@
+import { TransitionLink } from "@/app/components/TransitionLink";
 import { ArrowUturnLeftIcon as UturnIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import Link from "next/link";
 import PortfolioKeyboardNavigation from "./PortfolioKeyboardNavigation";
 import SplitText from "./SplitText";
 import styles from "./portfolio.module.css";
@@ -101,7 +101,7 @@ export default function PortfolioPage() {
 						{projects.map((project) => {
 							if (project.id !== 0) {
 								return (
-									<Link
+									<TransitionLink
 										key={project.id}
 										href={`/portfolio/${project.id}`}
 										className={
@@ -154,17 +154,17 @@ export default function PortfolioPage() {
 												</div>
 											</div>
 										</div>
-									</Link>
+									</TransitionLink>
 								);
 							}
 						})}
 						<div className="md:col-span-2 flex justify-center">
-							<Link
+							<TransitionLink
 								href="/"
 								className="text-sm font-bold text-gray-800 hover:text-gray-600 transition mt-7 mb-7"
 							>
 								<UturnIcon className="w-7 h-7" />
-							</Link>
+							</TransitionLink>
 						</div>
 					</div>
 				</main>

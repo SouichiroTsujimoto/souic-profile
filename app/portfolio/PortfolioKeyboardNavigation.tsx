@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
 import { useEffect } from "react";
 
 export default function PortfolioKeyboardNavigation() {
-	const router = useRouter();
+	const router = useTransitionRouter();
 
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
