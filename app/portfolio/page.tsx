@@ -32,55 +32,59 @@ export default function PortfolioPage() {
 				{/* ヘッダー */}
 				<header className="mb-10 mt-16 sm:mt-8">
 					<div className="flex flex-col items-center">
-						<div className="w-full h-auto z-10 text-center">
-							<SplitText
-								text="About"
-								className="text-3xl text-gray-800 font-bold text-center mb-8"
-								delay={80}
-								threshold={0.2}
-								rootMargin="-15px"
-							/>
+						<div className="max-w-2xl w-full h-auto z-10 text-center">
+							<div>
+								<SplitText
+									text="About"
+									className=" text-3xl text-gray-800 font-bold text-center mb-8"
+									delay={80}
+									threshold={0.2}
+									rootMargin="-15px"
+								/>
 
-							<div
-								className={
-									"opacity-95 rounded-lg shadow-2xl backdrop-blur-lg mt-8 mb-16 text-left"
-								}
-							>
-								<div className="flex flex-row p-6">
-									<div className="w-1/3 flex justify-center items-center mb-4 mb-0">
-										<Image
-											src="/icon.webp"
-											alt="プロフィール画像"
-											className="rounded-full object-cover shadow-sm"
-											width={128}
-											height={128}
-										/>
-									</div>
-									<div className="w-2/3 pl-6">
-										<h2 className="text-xl font-bold text-gray-800 mb-2">
-											辻本 宗一郎
-										</h2>
-										<p className="text-sm text-gray-600 mb-4">
-											生年月日:2005年5月7日({age}歳)
-											<br />
-											同志社大学 理工学部 数理システム学科
-											2回生
-											<br />
-											同志社SF研究会(DSFA) 2025年度会長
-											<br />
-											京大マイコンクラブ(KMC)
-										</p>
-										<p className="text-sm text-gray-700 mb-4">
-											<strong>取得資格</strong>
-											<br />
-											応用情報技術者試験
-											<br />
-											統計検定2級
-											<br />
-											TOEIC 765点
-											<br />
-											HSK3級
-										</p>
+								<div
+									className={
+										"bg-opacity-85 backdrop-blur-lg rounded-lg shadow-2xl mt-8 mb-8 text-left"
+									}
+								>
+									<div className="flex flex-row p-6">
+										<div className="w-1/3 flex justify-center items-center mb-4 mb-0">
+											<Image
+												src="/icon.webp"
+												alt="プロフィール画像"
+												className="rounded-full object-cover shadow-sm"
+												width={128}
+												height={128}
+											/>
+										</div>
+										<div className="w-2/3 pl-6">
+											<h2 className="text-xl font-bold text-gray-800 mb-2">
+												辻本 宗一郎
+											</h2>
+											<p className="text-sm text-gray-600 mb-4">
+												生年月日:2005年5月7日({age}
+												歳)
+												<br />
+												同志社大学 理工学部
+												数理システム学科 2回生
+												<br />
+												同志社SF研究会(DSFA)
+												2025年度会長
+												<br />
+												京大マイコンクラブ(KMC)
+											</p>
+											<p className="text-sm text-gray-700 mb-4">
+												<strong>取得資格</strong>
+												<br />
+												応用情報技術者試験
+												<br />
+												統計検定2級
+												<br />
+												TOEIC 765点
+												<br />
+												HSK3級
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -105,12 +109,12 @@ export default function PortfolioPage() {
 										key={project.id}
 										href={`/portfolio/${project.id}`}
 										className={
-											"bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left block h-full"
+											"bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-md transition cursor-pointer text-left block h-full"
 										}
 										prefetch={true}
 									>
 										<div className="flex flex-row h-full min-h-[200px]">
-											<div className="relative w-1/2 overflow-hidden border-r border-gray-200 h-full">
+											<div className="relative w-1/2 overflow-hidden h-full">
 												{project.images.length > 0 && (
 													<Image
 														src={project.images[0]}
