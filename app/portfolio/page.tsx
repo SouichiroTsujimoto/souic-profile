@@ -1,64 +1,34 @@
-"use client";
-
-import {
-	ChevronDoubleLeftIcon as LeftChevIcon,
-	ArrowUturnLeftIcon as UturnIcon,
-	XMarkIcon as XIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowUturnLeftIcon as UturnIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import {
-	type KeyboardEvent,
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-} from "react";
+import PortfolioKeyboardNavigation from "./PortfolioKeyboardNavigation";
 import SplitText from "./SplitText";
 import styles from "./portfolio.module.css";
-import { type Project, projects } from "./projects";
+import { projects } from "./projects";
+
+function calculateAge(): number {
+	const birthDate = new Date("2005-05-07");
+	const today = new Date();
+	let age = today.getFullYear() - birthDate.getFullYear();
+	const monthDiff = birthDate.getMonth() - today.getMonth();
+
+	if (
+		monthDiff > 0 ||
+		(monthDiff === 0 && birthDate.getDate() > today.getDate())
+	) {
+		age--;
+	}
+
+	return age;
+}
 
 export default function PortfolioPage() {
-	const birthDate = new Date("2005-05-07");
-	// 年齢計算
-	const calculateAge = (): number => {
-		const today = new Date();
-		let age = today.getFullYear() - birthDate.getFullYear();
-		const monthDiff = birthDate.getMonth() - today.getMonth();
-
-		if (
-			monthDiff > 0 ||
-			(monthDiff === 0 && birthDate.getDate() > today.getDate())
-		) {
-			age--;
-		}
-
-		return age;
-	};
-
-	const router = useRouter();
-
-	const backToCard = useCallback(() => {
-		router.push("/");
-	}, [router]);
-
-	useEffect(() => {
-		const handleKeyDown = (e: globalThis.KeyboardEvent) => {
-			if (e.key === "Escape") {
-				backToCard();
-			}
-		};
-
-		document.addEventListener("keydown", handleKeyDown);
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-		};
-	}, [backToCard]);
+	const age = calculateAge();
 
 	return (
 		<div className={styles.portfolioContainer}>
-			<div className="max-w-2xl mx-auto px-4 py-8 relative z-10">
+			<PortfolioKeyboardNavigation />
+			<div className="max-w-5xl mx-auto px-4 py-8 relative z-10">
 				{/* ヘッダー */}
 				<header className="mb-10 mt-16 sm:mt-8">
 					<div className="flex flex-col items-center">
@@ -91,9 +61,7 @@ export default function PortfolioPage() {
 											辻本 宗一郎
 										</h2>
 										<p className="text-sm text-gray-600 mb-4">
-											生年月日:2005年5月7日(
-											{calculateAge()}
-											歳)
+											生年月日:2005年5月7日({age}歳)
 											<br />
 											同志社大学 理工学部 数理システム学科
 											2回生
@@ -113,24 +81,6 @@ export default function PortfolioPage() {
 											<br />
 											HSK3級
 										</p>
-										<div className="flex gap-3 justify-center justify-start">
-											<a
-												href="https://github.com/SouichiroTsujimoto"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition shadow-sm text-xs"
-											>
-												GitHub
-											</a>
-											<a
-												href="https://x.com/wuhu1sland"
-												target="_blank"
-												rel="noopener noreferrer"
-												className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition shadow-sm text-xs"
-											>
-												X
-											</a>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -147,7 +97,7 @@ export default function PortfolioPage() {
 				</header>
 
 				<main>
-					<div className="flex flex-col space-y-4 items-center">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 						{projects.map((project) => {
 							if (project.id !== 0) {
 								return (
@@ -155,12 +105,12 @@ export default function PortfolioPage() {
 										key={project.id}
 										href={`/portfolio/${project.id}`}
 										className={
-											"bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left block"
+											"bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left block h-full"
 										}
 										prefetch={true}
 									>
-										<div className="flex flex-row">
-											<div className="relative w-1/2 overflow-hidden border-r border-gray-200">
+										<div className="flex flex-row h-full min-h-[200px]">
+											<div className="relative w-1/2 overflow-hidden border-r border-gray-200 h-full">
 												{project.images.length > 0 && (
 													<Image
 														src={project.images[0]}
@@ -208,12 +158,14 @@ export default function PortfolioPage() {
 								);
 							}
 						})}
-						<Link
-							href="/"
-							className="text-sm font-bold text-gray-800 hover:text-gray-600 transition mt-7 mb-7"
-						>
-							<UturnIcon className="w-7 h-7" />
-						</Link>
+						<div className="md:col-span-2 flex justify-center">
+							<Link
+								href="/"
+								className="text-sm font-bold text-gray-800 hover:text-gray-600 transition mt-7 mb-7"
+							>
+								<UturnIcon className="w-7 h-7" />
+							</Link>
+						</div>
 					</div>
 				</main>
 			</div>

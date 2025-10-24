@@ -1,3 +1,5 @@
+"use client";
+
 import { type SpringConfig, useTrail } from "@react-spring/web";
 import { useEffect, useRef, useState } from "react";
 
