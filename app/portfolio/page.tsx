@@ -56,10 +56,6 @@ export default function PortfolioPage() {
 		};
 	}, [backToCard]);
 
-	const handleProjectClick = (project: Project) => {
-		router.push(`/portfolio/${encodeURIComponent(project.id.toString())}`);
-	};
-
 	return (
 		<div className={styles.portfolioContainer}>
 			<div className="max-w-2xl mx-auto px-4 py-8 relative z-10">
@@ -155,15 +151,13 @@ export default function PortfolioPage() {
 						{projects.map((project) => {
 							if (project.id !== 0) {
 								return (
-									<button
+									<Link
 										key={project.id}
+										href={`/portfolio/${project.id}`}
 										className={
-											"bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left"
+											"bg-white bg-opacity-85 rounded-lg shadow-sm overflow-hidden hover:shadow-md transition cursor-pointer text-left block"
 										}
-										onClick={() =>
-											handleProjectClick(project)
-										}
-										type="button"
+										prefetch={true}
 									>
 										<div className="flex flex-row">
 											<div className="relative w-1/2 overflow-hidden border-r border-gray-200">
@@ -210,7 +204,7 @@ export default function PortfolioPage() {
 												</div>
 											</div>
 										</div>
-									</button>
+									</Link>
 								);
 							}
 						})}

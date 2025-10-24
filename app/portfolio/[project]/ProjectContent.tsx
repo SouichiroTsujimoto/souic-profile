@@ -1,121 +1,26 @@
-"use client";
-
-import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
 import type { Project } from "../projects";
-import SelectedImage from "../selectedImage";
+import CloseButton from "./CloseButton";
+import ImageGallery from "./ImageGallery";
+import KeyboardNavigation from "./KeyboardNavigation";
 
 export default function ProjectContent({
 	project,
 }: {
 	project: Project;
 }) {
-	if (!project) {
-		return null;
-	}
-	const router = useRouter();
-	const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-	const handleImageClick = (imageUrl: string) => {
-		setSelectedImage(imageUrl);
-	};
-
-	const closeImageModal = useCallback(() => {
-		setSelectedImage(null);
-	}, []);
-
-	const backToPortfolio = useCallback(() => {
-		router.push("/portfolio");
-	}, [router]);
-
-	useEffect(() => {
-		const handleKeyDown = (e: globalThis.KeyboardEvent) => {
-			if (e.key === "Escape") {
-				if (selectedImage) {
-					closeImageModal();
-				} else {
-					backToPortfolio();
-				}
-			}
-		};
-
-		document.addEventListener("keydown", handleKeyDown);
-		return () => {
-			document.removeEventListener("keydown", handleKeyDown);
-		};
-	}, [selectedImage, closeImageModal, backToPortfolio]);
-
 	return (
 		<div className="absolute flex items-center justify-center">
+			<KeyboardNavigation />
 			<div className="max-w-2xl mx-auto relative z-10">
-				{selectedImage &&
-					SelectedImage(
-						closeImageModal,
-						selectedImage,
-						project.title,
-					)}
 				<div className="bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm mx-10 md:m-0">
 					<div className="flex flex-col md:flex-row ">
-						<div className="md:w-2/5 p-3">
-							{project.images.length > 0 && (
-								<button
-									type="button"
-									className="w-full p-0 border-0 bg-transparent"
-									onClick={(e) => {
-										e.stopPropagation();
-										handleImageClick(project.images[0]);
-									}}
-								>
-									<Image
-										src={project.images[0]}
-										alt={`${project.title}のメイン画像`}
-										className="object-cover rounded-lg shadow-sm cursor-pointer mb-2"
-										style={{ maxHeight: "300px" }}
-										width={500}
-										height={300}
-									/>
-									<span className="sr-only">画像を拡大</span>
-								</button>
-							)}
-							{project.images.length > 1 && (
-								<div className="mt-2 grid grid-cols-2 gap-2">
-									{project.images
-										.slice(1)
-										.map((image, index) => (
-											<button
-												key={`${project.id}-sub-image-${index}`}
-												type="button"
-												className="w-full p-0 border-0 bg-transparent"
-												onClick={(e) => {
-													e.stopPropagation();
-													handleImageClick(image);
-												}}
-											>
-												<Image
-													src={image}
-													alt={`${project.title}の画像 ${index + 2}`}
-													className="object-cover rounded-lg shadow-sm cursor-pointer w-full h-24"
-													width={200}
-													height={96}
-												/>
-												<span className="sr-only">
-													画像を拡大
-												</span>
-											</button>
-										))}
-								</div>
-							)}
-						</div>
+						<ImageGallery
+							images={project.images}
+							title={project.title}
+							projectId={project.id}
+						/>
 						<div className="md:w-3/5 p-4 overflow-y-auto max-h-96 md:max-h-none">
-							<button
-								onClick={backToPortfolio}
-								className="absolute right-5 text-xs text-gray-800 hover:text-gray-600 transition cursor-pointer"
-								type="button"
-							>
-								<XIcon className="w-5 h-5" />
-							</button>
+							<CloseButton />
 							<h2 className="mt-7 text-xl font-bold text-gray-800 mb-2">
 								{project.title}
 							</h2>
