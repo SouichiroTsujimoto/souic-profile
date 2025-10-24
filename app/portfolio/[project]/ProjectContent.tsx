@@ -12,6 +12,9 @@ export default function ProjectContent({
 }: {
 	project: Project;
 }) {
+	if (!project) {
+		return null;
+	}
 	const router = useRouter();
 	const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
