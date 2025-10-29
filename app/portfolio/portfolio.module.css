@@ -9,6 +9,11 @@
   padding: 0.5rem;
 }
 
+.backdrop-blur-lg {
+  --tw-backdrop-blur: blur(10px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur);
+  backdrop-filter: var(--tw-backdrop-blur);
+}
 /* 
 .projectCard {
   position: relative;

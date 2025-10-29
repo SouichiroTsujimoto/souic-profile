@@ -64,106 +64,41 @@ export default function PortfolioPage() {
 										<div className="flex flex-col p-1 sm:p-6">
 											<div className="text-left ">
 												<h2 className="text-2xl md:text-4xl sm:text-3xl font-extrabold leading-9 sm:leading-11">
-													<span
-														className="text-white"
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className="backdrop-blur-lg text-white">
 														辻本 宗一郎
 													</span>
 													<br />
-													<span
-														className="text-white"
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className="backdrop-blur-lg text-white">
 														wuhu1sland
 													</span>
 												</h2>
 												<p className="text-xs sm:text-sm text-white mt-2 sm:mt-9">
-													<span
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className=" backdrop-blur-lg">
 														生年月日:2005年5月7日(
 														{age}
 														歳)
 													</span>
 													<br />
 													<br />
-													<span
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className=" backdrop-blur-lg">
 														同志社大学 理工学部
 													</span>
 													<br />
-													<span
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className=" backdrop-blur-lg">
 														数理システム学科 2回生
 													</span>
 													<br />
-													<span
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className=" backdrop-blur-lg">
 														同志社SF研究会(DSFA)
 													</span>
-													<span
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className=" backdrop-blur-lg">
 														2025年度会長
 													</span>
 													<br />
-													<span
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className=" backdrop-blur-lg">
 														京大マイコンクラブ(KMC)
 													</span>
-													<span
-														style={{
-															backdropFilter:
-																"blur(10px)",
-															WebkitBackdropFilter:
-																"blur(10px)",
-														}}
-													>
+													<span className=" backdrop-blur-lg">
 														49代入会
 													</span>
 												</p>
