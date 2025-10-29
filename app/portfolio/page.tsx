@@ -1,6 +1,7 @@
 import { TransitionLink } from "@/app/components/TransitionLink";
 import { ArrowUturnLeftIcon as UturnIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import CareerTimeline from "./CareerTimeline";
 import PortfolioKeyboardNavigation from "./PortfolioKeyboardNavigation";
 import SplitText from "./SplitText";
 import styles from "./portfolio.module.css";
@@ -31,60 +32,74 @@ export default function PortfolioPage() {
 			<div className="max-w-5xl mx-auto px-4 py-8 relative z-10">
 				{/* ヘッダー */}
 				<header className="mb-10 mt-16 sm:mt-8">
-					<div className="flex flex-col items-center">
-						<div className="max-w-2xl w-full h-auto z-10 text-center">
-							<div>
-								<SplitText
-									text="About"
-									className=" text-3xl text-gray-800 font-bold text-center mb-8"
-									delay={80}
-									threshold={0.2}
-									rootMargin="-15px"
-								/>
+					<div className="max-w-5xl w-full h-auto z-10 text-center">
+						<SplitText
+							text="About"
+							className=" text-3xl text-white font-bold text-center mb-8"
+							delay={80}
+							threshold={0.2}
+							rootMargin="-15px"
+						/>
 
+						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+							<div>
 								<div
 									className={
-										"bg-opacity-85 backdrop-blur-lg rounded-lg shadow-2xl mt-8 mb-8 text-left"
+										"h-60 sm:h-80 rounded-lg shadow-2xl mt-8 text-left relative overflow-y-hidden"
+									}
+									style={{
+										backgroundImage: "url(/icon2.webp)",
+										backgroundSize: "cover",
+										backgroundPosition: "center",
+									}}
+								>
+									<div
+										className="absolute inset-0 backdrop-blur-lg bg-gray-300/20 rounded-lg"
+										style={{ zIndex: 1 }}
+									/>
+									<div
+										className="relative flex flex-col p-6"
+										style={{ zIndex: 2 }}
+									>
+										<div className="flex flex-col p-1 sm:p-6">
+											<div className="text-left ">
+												<h2 className="text-2xl md:text-4xl sm:text-3xl font-extrabold leading-9 sm:leading-11">
+													<span className="text-white">
+														辻本 宗一郎
+													</span>
+													<br />
+													<span className="text-white">
+														wuhu1sland
+													</span>
+												</h2>
+												<p className="text-xs sm:text-sm text-white mt-2 sm:mt-9">
+													生年月日:2005年5月7日({age}
+													歳)
+													<br />
+													<br />
+													同志社大学 理工学部
+													数理システム学科 2回生
+													<br />
+													同志社SF研究会(DSFA)
+													2025年度会長
+													<br />
+													京大マイコンクラブ(KMC)
+													49代入会
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<div
+									className={
+										"bg-white rounded-lg shadow-2xl mt-8"
 									}
 								>
-									<div className="flex flex-row p-6">
-										<div className="w-1/3 flex justify-center items-center mb-4 mb-0">
-											<Image
-												src="/icon.webp"
-												alt="プロフィール画像"
-												className="rounded-full object-cover shadow-sm"
-												width={128}
-												height={128}
-											/>
-										</div>
-										<div className="w-2/3 pl-6">
-											<h2 className="text-xl font-bold text-gray-800 mb-2">
-												辻本 宗一郎
-											</h2>
-											<p className="text-sm text-gray-600 mb-4">
-												生年月日:2005年5月7日({age}
-												歳)
-												<br />
-												同志社大学 理工学部
-												数理システム学科 2回生
-												<br />
-												同志社SF研究会(DSFA)
-												2025年度会長
-												<br />
-												京大マイコンクラブ(KMC)
-											</p>
-											<p className="text-sm text-gray-700 mb-4">
-												<strong>取得資格</strong>
-												<br />
-												応用情報技術者試験
-												<br />
-												統計検定2級
-												<br />
-												TOEIC 765点
-												<br />
-												HSK3級
-											</p>
-										</div>
+									<div className="">
+										<CareerTimeline />
 									</div>
 								</div>
 							</div>
@@ -92,7 +107,7 @@ export default function PortfolioPage() {
 
 						<SplitText
 							text={"Works"}
-							className="text-3xl text-gray-800 font-bold text-center"
+							className="text-3xl text-white font-bold text-center"
 							delay={80}
 							threshold={0.2}
 							rootMargin="-15px"

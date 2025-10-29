@@ -22,8 +22,18 @@
 body {
 	background: var(--background);
 	color: var(--foreground);
-	font-family: Arial, Helvetica, sans-serif;
+	font-family: "Hiragino Sans", sans-serif, Arial, Helvetica;
 }
+
+.sans-serif {
+  font-family: 
+	"Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Segoe UI",
+    Meiryo,
+    sans-serif;
+}
+
 
 /* View Transitions API スタイル */
 ::view-transition-old(root),
@@ -71,4 +81,8 @@ body {
 ::view-transition-old(project-title),
 ::view-transition-new(project-title) {
 	animation-duration: 0.3s;
+}
+
+::-webkit-scrollbar {
+	display: none;
 }
