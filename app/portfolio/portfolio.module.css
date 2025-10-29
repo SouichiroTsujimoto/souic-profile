@@ -8,12 +8,6 @@
   z-index: 10;
   padding: 0.5rem;
 }
-
-.backdropBlurLg {
-  --tw-backdrop-blur: blur(10px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur);
-  backdrop-filter: var(--tw-backdrop-blur);
-}
 /* 
 .projectCard {
   position: relative;

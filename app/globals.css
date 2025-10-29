@@ -35,6 +35,12 @@ body {
 }
 
 
+.backdrop-blur-lg {
+  --tw-backdrop-blur: blur(10px);
+  -webkit-backdrop-filter: var(--tw-backdrop-blur);
+  backdrop-filter: var(--tw-backdrop-blur);
+}
+
 /* View Transitions API スタイル */
 ::view-transition-old(root),
 ::view-transition-new(root) {

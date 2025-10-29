@@ -66,7 +66,7 @@ export default function PortfolioPage() {
 												<h2 className="text-2xl md:text-4xl sm:text-3xl font-extrabold leading-9 sm:leading-11">
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														辻本 宗一郎
@@ -74,7 +74,7 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														wuhu1sland
@@ -83,7 +83,7 @@ export default function PortfolioPage() {
 												<p className="text-xs sm:text-sm mt-2 sm:mt-9">
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														生年月日:2005年5月7日(
@@ -94,7 +94,7 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														同志社大学 理工学部
@@ -102,7 +102,7 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														数理システム学科 2回生
@@ -110,14 +110,14 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														同志社SF研究会(DSFA)
 													</span>
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														2025年度会長
@@ -125,14 +125,14 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														京大マイコンクラブ(KMC)
 													</span>
 													<span
 														className={
-															styles.backdropBlurLg
+															"backdrop-blur-lg"
 														}
 													>
 														49代入会
