@@ -61,44 +61,80 @@ export default function PortfolioPage() {
 										className="relative flex flex-col p-6"
 										style={{ zIndex: 2 }}
 									>
-										<div className="flex flex-col p-1 sm:p-6">
+										<div className="flex flex-col p-1 sm:p-6 text-white">
 											<div className="text-left ">
 												<h2 className="text-2xl md:text-4xl sm:text-3xl font-extrabold leading-9 sm:leading-11">
-													<span className="backdrop-blur-lg text-white">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														辻本 宗一郎
 													</span>
 													<br />
-													<span className="backdrop-blur-lg text-white">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														wuhu1sland
 													</span>
 												</h2>
-												<p className="text-xs sm:text-sm text-white mt-2 sm:mt-9">
-													<span className=" backdrop-blur-lg">
+												<p className="text-xs sm:text-sm mt-2 sm:mt-9">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														生年月日:2005年5月7日(
 														{age}
 														歳)
 													</span>
 													<br />
 													<br />
-													<span className=" backdrop-blur-lg">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														同志社大学 理工学部
 													</span>
 													<br />
-													<span className=" backdrop-blur-lg">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														数理システム学科 2回生
 													</span>
 													<br />
-													<span className=" backdrop-blur-lg">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														同志社SF研究会(DSFA)
 													</span>
-													<span className=" backdrop-blur-lg">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														2025年度会長
 													</span>
 													<br />
-													<span className=" backdrop-blur-lg">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														京大マイコンクラブ(KMC)
 													</span>
-													<span className=" backdrop-blur-lg">
+													<span
+														className={
+															styles.backdropBlurLg
+														}
+													>
 														49代入会
 													</span>
 												</p>

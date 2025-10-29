@@ -9,7 +9,7 @@
   padding: 0.5rem;
 }
 
-.backdrop-blur-lg {
+.backdropBlurLg {
   --tw-backdrop-blur: blur(10px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur);
   backdrop-filter: var(--tw-backdrop-blur);
