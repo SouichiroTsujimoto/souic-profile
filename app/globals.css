@@ -35,7 +35,10 @@ body {
 }
 
 
-/* iOS/Safari対応: CSS変数チェーンではなく直接的なblur値を使用 */
+/*  
+iOSでblurが効かないことを防ぐためのスタイル
+しかし、機能していない
+*/
 .backdrop-blur-sm {
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);

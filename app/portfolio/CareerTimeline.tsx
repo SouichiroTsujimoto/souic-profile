@@ -23,7 +23,7 @@ const careerEvents: CareerEvent[] = [
 		icon: "📋",
 	},
 	{
-		date: "2025/04",
+		date: "2024/04",
 		title: "大学入学",
 		description: "同志社大学理工学部 数理システム学科に入学しました。",
 		icon: "🏫",
@@ -39,11 +39,11 @@ const careerEvents: CareerEvent[] = [
 
 export default function CareerTimeline() {
 	return (
-		<div className="w-full max-h-80 overflow-y-auto py-4 p-6">
+		<div className="w-full max-h-80 overflow-y-auto p-8">
 			<div className="relative max-w-4xl mx-auto">
 				{/* タイムライン（縦線） */}
 				<div
-					className="absolute top-0 bottom-0 w-0.5 bg-gray-300"
+					className="absolute top-0 bottom-0 w-0.5 bg-gray-200"
 					style={{ left: "29px" }}
 				/>
 
