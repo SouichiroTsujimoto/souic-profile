@@ -16,9 +16,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<head>
-				<title>souic</title>
+				<title>wuhu1sland</title>
 			</head>
-			<body className="overflow-y-scroll">
+			<body>
 				<Iridescence
 					color={[1, 1, 1]}
 					mouseReact={false}

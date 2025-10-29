@@ -196,7 +196,7 @@ export default function PortfolioPage() {
 						<div className="md:col-span-2 flex justify-center">
 							<TransitionLink
 								href="/"
-								className="text-sm font-bold text-white-800 hover:text-gray-800 transition mt-7 mb-7"
+								className="text-sm font-bold text-gray-900 hover:text-white transition mt-7 mb-7"
 							>
 								<UturnIcon className="w-7 h-7" />
 							</TransitionLink>
