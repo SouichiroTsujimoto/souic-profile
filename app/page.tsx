@@ -238,6 +238,8 @@ export default function Page() {
 								zIndex: 10,
 								position: "absolute",
 								pointerEvents: "none",
+								height: "102%",
+								width: "100%",
 							}}
 							width={500}
 							height={700}
@@ -251,8 +253,9 @@ export default function Page() {
 								justifyContent: "center",
 								alignItems: "center",
 								position: "absolute",
-								scale: "0.3",
-								top: "-14%",
+								left: "50%",
+								top: "22%",
+								transform: "translate(-50%, -50%) scale(0.35)",
 								zIndex: 20,
 								textAlign: "center",
 								filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
