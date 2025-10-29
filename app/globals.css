@@ -35,10 +35,15 @@ body {
 }
 
 
+/* iOS/Safari対応: CSS変数チェーンではなく直接的なblur値を使用 */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
 .backdrop-blur-lg {
-  --tw-backdrop-blur: blur(10px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur);
-  backdrop-filter: var(--tw-backdrop-blur);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
 }
 
 /* View Transitions API スタイル */
