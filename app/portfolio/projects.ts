@@ -63,9 +63,6 @@ export const projects: Project[] = [
 			"Hono",
 		],
 		githubUrl: "https://github.com/SouichiroTsujimoto/duet-plus",
-		githubUrlText: "GitHub (Frontend)",
-		githubUrl2: "https://github.com/SouichiroTsujimoto/duet-plus-backend",
-		githubUrl2Text: "GitHub (Backend)",
 		installUrl:
 			"https://chromewebstore.google.com/detail/mofjbejpdfdfkbiicjhimkodkijekjdk?utm_source=item-share-cb",
 		installUrlText: "Chromeウェブストア",
