@@ -14,9 +14,8 @@ export async function generateMetadata({
 }: {
 	params: Promise<{ project: string }>;
 }): Promise<Metadata> {
-	const projectId = (await params).project;
-	const id = Number.parseInt(projectId, 10);
-	const project = projects.find((p) => p.id === id);
+	const projectPath = (await params).project;
+	const project = projects.find((p) => p.path === projectPath);
 
 	if (!project) {
 		return {
@@ -35,12 +34,10 @@ export default async function ProjectPage({
 }: {
 	params: Promise<{ project: string }>;
 }) {
-	const projectId = (await params).project;
-	const id = Number.parseInt(projectId, 10);
+	const projectPath = (await params).project;
+	const project = projects.find((p) => p.path === projectPath);
 
-	const project = projects.find((p) => p.id === id);
-
-	if (!project || Number.isNaN(id)) {
+	if (!project) {
 		notFound();
 	}
 

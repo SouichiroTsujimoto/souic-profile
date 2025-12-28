@@ -1,11 +1,15 @@
 // プロジェクトデータの型定義
 export interface Project {
 	id: number;
+	path: string;
 	title: string;
 	description: string;
 	images: string[]; // 単一のimageUrlから配列に変更
 	technologies: string[];
 	githubUrl?: string;
+	githubUrlText?: string;
+	githubUrl2?: string;
+	githubUrl2Text?: string;
 	siteUrl?: string;
 	movieUrl?: string;
 	installUrl?: string;
@@ -19,6 +23,7 @@ export interface Project {
 export const projects: Project[] = [
 	{
 		id: 0,
+		path: "",
 		title: "",
 		description: "",
 		images: ["/white.png"],
@@ -26,7 +31,27 @@ export const projects: Project[] = [
 		year: "2025",
 	},
 	{
+		id: 0.5,
+		path: "Optime",
+		title: "Optime",
+		description:
+			"RSSを用いた投票結果の通知機能や、settings.jsonによる投票設定などの機能を持つ、調整さんライクな予定投票サイトです。\n\nSF研究会での上映会の日程決定に使うことを目的に作成し始めました。\n\nバックエンドはAWSの勉強も兼ねて、マルチAZ構成で構築しています。",
+		images: [
+			"/Optime-1.webp",
+			"/Optime-2.webp",
+			"/optime-backend-aws.webp",
+		],
+		technologies: ["Go", "AWS", "Typescript", "Next.js", "Tailwind CSS"],
+		githubUrl: "https://github.com/SouichiroTsujimoto/Optime",
+		githubUrlText: "GitHub (Frontend)",
+		githubUrl2: "https://github.com/SouichiroTsujimoto/Optime-backend",
+		githubUrl2Text: "GitHub (Backend)",
+		siteUrl: "https://optime-schedule.com",
+		year: "2025",
+	},
+	{
 		id: 1,
+		path: "DUET-Plus",
 		title: "DUET+",
 		description:
 			"同志社大学の学生用ポータルサイトDUETに、より詳細な情報を表示させます。\n\n自身の成績を確認できるページに、各授業の成績分布情報や、同じ授業を受けた生徒の目安GPAなどを表示します。\n\nパソコン向けにはChrome、スマホ向けにはiOSのSafariの拡張機能として公開しています",
@@ -38,6 +63,9 @@ export const projects: Project[] = [
 			"Hono",
 		],
 		githubUrl: "https://github.com/SouichiroTsujimoto/duet-plus",
+		githubUrlText: "GitHub (Frontend)",
+		githubUrl2: "https://github.com/SouichiroTsujimoto/duet-plus-backend",
+		githubUrl2Text: "GitHub (Backend)",
 		installUrl:
 			"https://chromewebstore.google.com/detail/mofjbejpdfdfkbiicjhimkodkijekjdk?utm_source=item-share-cb",
 		installUrlText: "Chromeウェブストア",
@@ -47,6 +75,7 @@ export const projects: Project[] = [
 	},
 	{
 		id: 2,
+		path: "w1eX",
 		title: "w1eX",
 		description:
 			"数学などの授業のノート作成に特化したマークアップ言語です。VSCodeの拡張機能として提供され、.w1exファイルの保存時にリアルタイムでノートを生成します。\n\nMarkDownのような既存のマークアップ言語との差別化として、視覚的なノート作成に特化しています。数学の授業でのノート作成に自分で使用するために作りました。",
@@ -60,6 +89,7 @@ export const projects: Project[] = [
 	},
 	{
 		id: 3,
+		path: "w1key",
 		title: "自主設計 分割キーボード",
 		description:
 			"『自作キーボード設計ガイド』という本を参考に作成しました。設計時にミスをしまくったのと、元々作ること自体が目的だったので常用はせず。",
@@ -70,6 +100,7 @@ export const projects: Project[] = [
 	},
 	{
 		id: 4,
+		path: "1000os",
 		title: "OS in 1,000 Lines",
 		description:
 			"『OS in 1,000 Lines』というサイトに沿って、RISC-V向けの小規模OSを作成しました。\n\nサイトに載っていない内容として、簡易的なディレクトリ構造とcd, ls, pwd等のコマンドを追加しました。",
@@ -80,21 +111,17 @@ export const projects: Project[] = [
 	},
 	{
 		id: 5,
+		path: "souic-profile",
 		title: "souic-profile",
 		description: "このサイトです。",
 		images: ["/souic-profile4.webp"],
-		technologies: [
-			"Typescript",
-			"Next.js",
-			"React",
-			"Tailwind CSS",
-			"Vercel",
-		],
+		technologies: ["Typescript", "Next.js", "Tailwind CSS"],
 		siteUrl: "/",
 		year: "2025",
 	},
 	{
 		id: 6,
+		path: "tsujimoto-engineering",
 		title: "株式会社辻本エンジニアリング ホームページ",
 		description:
 			"株式会社辻本エンジニアリングの公式ホームページを制作しました。",
@@ -105,6 +132,7 @@ export const projects: Project[] = [
 	},
 	{
 		id: 7,
+		path: "dpmap",
 		title: "同志社大学京田辺キャンパス 略称対応マップ",
 		description:
 			"同志社大学は各建物に非常に魅力的な名称を付けています。さらに、シラバス等では簡潔でルールのない略称が使われているため、略称から元の建物を推測するには豊かな想像力が必要です。\n\nそこで、建物名と略称とその位置を対応付けたマップを作成しました。",
@@ -115,6 +143,7 @@ export const projects: Project[] = [
 	},
 	{
 		id: 8,
+		path: "grid",
 		title: "Grid",
 		description: "2020年度SecHack365で制作したプログラミング言語です。",
 		images: ["/Grid.webp"],

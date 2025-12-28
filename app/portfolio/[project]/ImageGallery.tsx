@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import SelectedImage from "../selectedImage";
+import SelectedImage from "./selectedImage";
 
 interface ImageGalleryProps {
 	images: string[];
@@ -27,8 +27,13 @@ export default function ImageGallery({
 
 	return (
 		<>
-			{selectedImage &&
-				SelectedImage(closeImageModal, selectedImage, title)}
+			{selectedImage && (
+				<SelectedImage
+					onClose={closeImageModal}
+					imageSrc={selectedImage}
+					projectTitle={title}
+				/>
+			)}
 			<div className="md:w-2/5 p-3">
 				{images.length > 0 && (
 					<button

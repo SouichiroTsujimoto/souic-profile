@@ -42,10 +42,14 @@ export default function PortfolioPage() {
 						/>
 
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-							<div>
+							<TransitionLink
+								href="/portfolio/profile"
+								className="block cursor-pointer"
+								prefetch={true}
+							>
 								<div
 									className={
-										"h-60 sm:h-80 rounded-lg shadow-2xl mt-8 text-left relative overflow-y-hidden"
+										"h-60 sm:h-80 rounded-lg shadow-2xl mt-8 text-left relative overflow-y-hidden hover:shadow-xl transition-shadow"
 									}
 									style={{
 										backgroundImage: "url(/icon2.webp)",
@@ -53,10 +57,6 @@ export default function PortfolioPage() {
 										backgroundPosition: "center",
 									}}
 								>
-									{/* <div
-										className="absolute inset-0 backdrop-blur-lg bg-gray-300/20 rounded-lg"
-										style={{ zIndex: 1 }}
-									/> */}
 									<div
 										className="relative flex flex-col p-6"
 										style={{ zIndex: 2 }}
@@ -66,7 +66,7 @@ export default function PortfolioPage() {
 												<h2 className="text-2xl md:text-4xl sm:text-3xl font-extrabold leading-9 sm:leading-11">
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														辻本 宗一郎
@@ -74,7 +74,7 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														wuhu1sland
@@ -83,7 +83,7 @@ export default function PortfolioPage() {
 												<p className="text-xs sm:text-sm mt-2 sm:mt-9">
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														生年月日:2005年5月7日(
@@ -94,7 +94,7 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														同志社大学 理工学部
@@ -102,7 +102,7 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														数理システム学科 2回生
@@ -110,14 +110,14 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														同志社SF研究会(DSFA)
 													</span>
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														2025年度会長
@@ -125,14 +125,14 @@ export default function PortfolioPage() {
 													<br />
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														京大マイコンクラブ(KMC)
 													</span>
 													<span
 														className={
-															"backdrop-blur-lg"
+															"backdrop-blur-lg inline-block"
 														}
 													>
 														49代入会
@@ -142,19 +142,23 @@ export default function PortfolioPage() {
 										</div>
 									</div>
 								</div>
-							</div>
+							</TransitionLink>
 
-							<div>
+							<TransitionLink
+								href="/portfolio/career"
+								className="block cursor-pointer"
+								prefetch={true}
+							>
 								<div
 									className={
-										"bg-white rounded-lg shadow-2xl mt-8"
+										"bg-white rounded-lg shadow-2xl mt-8 hover:shadow-xl transition-shadow"
 									}
 								>
 									<div className="">
 										<CareerTimeline />
 									</div>
 								</div>
-							</div>
+							</TransitionLink>
 						</div>
 
 						<SplitText
@@ -174,7 +178,7 @@ export default function PortfolioPage() {
 								return (
 									<TransitionLink
 										key={project.id}
-										href={`/portfolio/${project.id}`}
+										href={`/portfolio/${project.path}`}
 										className={
 											"bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-md transition cursor-pointer text-left block h-full"
 										}
