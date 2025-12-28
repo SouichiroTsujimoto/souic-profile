@@ -120,17 +120,6 @@ export const projects: Project[] = [
 		year: "2025",
 	},
 	{
-		id: 6,
-		path: "tsujimoto-engineering",
-		title: "株式会社辻本エンジニアリング ホームページ",
-		description:
-			"株式会社辻本エンジニアリングの公式ホームページを制作しました。",
-		images: ["/tsujimoto-eng4.webp"],
-		technologies: ["Typescript", "Astro", "Tailwind CSS", "Netlify"],
-		siteUrl: "https://tsujimoto-engineering.netlify.app",
-		year: "2024",
-	},
-	{
 		id: 7,
 		path: "dpmap",
 		title: "同志社大学京田辺キャンパス 略称対応マップ",
