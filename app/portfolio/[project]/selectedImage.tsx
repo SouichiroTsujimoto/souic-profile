@@ -4,6 +4,7 @@ import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import styles from "../portfolio.module.css";
 
 interface SelectedImageProps {
 	onClose: () => void;
@@ -43,7 +44,7 @@ export default function SelectedImage({
 	const modalContent = (
 		<div
 			aria-modal="true"
-			className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+			className={`fixed inset-0 z-[9999] flex items-center justify-center ${styles.modalBackdrop}`}
 			onClick={handleClose}
 			onKeyDown={handleKeyDown}
 			tabIndex={-1}
@@ -55,7 +56,7 @@ export default function SelectedImage({
 			>
 				<button
 					type="button"
-					className="absolute top-2 right-2 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 text-gray-800 hover:bg-white transition-colors shadow-lg"
+					className={`absolute top-2 right-2 z-10 w-10 h-10 flex items-center justify-center rounded-full transition-colors shadow-lg ${styles.modalCloseButton}`}
 					onClick={onClose}
 					aria-label="画像を閉じる"
 				>
@@ -65,7 +66,7 @@ export default function SelectedImage({
 				<Image
 					src={imageSrc}
 					alt={`プロジェクト画像 - ${projectTitle}`}
-					className="object-contain max-w-full max-h-full rounded-lg shadow-2xl"
+					className={`object-contain max-w-full max-h-full ${styles.modalImage}`}
 					width={1200}
 					height={800}
 					style={{

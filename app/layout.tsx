@@ -1,6 +1,6 @@
 "use client";
 import "./globals.css";
-import "./styles.css";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 export default function RootLayout({
 	children,
@@ -8,12 +8,12 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<head>
 				<title>wuhu1sland</title>
 			</head>
 			<body>
-				{children}
+				<ThemeProvider>{children}</ThemeProvider>
 			</body>
 		</html>
 	);

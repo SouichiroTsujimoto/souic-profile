@@ -1,8 +1,10 @@
 "use client";
 
+import ThemeToggle from "@/app/components/ThemeToggle";
 import { TransitionLink } from "@/app/components/TransitionLink";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import styles from "./home.module.css";
 
 export default function Page() {
 	const cardWrapperRef = useRef<HTMLDivElement | null>(null);
@@ -164,75 +166,54 @@ export default function Page() {
 	} as React.CSSProperties;
 
 	return (
-		<div className="home">
+		<div className={styles.homeContainer}>
+			<ThemeToggle />
 			<div
-				className={`card-wrapper ${
-					isReturningToCenter ? "return-to-center" : ""
-				}`}
+				className={`${styles.cardWrapper} ${isReturningToCenter ? styles.cardWrapperReturning : ""}`}
 				ref={cardWrapperRef}
 				onPointerMove={updateCardPosition}
 				onPointerLeave={handleMouseLeave}
 				style={cardWrapperStyle}
 			>
-				{/* ストラップ */}
-				<div className="badge-strap" />
-
-				{/* クリップ */}
-				<div className="badge-clip" />
-
 				{/* 名札カード本体 */}
-				<div className="card">
+				<div className={styles.card}>
 					{/* 名前バー */}
-					<div className="name-bar">
-						<span className="name-initial">S</span>
-						<span className="name-meta">AGENT SWARM // NODE 01</span>
+					<div className={styles.nameBar}>
+						<span className={styles.nameMeta}>2005-05-07</span>
 					</div>
 
 					{/* カードコンテンツ */}
-					<div className="card-content">
+					<div className={styles.cardContent}>
 						{/* アイコン */}
-						<div className="icon-frame">
+						<div className={styles.iconFrame}>
 							<Image
-								src="/icon.webp"
+								src="/0x24.png"
 								alt="icon"
-								width={80}
-								height={80}
-								style={{
-									imageRendering: "pixelated",
-								}}
+								width={300}
+								height={300}
 							/>
 						</div>
 
-						{/* タイトル */}
-						<h1 className="badge-title">SouichiroTsujimoto</h1>
-
-						{/* 説明文 */}
-						<p className="badge-description">
-							Web Developer / Designer
-							<br />
-							Creating beautiful digital experiences
-						</p>
-
-						{/* 区切り線 */}
-						<hr className="badge-divider" />
-
 						{/* フッター */}
-						<div className="badge-footer">
-							<span className="badge-logo">SOUIC</span>
-							<TransitionLink href="/portfolio" className="badge-button">
-								Portfolio
+						<div className={styles.badgeFooter}>
+							<TransitionLink
+								href="/portfolio"
+								className={styles.badgeButton}
+							>
+								&gt; Portfolio
 							</TransitionLink>
 						</div>
-					</div>
 
-					{/* 光沢エフェクト */}
-					<div
-						className="card color"
-						style={{
-							zIndex: 20,
-							pointerEvents: "none",
-						}}
-					/>
+						{/* タイトル */}
+						<h1 className={styles.badgeTitle}>
+							Tsujimoto Souichiro
+						</h1>
+
+						{/* 説明文 */}
+						<p className={styles.badgeDescription}>
+							Student at Doshisha Univ. Mathematical Sciences
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

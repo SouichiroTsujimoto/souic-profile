@@ -1,10 +1,12 @@
 "use client";
 
+import ThemeToggle from "@/app/components/ThemeToggle";
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
 import type { Project } from "../projects";
 import CloseButton from "./CloseButton";
 import ImageGallery from "./ImageGallery";
 import KeyboardNavigation from "./KeyboardNavigation";
+import styles from "../portfolio.module.css";
 
 export default function ProjectContent({
 	project,
@@ -22,7 +24,7 @@ export default function ProjectContent({
 
 	return (
 		<div
-			className="absolute inset-0 flex items-center justify-center cursor-pointer"
+			className={`${styles.overlayContainer} cursor-pointer`}
 			onClick={handleBackgroundClick}
 			onKeyDown={(e) => {
 				if (e.key === "Escape") {
@@ -31,55 +33,58 @@ export default function ProjectContent({
 			}}
 			tabIndex={-1}
 		>
+			<ThemeToggle />
 			<KeyboardNavigation />
 			<div
-				className="max-w-2xl mx-auto overflow-y-auto max-h-[90vh] relative z-10 cursor-default"
+				className={`max-h-[90vh] overflow-y-auto relative z-10 cursor-default ${styles.overlayContent} ${styles.projectOverlay}`}
 				onClick={(e) => e.stopPropagation()}
 				onKeyDown={(e) => e.stopPropagation()}
 			>
-				<div className="bg-white bg-opacity-85 rounded-lg shadow-md overflow-hidden backdrop-blur-sm mx-10 md:m-0">
-					<div className="flex flex-col md:flex-row ">
+				<div className={`${styles.overlayPanel} ${styles.projectPanel}`}>
+					<div className={styles.projectLayout}>
 						<ImageGallery
 							images={project.images}
 							title={project.title}
 							projectId={project.id}
 						/>
-						<div className="md:w-3/5 p-4">
+						<div className={styles.projectInfo}>
 							<CloseButton />
-							<h2 className="mt-7 text-xl font-bold text-gray-800 mb-2">
+							<h2 className={styles.projectHeading}>
 								{project.title}
 							</h2>
-							<p className="text-xs text-gray-500 mb-2">
+							<p className={styles.projectYear}>
 								{project.year}年
 							</p>
-							<p className="text-sm text-gray-700 mb-4 whitespace-pre-line">
+							<p
+								className={`${styles.projectDescriptionText} whitespace-pre-line`}
+							>
 								{project.description}
 							</p>
 							<div className="mb-4">
-								<h3 className="text-sm font-semibold text-gray-800 mb-2">
+								<h3 className={styles.projectSectionTitle}>
 									使用技術
 								</h3>
 								<div className="flex flex-wrap gap-2">
 									{project.technologies.map((tech) => (
 										<span
 											key={`tech-${tech}`}
-											className="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-700"
+											className={styles.projectTag}
 										>
 											{tech}
 										</span>
 									))}
 								</div>
 							</div>
-							<h3 className="text-sm font-semibold text-gray-800 mb-2">
+							<h3 className={styles.projectSectionTitle}>
 								外部リンク
 							</h3>
-							<div className="flex flex-wrap gap-3 mb-3">
+							<div className={styles.projectLinks}>
 								{project.githubUrl && (
 									<a
 										href={project.githubUrl}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition shadow-sm text-xs"
+										className={styles.projectLink}
 									>
 										{project.githubUrlText || "GitHub"}
 									</a>
@@ -89,7 +94,7 @@ export default function ProjectContent({
 										href={project.githubUrl2}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="px-3 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 transition shadow-sm text-xs"
+										className={styles.projectLink}
 									>
 										{project.githubUrl2Text || "GitHub"}
 									</a>
@@ -99,7 +104,7 @@ export default function ProjectContent({
 										href={project.siteUrl}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition shadow-sm text-xs"
+										className={styles.projectLink}
 									>
 										サイトを見る
 									</a>
@@ -109,7 +114,7 @@ export default function ProjectContent({
 										href={project.movieUrl}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 transition shadow-sm text-xs"
+										className={styles.projectLink}
 									>
 										映像を見る
 									</a>
@@ -119,7 +124,7 @@ export default function ProjectContent({
 										href={project.installUrl}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="px-3 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-500 transition shadow-sm text-xs"
+										className={styles.projectLink}
 									>
 										{project.installUrlText ||
 											"インストール"}
@@ -130,7 +135,7 @@ export default function ProjectContent({
 										href={project.installUrl2}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="px-3 py-2 bg-violet-600 text-white rounded-md hover:bg-violet-500 transition shadow-sm text-xs"
+										className={styles.projectLink}
 									>
 										{project.installUrl2Text ||
 											"インストール"}

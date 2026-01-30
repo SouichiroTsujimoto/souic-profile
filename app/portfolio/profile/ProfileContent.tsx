@@ -1,7 +1,9 @@
 "use client";
 
+import ThemeToggle from "@/app/components/ThemeToggle";
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
 import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
+import styles from "../portfolio.module.css";
 
 function calculateAge(): number {
 	const birthDate = new Date("2005-05-07");
@@ -31,7 +33,7 @@ export default function ProfileContent() {
 
 	return (
 		<div
-			className="absolute inset-0 flex items-center justify-center cursor-pointer"
+			className={`${styles.overlayContainer} cursor-pointer`}
 			onClick={handleBackgroundClick}
 			onKeyDown={(e) => {
 				if (e.key === "Escape") {
@@ -40,13 +42,14 @@ export default function ProfileContent() {
 			}}
 			tabIndex={-1}
 		>
+			<ThemeToggle />
 			<div
-				className="max-w-2xl mx-auto relative z-10 cursor-default"
+				className={`${styles.overlayContent} cursor-default`}
 				onClick={(e) => e.stopPropagation()}
 				onKeyDown={(e) => e.stopPropagation()}
 			>
 				<div
-					className="rounded-2xl shadow-2xl text-left relative overflow-hidden mx-4 md:mx-0"
+					className={`${styles.overlayPanel} ${styles.imagePanel} text-left`}
 					style={{
 						backgroundImage: "url(/icon2.webp)",
 						backgroundSize: "cover",
@@ -55,39 +58,38 @@ export default function ProfileContent() {
 				>
 					{/* 背景全体をぼかすオーバーレイ */}
 					<div
-						className="absolute inset-0 backdrop-blur-sm bg-slate-500/15"
+						className="absolute inset-0 backdrop-blur-lg"
 						style={{ zIndex: 1 }}
 					/>
 
 					<button
 						type="button"
-						className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
+						className={styles.overlayCloseButton}
 						onClick={() => router.push("/portfolio")}
 						aria-label="閉じる"
 					>
 						<XIcon className="w-5 h-5" />
 					</button>
 
-					<div className="relative p-8 md:p-12" style={{ zIndex: 2 }}>
-						<div className="text-white">
+					<div className={styles.overlayBody}>
+						<div>
 							<h2 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
-								辻本 宗一郎
-								<br />
-								<span className="text-2xl md:text-3xl">
-									wuhu1sland
-								</span>
+								辻本宗一郎 <br />
+								wuhu1sland
 							</h2>
 
 							<div className="space-y-4 text-sm md:text-base">
 								<div className="mt-4">
-									<span className="font-semibold">
+									<span className={styles.sectionTitle}>
 										基本情報
 									</span>
 								</div>
 								<p>生年月日: 2005年5月7日（{age}歳）</p>
 
 								<div className="mt-4">
-									<span className="font-semibold">所属</span>
+									<span className={styles.sectionTitle}>
+										所属
+									</span>
 								</div>
 								<div className="space-y-1">
 									<p>
@@ -99,7 +101,9 @@ export default function ProfileContent() {
 								</div>
 
 								<div className="mt-4">
-									<p className="font-semibold">メインタグ</p>
+									<p className={styles.sectionTitle}>
+										メインタグ
+									</p>
 								</div>
 								<div className="flex flex-wrap gap-2">
 									{[
@@ -116,7 +120,7 @@ export default function ProfileContent() {
 									].map((skill) => (
 										<span
 											key={skill}
-											className="px-3 py-1 bg-white/20 rounded-full text-sm"
+											className={styles.tagChip}
 										>
 											{skill}
 										</span>

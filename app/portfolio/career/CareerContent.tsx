@@ -1,7 +1,9 @@
 "use client";
 
+import ThemeToggle from "@/app/components/ThemeToggle";
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
 import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
+import styles from "../portfolio.module.css";
 
 interface CareerEvent {
 	date: string;
@@ -51,7 +53,7 @@ export default function CareerContent() {
 
 	return (
 		<div
-			className="absolute inset-0 flex items-center justify-center cursor-pointer"
+			className={`${styles.overlayContainer} cursor-pointer`}
 			onClick={handleBackgroundClick}
 			onKeyDown={(e) => {
 				if (e.key === "Escape") {
@@ -60,63 +62,65 @@ export default function CareerContent() {
 			}}
 			tabIndex={-1}
 		>
+			<ThemeToggle />
 			<div
-				className="max-w-2xl mx-auto relative z-10 cursor-default"
+				className={`${styles.overlayContent} cursor-default`}
 				onClick={(e) => e.stopPropagation()}
 				onKeyDown={(e) => e.stopPropagation()}
 			>
-				<div className="bg-white rounded-2xl shadow-2xl overflow-hidden mx-4 md:mx-0">
-					<div className="relative p-8">
+				<div className={styles.overlayPanel}>
+					<div className={styles.overlayBody}>
 						<button
 							type="button"
-							className="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors"
+							className={styles.overlayCloseButton}
 							onClick={() => router.push("/portfolio")}
 							aria-label="閉じる"
 						>
 							<XIcon className="w-5 h-5" />
 						</button>
 
-						<h2 className="text-2xl font-bold text-gray-800 mb-6">
+						<h2 className={styles.overlayTitle}>
 							キャリアタイムライン
 						</h2>
 
-						<div className="relative max-w-4xl mx-auto max-h-[60vh] overflow-y-auto pr-4">
-							{/* タイムライン（縦線） */}
-							<div
-								className="absolute top-0 bottom-0 w-0.5 bg-gray-200"
-								style={{ left: "29px" }}
-							/>
+						<div
+							className={`${styles.timelineContainer} ${styles.timelineContainerLarge}`}
+						>
+							<div className={styles.timelineInner}>
+								{/* タイムライン（縦線） */}
+								<div className={styles.timelineLine} />
 
-							{/* イベント */}
-							<div className="relative space-y-6">
-								{careerEvents.map((event, index) => (
-									<div
-										key={`${event.date}-${index}`}
-										className="relative flex items-start gap-4"
-									>
-										{/* アイコン */}
-										<div className="flex-shrink-0">
-											<div className="w-15 h-15 rounded-full bg-gray-100 flex items-center justify-center text-3xl shadow-sm">
-												{event.icon}
+								{/* イベント */}
+								<div className={styles.timelineItems}>
+									{careerEvents.map((event, index) => (
+										<div
+											key={`${event.date}-${index}`}
+											className={styles.timelineItem}
+										>
+											{/* アイコン */}
+											<div className="flex-shrink-0">
+												<div className={styles.timelineIcon}>
+													{event.icon}
+												</div>
+											</div>
+
+											{/* タイトルと説明 */}
+											<div className={styles.timelineBody}>
+												<p className={styles.timelineDate}>
+													{event.date}
+												</p>
+												<h3 className={styles.timelineTitle}>
+													{event.title}
+												</h3>
+												{event.description && (
+													<p className={styles.timelineDescription}>
+														{event.description}
+													</p>
+												)}
 											</div>
 										</div>
-
-										{/* タイトルと説明 */}
-										<div className="flex-1 pt-0 pb-4 text-left">
-											<p className="text-sm text-gray-500 font-medium">
-												{event.date}
-											</p>
-											<h3 className="text-xl font-bold text-gray-800 mb-2">
-												{event.title}
-											</h3>
-											{event.description && (
-												<p className="text-base text-gray-600 leading-relaxed">
-													{event.description}
-												</p>
-											)}
-										</div>
-									</div>
-								))}
+									))}
+								</div>
 							</div>
 						</div>
 					</div>

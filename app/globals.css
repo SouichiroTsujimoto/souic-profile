@@ -1,8 +1,130 @@
 @import "tailwindcss";
 
-:root {
+/* ライトモード（デフォルト） */
+:root,
+:root.light {
 	--background: #ffffff;
 	--foreground: #171717;
+
+	/* トップページ用 */
+	--home-bg: #f4f5f7;
+	--home-fg: #1a1a1a;
+	--home-text-muted: #6b6b6b;
+	--home-card-bg-1: rgba(255, 255, 255, 0.96);
+	--home-card-bg-2: rgba(240, 242, 245, 0.96);
+	--home-card-border: rgba(15, 16, 18, 0.1);
+	--home-card-border-inner: rgba(15, 16, 18, 0.06);
+	--home-card-shadow: rgba(15, 16, 18, 0.12);
+	--home-card-shadow-strong: rgba(15, 16, 18, 0.18);
+	--home-wrapper-shadow: rgba(15, 16, 18, 0.15);
+	--home-bar-bg: rgba(15, 16, 18, 0.03);
+	--home-bar-border: rgba(15, 16, 18, 0.06);
+	--home-icon-bg: #f0f2f5;
+	--home-icon-border: rgba(15, 16, 18, 0.08);
+	--home-icon-shadow: rgba(15, 16, 18, 0.1);
+	--home-divider: rgba(15, 16, 18, 0.1);
+	--home-button-border: rgba(15, 16, 18, 0.18);
+	--home-button-hover-bg: #1a1a1a;
+	--home-button-hover-bg2: rgb(34, 255, 0);
+	--home-button-hover-color: #000000;
+	--home-spotlight: rgba(15, 16, 18, 0.06);
+	--home-spotlight-blend: multiply;
+	--home-sheen: rgba(255, 255, 255, 0.5);
+	--home-grid: rgba(15, 16, 18, 0.08);
+
+	/* ポートフォリオ用 */
+	--portfolio-bg: #f4f5f7;
+	--portfolio-fg: #141417;
+	--portfolio-surface-1: #ffffff;
+	--portfolio-surface-2: #eef0f3;
+	--portfolio-panel-bg: rgba(255, 255, 255, 0.94);
+	--portfolio-border: rgba(15, 16, 18, 0.08);
+	--portfolio-border-strong: rgba(15, 16, 18, 0.15);
+	--portfolio-text-muted: rgba(20, 20, 23, 0.68);
+	--portfolio-text-subtle: rgba(20, 20, 23, 0.5);
+	--portfolio-chip-bg: rgb(34, 255, 0);
+	--portfolio-chip-bg2: rgba(255, 255, 255, 1);
+	--portfolio-chip-bg3: rgba(15, 16, 18, 0.05);
+	--portfolio-chip-border: rgba(15, 16, 18, 0.12);
+	--portfolio-glow-1: rgba(15, 16, 18, 0.06);
+	--portfolio-glow-2: rgba(15, 16, 18, 0.05);
+	--portfolio-grid: rgba(15, 16, 18, 0.04);
+	--portfolio-spotlight: rgba(15, 16, 18, 0.08);
+	--portfolio-image-overlay-top: rgba(0, 0, 0, 0.15);
+	--portfolio-image-overlay-bottom: rgba(0, 0, 0, 0.55);
+	--portfolio-image-text: #f5f5f5;
+	--portfolio-sheen: rgba(255, 255, 255, 0.35);
+	--portfolio-inner-highlight: rgba(255, 255, 255, 0.6);
+	--portfolio-shadow-soft: rgba(15, 16, 18, 0.1);
+	--portfolio-shadow-strong: rgba(15, 16, 18, 0.18);
+	--portfolio-shadow-inset: rgba(15, 16, 18, 0.15);
+	--portfolio-overlay-blend: multiply;
+	--portfolio-modal-bg: rgba(15, 16, 18, 0.55);
+	--portfolio-skeleton: rgba(15, 16, 18, 0.08);
+	--portfolio-error: #cc3a3a;
+}
+
+/* ダークモード */
+:root.dark {
+	--background: #0a0a0a;
+	--foreground: #ededed;
+
+	/* トップページ用 */
+	--home-bg: #000000;
+	--home-fg: #e7e7e7;
+	--home-text-muted: #b8b8b8;
+	--home-card-bg-1: rgba(22, 22, 24, 0.98);
+	--home-card-bg-2: rgba(10, 10, 11, 0.98);
+	--home-card-border: rgba(255, 255, 255, 0.12);
+	--home-card-border-inner: rgba(255, 255, 255, 0.08);
+	--home-card-shadow: rgba(0, 0, 0, 0.7);
+	--home-card-shadow-strong: rgba(0, 0, 0, 0.8);
+	--home-wrapper-shadow: rgba(0, 0, 0, 0.7);
+	--home-bar-bg: rgba(255, 255, 255, 0.04);
+	--home-bar-border: rgba(255, 255, 255, 0.08);
+	--home-icon-bg: #0e0e0f;
+	--home-icon-border: rgba(255, 255, 255, 0.2);
+	--home-icon-shadow: rgba(0, 0, 0, 0.5);
+	--home-divider: rgba(255, 255, 255, 0.12);
+	--home-button-border: rgba(255, 255, 255, 0.22);
+	--home-button-hover-bg: #f2f2f2;
+	--home-button-hover-bg2: rgb(234, 0, 225);
+	--home-button-hover-color: #ffffff;
+	--home-spotlight: rgba(255, 255, 255, 0.15);
+	--home-spotlight-blend: screen;
+	--home-sheen: rgba(255, 255, 255, 0.08);
+	--home-grid: rgba(255, 255, 255, 0.06);
+
+	/* ポートフォリオ用 */
+	--portfolio-bg: #000000;
+	--portfolio-fg: #e7e7e7;
+	--portfolio-surface-1: #161618;
+	--portfolio-surface-2: #0a0a0b;
+	--portfolio-panel-bg: rgba(10, 10, 12, 0.96);
+	--portfolio-border: rgba(255, 255, 255, 0.12);
+	--portfolio-border-strong: rgba(255, 255, 255, 0.18);
+	--portfolio-text-muted: rgba(255, 255, 255, 0.72);
+	--portfolio-text-subtle: rgba(255, 255, 255, 0.55);
+	--portfolio-chip-bg: rgb(234, 0, 255);
+	--portfolio-chip-bg2: rgba(0, 0, 0, 1);
+	--portfolio-chip-bg3: rgba(255, 255, 255, 0.08);
+	--portfolio-chip-border: rgba(255, 255, 255, 0.16);
+	--portfolio-glow-1: rgba(255, 255, 255, 0.06);
+	--portfolio-glow-2: rgba(255, 255, 255, 0.05);
+	--portfolio-grid: rgba(255, 255, 255, 0.05);
+	--portfolio-spotlight: rgba(255, 255, 255, 0.12);
+	--portfolio-image-overlay-top: rgba(0, 0, 0, 0.2);
+	--portfolio-image-overlay-bottom: rgba(0, 0, 0, 0.65);
+	--portfolio-image-text: #f5f5f5;
+	--portfolio-sheen: rgba(255, 255, 255, 0.12);
+	--portfolio-inner-highlight: rgba(255, 255, 255, 0.04);
+	--portfolio-shadow-soft: rgba(0, 0, 0, 0.55);
+	--portfolio-shadow-strong: rgba(0, 0, 0, 0.7);
+	--portfolio-shadow-inset: rgba(0, 0, 0, 0.4);
+	--portfolio-overlay-blend: screen;
+	--portfolio-modal-bg: rgba(0, 0, 0, 0.7);
+	--portfolio-skeleton: rgba(255, 255, 255, 0.08);
+	--portfolio-error: #ff6b6b;
 }
 
 @theme inline {
@@ -12,17 +134,15 @@
 	--font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
-	}
-}
-
 body {
-	background: var(--background);
+	background-color: var(--background);
+	background-image:
+		linear-gradient(var(--home-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--home-grid) 1px, transparent 1px);
+	background-size: 60px 60px;
 	color: var(--foreground);
 	font-family: "Hiragino Sans", sans-serif, Arial, Helvetica;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .sans-serif {

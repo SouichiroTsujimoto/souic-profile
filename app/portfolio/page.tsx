@@ -1,3 +1,4 @@
+import ThemeToggle from "@/app/components/ThemeToggle";
 import { TransitionLink } from "@/app/components/TransitionLink";
 import { ArrowUturnLeftIcon as UturnIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
@@ -28,14 +29,17 @@ export default function PortfolioPage() {
 
 	return (
 		<div className={styles.portfolioContainer}>
+			<ThemeToggle />
 			<PortfolioKeyboardNavigation />
-			<div className="max-w-5xl mx-auto px-4 py-8 relative z-10">
+			<div
+				className={`max-w-5xl mx-auto px-4 py-8 ${styles.contentWrapper}`}
+			>
 				{/* ヘッダー */}
 				<header className="mb-10 mt-16 sm:mt-8">
 					<div className="max-w-5xl w-full h-auto z-10 text-center">
 						<SplitText
 							text="About"
-							className=" text-3xl text-white font-bold text-center mb-8"
+							className={`text-3xl font-bold text-center mb-8 ${styles.sectionHeading}`}
 							delay={80}
 							threshold={0.2}
 							rootMargin="-15px"
@@ -48,9 +52,7 @@ export default function PortfolioPage() {
 								prefetch={true}
 							>
 								<div
-									className={
-										"h-60 sm:h-80 rounded-lg shadow-2xl mt-8 text-left relative overflow-y-hidden hover:shadow-xl transition-shadow"
-									}
+									className={`h-60 sm:h-80 mt-8 text-left relative overflow-y-hidden ${styles.heroCard} ${styles.heroImageCard}`}
 									style={{
 										backgroundImage: "url(/icon2.webp)",
 										backgroundSize: "cover",
@@ -61,82 +63,30 @@ export default function PortfolioPage() {
 										className="relative flex flex-col p-6"
 										style={{ zIndex: 2 }}
 									>
-										<div className="flex flex-col p-1 sm:p-6 text-white">
+										<div
+											className={`flex flex-col p-1 sm:p-6 ${styles.heroImageText}`}
+										>
 											<div className="text-left ">
 												<h2 className="text-2xl md:text-4xl sm:text-3xl font-extrabold leading-9 sm:leading-11">
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														辻本 宗一郎
-													</span>
+													辻本宗一郎
 													<br />
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														wuhu1sland
-													</span>
+													wuhu1sland
 												</h2>
 												<p className="text-xs sm:text-sm mt-2 sm:mt-9">
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														生年月日:2005年5月7日(
-														{age}
-														歳)
-													</span>
+													生年月日:2005年5月7日(
+													{age}
+													歳)
 													<br />
 													<br />
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														同志社大学 理工学部
-													</span>
+													同志社大学 理工学部
 													<br />
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														数理システム学科 2回生
-													</span>
+													数理システム学科 2回生
 													<br />
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														同志社SF研究会(DSFA)
-													</span>
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														2025年度会長
-													</span>
+													同志社SF研究会(DSFA)
+													2025年度会長
 													<br />
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														京大マイコンクラブ(KMC)
-													</span>
-													<span
-														className={
-															"backdrop-blur-lg inline-block"
-														}
-													>
-														49代入会
-													</span>
+													京大マイコンクラブ(KMC)
+													49代入会
 												</p>
 											</div>
 										</div>
@@ -150,9 +100,7 @@ export default function PortfolioPage() {
 								prefetch={true}
 							>
 								<div
-									className={
-										"bg-white rounded-lg shadow-2xl mt-8 hover:shadow-xl transition-shadow"
-									}
+									className={`mt-8 ${styles.heroCard} ${styles.timelineCard}`}
 								>
 									<div className="">
 										<CareerTimeline />
@@ -163,7 +111,7 @@ export default function PortfolioPage() {
 
 						<SplitText
 							text={"Works"}
-							className="text-3xl text-white font-bold text-center"
+							className={`text-3xl font-bold text-center ${styles.sectionHeading}`}
 							delay={80}
 							threshold={0.2}
 							rootMargin="-15px"
@@ -179,13 +127,13 @@ export default function PortfolioPage() {
 									<TransitionLink
 										key={project.id}
 										href={`/portfolio/${project.path}`}
-										className={
-											"bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-md transition cursor-pointer text-left block h-full"
-										}
+										className={styles.projectCard}
 										prefetch={true}
 									>
 										<div className="flex flex-row h-full min-h-[200px]">
-											<div className="relative w-1/2 overflow-hidden h-full">
+											<div
+												className={`relative w-1/2 overflow-hidden h-full ${styles.projectImage}`}
+											>
 												{project.images.length > 0 && (
 													<Image
 														src={project.images[0]}
@@ -197,13 +145,19 @@ export default function PortfolioPage() {
 												)}
 											</div>
 											<div className="relative w-1/2 p-3">
-												<h2 className="text-base font-semibold text-gray-800 mb-1">
+												<h2
+													className={`text-base font-semibold mb-1 ${styles.projectTitle}`}
+												>
 													{project.title}
 												</h2>
-												<p className="text-xs text-gray-500 mb-1">
+												<p
+													className={`text-xs mb-1 ${styles.projectMeta}`}
+												>
 													{project.year}年
 												</p>
-												<p className="text-xs text-gray-600 mb-2 line-clamp-2">
+												<p
+													className={`text-xs mb-2 line-clamp-2 ${styles.projectDescription}`}
+												>
 													{project.description}
 												</p>
 												<div className="flex flex-wrap gap-1">
@@ -212,14 +166,20 @@ export default function PortfolioPage() {
 														.map((tech) => (
 															<span
 																key={`${project.id}-${tech}`}
-																className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700"
+																className={
+																	styles.projectChip
+																}
 															>
 																{tech}
 															</span>
 														))}
 													{project.technologies
 														.length > 6 && (
-														<span className="px-2 py-0.5 bg-gray-100 rounded-full text-xs text-gray-700">
+														<span
+															className={
+																styles.projectChip
+															}
+														>
 															+
 															{project
 																.technologies
@@ -236,7 +196,7 @@ export default function PortfolioPage() {
 						<div className="md:col-span-2 flex justify-center">
 							<TransitionLink
 								href="/"
-								className="text-sm font-bold text-gray-900 hover:text-white transition mt-7 mb-7"
+								className={`text-sm font-bold transition mt-7 mb-7 ${styles.backLink}`}
 							>
 								<UturnIcon className="w-7 h-7" />
 							</TransitionLink>

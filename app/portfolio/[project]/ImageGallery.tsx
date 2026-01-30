@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import SelectedImage from "./selectedImage";
+import styles from "../portfolio.module.css";
 
 interface ImageGalleryProps {
 	images: string[];
@@ -34,7 +35,7 @@ export default function ImageGallery({
 					projectTitle={title}
 				/>
 			)}
-			<div className="md:w-2/5 p-3">
+			<div className={styles.projectMedia}>
 				{images.length > 0 && (
 					<button
 						type="button"
@@ -47,7 +48,7 @@ export default function ImageGallery({
 						<Image
 							src={images[0]}
 							alt={`${title}のメイン画像`}
-							className="object-cover rounded-lg shadow-sm cursor-pointer mb-2"
+							className={`${styles.projectImageMain} object-cover cursor-pointer mb-2`}
 							style={{ maxHeight: "300px" }}
 							width={500}
 							height={300}
@@ -70,7 +71,7 @@ export default function ImageGallery({
 								<Image
 									src={image}
 									alt={`${title}の画像`}
-									className="object-cover rounded-lg shadow-sm cursor-pointer w-full h-24"
+									className={`${styles.projectImageThumb} object-cover cursor-pointer h-24`}
 									width={200}
 									height={96}
 								/>

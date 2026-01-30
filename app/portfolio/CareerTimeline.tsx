@@ -1,5 +1,7 @@
 "use client";
 
+import styles from "./portfolio.module.css";
+
 interface CareerEvent {
 	date: string; // "YYYY/MM" format
 	title: string;
@@ -39,38 +41,35 @@ const careerEvents: CareerEvent[] = [
 
 export default function CareerTimeline() {
 	return (
-		<div className="w-full max-h-80 overflow-y-auto p-8">
-			<div className="relative max-w-4xl mx-auto">
+		<div className={styles.timelineContainer}>
+			<div className={styles.timelineInner}>
 				{/* タイムライン（縦線） */}
-				<div
-					className="absolute top-0 bottom-0 w-0.5 bg-gray-200"
-					style={{ left: "29px" }}
-				/>
+				<div className={styles.timelineLine} />
 
 				{/* イベント */}
-				<div className="relative space-y-5">
+				<div className={styles.timelineItems}>
 					{careerEvents.map((event, index) => (
 						<div
 							key={`${event.date}-${index}`}
-							className="relative flex items-start gap-3"
+							className={styles.timelineItem}
 						>
 							{/* 中央：アイコン */}
 							<div className="flex-shrink-0">
-								<div className="w-15 h-15 rounded-full bg-gray-100 flex items-center justify-center text-2xl shadow-sm">
+								<div className={styles.timelineIcon}>
 									{event.icon}
 								</div>
 							</div>
 
 							{/* 右側：タイトルと説明 */}
-							<div className="flex-1 pt-0 pb-4 text-left">
-								<p className="text-sm text-gray-500 text-xs font-medium">
+							<div className={styles.timelineBody}>
+								<p className={styles.timelineDate}>
 									{event.date}
 								</p>
-								<h3 className="text-lg font-bold text-gray-800 mb-2">
+								<h3 className={styles.timelineTitle}>
 									{event.title}
 								</h3>
 								{event.description && (
-									<p className="text-sm text-gray-600 leading-relaxed">
+									<p className={styles.timelineDescription}>
 										{event.description}
 									</p>
 								)}
