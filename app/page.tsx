@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Page() {
 	const cardWrapperRef = useRef<HTMLDivElement | null>(null);
 	const [isReturningToCenter, setIsReturningToCenter] = useState(false);
-	const maxTilt = 20;
+	const maxTilt = 15;
 	const rafIdRef = useRef<number | null>(null);
 
 	// CSSカスタムプロパティのための状態
@@ -24,10 +24,7 @@ export default function Page() {
 
 	// 初期化
 	useEffect(() => {
-		// 最初から3D効果を有効化
 		setCardCenter();
-
-		// 初期エフェクトを設定
 		updateCard({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
 
 		return () => {
@@ -38,14 +35,13 @@ export default function Page() {
 		};
 	}, []);
 
-	// カードを中央に戻す関数（イージング効果を追加）
+	// カードを中央に戻す関数
 	const setCardCenter = () => {
 		if (!cardWrapperRef.current) return;
 
 		const centerX = 0.5;
 		const centerY = 0.5;
 
-		// 現在の値を取得
 		const currentRatioX = cardStyles.ratioX;
 		const currentRatioY = cardStyles.ratioY;
 		const currentRx = Number.parseFloat(cardStyles.rotateX) || 0;
@@ -53,30 +49,25 @@ export default function Page() {
 		const currentPosX = Number.parseFloat(cardStyles.posX) || 50;
 		const currentPosY = Number.parseFloat(cardStyles.posY) || 50;
 
-		// アニメーションの開始時間
 		const startTime = performance.now();
-		const duration = 800; // ミリ秒単位の期間（長めにして滑らかに）
+		const duration = 800;
 
-		// イージング関数（easeOutCubic）
 		const easeOutCubic = (t: number): number => 1 - (1 - t) ** 3;
 
-		// アニメーションフレーム内で値を更新
 		const animate = (time: number) => {
 			const elapsed = time - startTime;
 			const progress = Math.min(elapsed / duration, 1);
 			const easeProgress = easeOutCubic(progress);
 
-			// 現在値と目標値の間を補間
 			const newRatioX =
 				currentRatioX + (centerX - currentRatioX) * easeProgress;
 			const newRatioY =
 				currentRatioY + (centerY - currentRatioY) * easeProgress;
-			const newRx = currentRx * (1 - easeProgress); // 0に向かって
-			const newRy = currentRy * (1 - easeProgress); // 0に向かって
+			const newRx = currentRx * (1 - easeProgress);
+			const newRy = currentRy * (1 - easeProgress);
 			const newPosX = currentPosX + (50 - currentPosX) * easeProgress;
 			const newPosY = currentPosY + (50 - currentPosY) * easeProgress;
 
-			// 値を設定
 			setCardStyles({
 				ratioX: newRatioX,
 				ratioY: newRatioY,
@@ -88,11 +79,9 @@ export default function Page() {
 				posY: `${newPosY}%`,
 			});
 
-			// アニメーションが完了していない場合は次のフレームを要求
 			if (progress < 1) {
 				rafIdRef.current = requestAnimationFrame(animate);
 			} else {
-				// 最終値を確実に設定
 				setCardStyles({
 					ratioX: centerX,
 					ratioY: centerY,
@@ -107,13 +96,10 @@ export default function Page() {
 			}
 		};
 
-		// アニメーションスタート
 		if (rafIdRef.current) {
 			cancelAnimationFrame(rafIdRef.current);
 		}
 		rafIdRef.current = requestAnimationFrame(animate);
-
-		// トランジションクラスを追加
 		setIsReturningToCenter(true);
 	};
 
@@ -121,33 +107,20 @@ export default function Page() {
 		if (!cardWrapperRef.current) return;
 
 		const wrapper = cardWrapperRef.current;
-
-		// トランジションクラスを削除（マウス移動時は即時反映）
 		setIsReturningToCenter(false);
 
 		const BOUNDS = wrapper.getBoundingClientRect();
-
-		// 要素の中心位置を算出
 		const centerX = BOUNDS.width / 2;
 		const centerY = BOUNDS.height / 2;
-
-		// ポインターのカードの中心からの位置を算出
 		const pointerX = x - BOUNDS.x;
 		const pointerY = y - BOUNDS.y;
-
-		// ポインターのカードの中心からの度合い
 		const ratioX = (pointerX - centerX) / centerX;
 		const ratioY = (pointerY - centerY) / centerY;
-
-		// 回転角度を計算
 		const rotateY = ratioX * maxTilt;
 		const rotateX = -ratioY * maxTilt;
-
-		// ハイライト位置を計算
 		const posX = 50 + ratioX * 50;
 		const posY = 50 + ratioY * 50;
 
-		// 状態を更新
 		setCardStyles({
 			ratioX: ratioX + 0.5,
 			ratioY: ratioY + 0.5,
@@ -160,7 +133,6 @@ export default function Page() {
 		});
 	};
 
-	// アニメーションフレームでの更新を管理
 	const updateCardPosition = (e: React.MouseEvent) => {
 		if (rafIdRef.current) {
 			cancelAnimationFrame(rafIdRef.current);
@@ -172,7 +144,6 @@ export default function Page() {
 		});
 	};
 
-	// マウスがカードから離れたときに中央に戻るハンドラー
 	const handleMouseLeave = () => {
 		if (rafIdRef.current) {
 			cancelAnimationFrame(rafIdRef.current);
@@ -181,7 +152,6 @@ export default function Page() {
 		setCardCenter();
 	};
 
-	// CSSカスタムプロパティをインラインスタイルに変換
 	const cardWrapperStyle = {
 		"--ratiox": cardStyles.ratioX,
 		"--ratioy": cardStyles.ratioY,
@@ -194,186 +164,77 @@ export default function Page() {
 	} as React.CSSProperties;
 
 	return (
-		<>
+		<div className="home">
 			<div
-				className={`card-wrapper ${isReturningToCenter ? "return-to-center" : ""}`}
+				className={`card-wrapper ${
+					isReturningToCenter ? "return-to-center" : ""
+				}`}
 				ref={cardWrapperRef}
 				onPointerMove={updateCardPosition}
 				onPointerLeave={handleMouseLeave}
 				style={cardWrapperStyle}
 			>
-				{/* カラーレイヤーを下に配置 */}
-				<div
-					className="card color"
-					style={{
-						zIndex: 20,
-						pointerEvents: "none",
-					}}
-				/>
+				{/* ストラップ */}
+				<div className="badge-strap" />
 
-				{/* メインのカードコンテンツ - 前面レイヤー */}
-				<div
-					className="card main-content"
-					style={{
-						position: "relative",
-					}}
-				>
-					<div
-						className="card-content"
-						style={{
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "center",
-							alignItems: "center",
-							height: "100%",
-							padding: "20px",
-						}}
-					>
-						{/* 画像を背景として配置 - 中間のレイヤー */}
-						<Image
-							src="/newsouic.webp"
-							alt="カード画像"
-							className="color"
-							style={{
-								zIndex: 10,
-								position: "absolute",
-								pointerEvents: "none",
-								height: "102%",
-								width: "100%",
-							}}
-							width={500}
-							height={700}
-						/>
+				{/* クリップ */}
+				<div className="badge-clip" />
 
-						<Image
-							src="/icon.webp"
-							alt="icon"
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								position: "absolute",
-								left: "50%",
-								top: "22%",
-								transform: "translate(-50%, -50%) scale(0.35)",
-								zIndex: 20,
-								textAlign: "center",
-								filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
-							}}
-							width={400}
-							height={400}
-						/>
-
-						<Image
-							src="/tsujimoto8.webp"
-							alt="text"
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								position: "absolute",
-								top: "10%",
-								zIndex: 20,
-								textAlign: "center",
-								opacity: "0.8",
-								scale: "0.65",
-							}}
-							width={600}
-							height={150}
-						/>
-
-						<TransitionLink
-							className="transition-colors"
-							href="/portfolio"
-							// target="_blank"
-							rel="noopener noreferrer"
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								position: "absolute",
-								top: "52%",
-								left: "20%",
-								right: "20%",
-								textAlign: "center",
-								zIndex: 20,
-							}}
-						>
-							<Image
-								src="/portfolio2.webp"
-								alt="portfolio"
-								style={{
-									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
-								}}
-								width={300}
-								height={60}
-							/>
-							{/* X : @wuhu1sland */}
-						</TransitionLink>
-
-						<TransitionLink
-							className="transition-colors"
-							href="https://github.com/SouichiroTsujimoto"
-							target="_blank"
-							rel="noopener noreferrer"
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								textDecoration: "none",
-								position: "absolute",
-								top: "62%",
-								left: "20%",
-								right: "20%",
-								textAlign: "center",
-								zIndex: 20,
-							}}
-						>
-							<Image
-								src="/github2.webp"
-								alt="github"
-								style={{
-									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
-								}}
-								width={300}
-								height={60}
-							/>
-						</TransitionLink>
-
-						<TransitionLink
-							className="transition-colors"
-							href="https://x.com/wuhu1sland"
-							target="_blank"
-							rel="noopener noreferrer"
-							style={{
-								display: "flex",
-								justifyContent: "center",
-								alignItems: "center",
-								textDecoration: "none",
-								position: "absolute",
-								top: "72%",
-								left: "20%",
-								right: "20%",
-								textAlign: "center",
-								zIndex: 20,
-							}}
-						>
-							<Image
-								src="/X2.webp"
-								alt="X"
-								style={{
-									filter: "drop-shadow(0 0 10px rgba(0, 0, 0, 0.5))",
-								}}
-								width={300}
-								height={60}
-							/>
-						</TransitionLink>
+				{/* 名札カード本体 */}
+				<div className="card">
+					{/* 名前バー */}
+					<div className="name-bar">
+						<span className="name-initial">S</span>
+						<span className="name-meta">AGENT SWARM // NODE 01</span>
 					</div>
 
-					{/* ハイライトレイヤーを最上部に配置、ポインターイベントを無効化 */}
-					{/* <div className="card highlight" style={{ zIndex: 5 }} /> */}
+					{/* カードコンテンツ */}
+					<div className="card-content">
+						{/* アイコン */}
+						<div className="icon-frame">
+							<Image
+								src="/icon.webp"
+								alt="icon"
+								width={80}
+								height={80}
+								style={{
+									imageRendering: "pixelated",
+								}}
+							/>
+						</div>
+
+						{/* タイトル */}
+						<h1 className="badge-title">SouichiroTsujimoto</h1>
+
+						{/* 説明文 */}
+						<p className="badge-description">
+							Web Developer / Designer
+							<br />
+							Creating beautiful digital experiences
+						</p>
+
+						{/* 区切り線 */}
+						<hr className="badge-divider" />
+
+						{/* フッター */}
+						<div className="badge-footer">
+							<span className="badge-logo">SOUIC</span>
+							<TransitionLink href="/portfolio" className="badge-button">
+								Portfolio
+							</TransitionLink>
+						</div>
+					</div>
+
+					{/* 光沢エフェクト */}
+					<div
+						className="card color"
+						style={{
+							zIndex: 20,
+							pointerEvents: "none",
+						}}
+					/>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
