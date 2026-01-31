@@ -110,12 +110,12 @@
     var(--home-card-bg-2) 100%
   );
   border-radius: 18px;
-  border: 1px solid var(--home-card-border);
+  border: 0px solid var(--home-card-border);
   box-shadow:
     0 40px 120px var(--home-card-shadow-strong),
     inset 0 0 0 1px var(--home-card-border-inner);
-  width: 340px;
-  min-height: 480px;
+  width: 360px;
+  min-height: 400px;
   position: relative;
   overflow: hidden;
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -127,6 +127,7 @@
   inset: 0;
   background: linear-gradient(120deg, var(--home-sheen), transparent 40%);
   opacity: 0.6;
+  z-index: 1;
   pointer-events: none;
 }
 
@@ -136,13 +137,14 @@
   inset: 14px;
   border: 1px solid var(--home-card-border-inner);
   border-radius: 12px;
+  z-index: 1;
   pointer-events: none;
 }
 
 /* タブレット向けのスタイル */
 @media screen and (min-width: 481px) {
   .card {
-    width: 380px;
+    width: 400px;
     min-height: 520px;
   }
 }

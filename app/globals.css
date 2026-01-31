@@ -12,7 +12,7 @@
 	--home-text-muted: #6b6b6b;
 	--home-card-bg-1: rgba(255, 255, 255, 0.96);
 	--home-card-bg-2: rgba(240, 242, 245, 0.96);
-	--home-card-border: rgba(15, 16, 18, 0.1);
+	--home-card-border: rgb(255, 255, 255);
 	--home-card-border-inner: rgba(15, 16, 18, 0.06);
 	--home-card-shadow: rgba(15, 16, 18, 0.12);
 	--home-card-shadow-strong: rgba(15, 16, 18, 0.18);
@@ -33,6 +33,7 @@
 	--home-grid: rgba(15, 16, 18, 0.08);
 	--transition-skeleton: rgba(15, 16, 18, 0.08);
 	--transition-skeleton-highlight: rgba(255, 255, 255, 0.5);
+	--home-card-glass: rgba(255, 255, 255, 1.0);
 
 	/* ポートフォリオ用 */
 	--portfolio-bg: #f4f5f7;
@@ -90,12 +91,13 @@
 	--home-divider: rgba(255, 255, 255, 0.12);
 	--home-button-border: rgba(255, 255, 255, 0.22);
 	--home-button-hover-bg: #f2f2f2;
-	--home-button-hover-bg2: rgb(234, 0, 225);
-	--home-button-hover-color: #ffffff;
+	--home-button-hover-bg2: rgba(255, 255, 255, 0.151);
+	--home-button-hover-color: #ffffff83;
 	--home-spotlight: rgba(255, 255, 255, 0.15);
 	--home-spotlight-blend: screen;
 	--home-sheen: rgba(255, 255, 255, 0.08);
 	--home-grid: rgba(255, 255, 255, 0.06);
+	--home-card-glass: rgb(0, 0, 0);
 	--transition-skeleton: rgba(255, 255, 255, 0.12);
 	--transition-skeleton-highlight: rgba(255, 255, 255, 0.2);
 

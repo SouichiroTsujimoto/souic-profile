@@ -177,6 +177,7 @@ export default function Page() {
 			>
 				{/* 名札カード本体 */}
 				<div className={styles.card}>
+					<div className={styles.cardBackdrop} aria-hidden="true" />
 					{/* 名前バー */}
 					<div className={styles.nameBar}>
 						<span className={styles.nameMeta}>2005-05-07</span>
