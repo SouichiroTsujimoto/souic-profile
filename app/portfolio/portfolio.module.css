@@ -73,13 +73,11 @@
   pointer-events: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .heroCard:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 36px 90px var(--portfolio-shadow-strong),
-      inset 0 0 0 1px var(--portfolio-border);
-  }
+.heroCard:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 36px 90px var(--portfolio-shadow-strong),
+    inset 0 0 0 1px var(--portfolio-border);
 }
 
 .heroImageCard::after {
@@ -119,13 +117,11 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .projectCard:hover {
-    transform: translateY(-2px);
-    box-shadow:
-      0 26px 70px var(--portfolio-shadow-strong),
-      inset 0 0 0 1px var(--portfolio-border);
-  }
+.projectCard:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 26px 70px var(--portfolio-shadow-strong),
+    inset 0 0 0 1px var(--portfolio-border);
 }
 
 .projectImage {
@@ -495,11 +491,9 @@
   transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .projectLink:hover {
-    transform: translateY(-1px);
-    background: var(--portfolio-chip-bg);
-  }
+.projectLink:hover {
+  transform: translateY(-1px);
+  background: var(--portfolio-chip-bg);
 }
 
 .projectImageMain {
@@ -584,25 +578,3 @@
   background: var(--portfolio-border-strong);
   transform: translateY(-1px);
 }
-/* 
-.projectCard {
-  position: relative;
-  z-index: 20;
-  height: 30vh;
-  width: auto;
-  margin-bottom: 4vh;
-} */
-
-/* .projectDetail {
-  position: relative;
-  z-index: 20;
-  height: auto;
-  width: auto;
-  margin-bottom: 3vh;
-} */
-/* 
-.projectCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
-} */
