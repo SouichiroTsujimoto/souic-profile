@@ -145,6 +145,30 @@ body {
 	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.page-transition-overlay {
+	position: fixed;
+	inset: 0;
+	background-color: var(--background);
+	background-image:
+		linear-gradient(var(--home-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--home-grid) 1px, transparent 1px);
+	background-size: 60px 60px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s ease;
+	z-index: 9999;
+}
+
+.page-transition-overlay.is-active {
+	opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-transition-overlay {
+		transition: none;
+	}
+}
+
 .sans-serif {
   font-family: 
 	"Helvetica Neue",

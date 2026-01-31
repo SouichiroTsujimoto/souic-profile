@@ -1,34 +1,50 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import NextLink from "next/link";
+import { Link as ViewTransitionLink } from "next-view-transitions";
 import type { ComponentProps } from "react";
+import { usePageTransition } from "./PageTransitionProvider";
 
-export function TransitionLink({
-	href,
-	children,
-	...props
-}: ComponentProps<typeof Link>) {
-	const router = useRouter();
+type LinkProps = ComponentProps<typeof NextLink>;
 
-	const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-		e.preventDefault();
+function isModifiedEvent(event: React.MouseEvent<HTMLAnchorElement>) {
+	const target = event.currentTarget.getAttribute("target");
+	return (
+		(target && target !== "_self") ||
+		event.metaKey ||
+		event.ctrlKey ||
+		event.shiftKey ||
+		event.altKey ||
+		event.button === 1
+	);
+}
 
-		// View Transitions APIのサポートチェック
-		if (!document.startViewTransition) {
-			router.push(href.toString());
+export function TransitionLink({ href, children, onClick, ...props }: LinkProps) {
+	const { shouldUseFallback, startFallback } = usePageTransition();
+
+	const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+		if (onClick) {
+			onClick(event);
+		}
+		if (event.defaultPrevented || isModifiedEvent(event)) {
 			return;
 		}
-
-		// トランジションを開始
-		document.startViewTransition(() => {
-			router.push(href.toString());
-		});
+		if (shouldUseFallback) {
+			startFallback();
+		}
 	};
 
+	if (shouldUseFallback) {
+		return (
+			<NextLink href={href} onClick={handleClick} {...props}>
+				{children}
+			</NextLink>
+		);
+	}
+
 	return (
-		<Link href={href} onClick={handleClick} {...props}>
+		<ViewTransitionLink href={href} onClick={handleClick} {...props}>
 			{children}
-		</Link>
+		</ViewTransitionLink>
 	);
 }

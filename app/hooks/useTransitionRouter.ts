@@ -1,29 +1,44 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useTransitionRouter as useNVTRouter } from "next-view-transitions";
 import { useCallback } from "react";
+import { usePageTransition } from "../components/PageTransitionProvider";
 
 export function useTransitionRouter() {
 	const router = useRouter();
+	const nvtRouter = useNVTRouter();
+	const { shouldUseFallback, startFallback } = usePageTransition();
 
 	const push = useCallback(
-		(href: string) => {
-			// View Transitions APIのサポートチェック
-			if (!document.startViewTransition) {
-				router.push(href);
+		(href: string, options?: { scroll?: boolean }) => {
+			if (shouldUseFallback) {
+				startFallback();
+				router.push(href, options);
 				return;
 			}
-
-			// トランジションを開始
-			document.startViewTransition(() => {
-				router.push(href);
-			});
+			nvtRouter.push(href, options);
 		},
-		[router],
+		[shouldUseFallback, startFallback, router, nvtRouter],
 	);
 
+	const replace = useCallback(
+		(href: string, options?: { scroll?: boolean }) => {
+			if (shouldUseFallback) {
+				startFallback();
+				router.replace(href, options);
+				return;
+			}
+			nvtRouter.replace(href, options);
+		},
+		[shouldUseFallback, startFallback, router, nvtRouter],
+	);
+
+	const baseRouter = shouldUseFallback ? router : nvtRouter;
+
 	return {
-		...router,
+		...baseRouter,
 		push,
+		replace,
 	};
 }

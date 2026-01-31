@@ -40,8 +40,6 @@
 
 /* 名札全体のラッパー */
 .cardWrapper {
-  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-  transition: transform 0.08s linear;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,8 +51,16 @@
   filter: drop-shadow(0 30px 80px var(--home-wrapper-shadow));
 }
 
-.cardWrapperReturning {
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+/* PC向けのみ傾きアニメーションを有効化 */
+@media screen and (min-width: 960px) {
+  .cardWrapper {
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    transition: transform 0.08s linear;
+  }
+
+  .cardWrapperReturning {
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
 }
 
 /* ストラップ部分 */

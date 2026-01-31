@@ -166,7 +166,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 20px;
+  /* padding: 48px 20px; */
   background-color: var(--background);
   background-image:
     linear-gradient(var(--home-grid) 1px, transparent 1px),
@@ -212,7 +212,7 @@
   border-radius: 22px;
   border: 0px solid var(--portfolio-border);
   background: var(--portfolio-panel-bg);
-  margin: 50px;
+  margin: 25px;
   box-shadow:
     0 0px 30px var(--portfolio-shadow-strong),
     inset 0 0 0 1px var(--portfolio-inner-highlight);
