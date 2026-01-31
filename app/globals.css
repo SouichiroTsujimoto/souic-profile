@@ -31,6 +31,8 @@
 	--home-spotlight-blend: multiply;
 	--home-sheen: rgba(255, 255, 255, 0.5);
 	--home-grid: rgba(15, 16, 18, 0.08);
+	--transition-skeleton: rgba(15, 16, 18, 0.08);
+	--transition-skeleton-highlight: rgba(255, 255, 255, 0.5);
 
 	/* ポートフォリオ用 */
 	--portfolio-bg: #f4f5f7;
@@ -94,6 +96,8 @@
 	--home-spotlight-blend: screen;
 	--home-sheen: rgba(255, 255, 255, 0.08);
 	--home-grid: rgba(255, 255, 255, 0.06);
+	--transition-skeleton: rgba(255, 255, 255, 0.12);
+	--transition-skeleton-highlight: rgba(255, 255, 255, 0.2);
 
 	/* ポートフォリオ用 */
 	--portfolio-bg: #000000;
@@ -157,10 +161,75 @@ body {
 	pointer-events: none;
 	transition: opacity 0.25s ease;
 	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .page-transition-overlay.is-active {
 	opacity: 1;
+}
+
+.page-transition-overlay.has-skeleton {
+	pointer-events: auto;
+}
+
+.page-transition-skeleton {
+	width: min(520px, 86vw);
+	padding: 24px;
+	border-radius: 18px;
+	background: rgba(255, 255, 255, 0.02);
+	border: 1px solid var(--home-grid);
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.skeleton-chip {
+	width: 120px;
+	height: 36px;
+	border-radius: 999px;
+	background: var(--transition-skeleton);
+	position: relative;
+	overflow: hidden;
+}
+
+.skeleton-row {
+	height: 14px;
+	border-radius: 999px;
+	background: var(--transition-skeleton);
+	position: relative;
+	overflow: hidden;
+}
+
+.skeleton-row-short {
+	width: 46%;
+}
+
+.skeleton-row-medium {
+	width: 68%;
+}
+
+.skeleton-chip::after,
+.skeleton-row::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: translateX(-100%);
+	background: linear-gradient(
+		90deg,
+		transparent,
+		var(--transition-skeleton-highlight),
+		transparent
+	);
+	animation: skeletonShimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes skeletonShimmer {
+	100% {
+		transform: translateX(100%);
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

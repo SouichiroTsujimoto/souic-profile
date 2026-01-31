@@ -7,17 +7,18 @@ import {
 	useContext,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
 
 type PageTransitionContextValue = {
 	shouldUseFallback: boolean;
-	startFallback: () => void;
+	startTransition: () => void;
 };
 
 const PageTransitionContext = createContext<PageTransitionContextValue>({
 	shouldUseFallback: false,
-	startFallback: () => {},
+	startTransition: () => {},
 });
 
 export function PageTransitionProvider({
@@ -26,8 +27,11 @@ export function PageTransitionProvider({
 	children: React.ReactNode;
 }) {
 	const pathname = usePathname();
-	const [isTransitioning, setIsTransitioning] = useState(false);
+	const [isFallbackActive, setIsFallbackActive] = useState(false);
+	const [showSkeleton, setShowSkeleton] = useState(false);
 	const [shouldUseFallback, setShouldUseFallback] = useState(false);
+	const skeletonTimerRef = useRef<number | null>(null);
+	const fallbackTimerRef = useRef<number | null>(null);
 
 	useEffect(() => {
 		const supportsViewTransition = "startViewTransition" in document;
@@ -48,46 +52,65 @@ export function PageTransitionProvider({
 		return () => media.removeListener(update);
 	}, []);
 
+	const clearTimers = useCallback(() => {
+		if (skeletonTimerRef.current) {
+			window.clearTimeout(skeletonTimerRef.current);
+			skeletonTimerRef.current = null;
+		}
+		if (fallbackTimerRef.current) {
+			window.clearTimeout(fallbackTimerRef.current);
+			fallbackTimerRef.current = null;
+		}
+	}, []);
+
 	useEffect(() => {
-		if (!isTransitioning) {
-			return;
+		clearTimers();
+		setIsFallbackActive(false);
+		setShowSkeleton(false);
+	}, [pathname, clearTimers]);
+
+	const startTransition = useCallback(() => {
+		clearTimers();
+		setShowSkeleton(false);
+
+		skeletonTimerRef.current = window.setTimeout(() => {
+			setShowSkeleton(true);
+		}, 320);
+
+		if (shouldUseFallback) {
+			setIsFallbackActive(true);
+			fallbackTimerRef.current = window.setTimeout(() => {
+				setIsFallbackActive(false);
+				setShowSkeleton(false);
+			}, 2000);
 		}
-
-		const id = requestAnimationFrame(() => {
-			setIsTransitioning(false);
-		});
-
-		const fallbackTimer = window.setTimeout(() => {
-			setIsTransitioning(false);
-		}, 800);
-
-		return () => {
-			cancelAnimationFrame(id);
-			window.clearTimeout(fallbackTimer);
-		};
-	}, [pathname, isTransitioning]);
-
-	const startFallback = useCallback(() => {
-		if (!shouldUseFallback) {
-			return;
-		}
-		setIsTransitioning(true);
-	}, [shouldUseFallback]);
+	}, [shouldUseFallback, clearTimers]);
 
 	const value = useMemo(
-		() => ({ shouldUseFallback, startFallback }),
-		[shouldUseFallback, startFallback],
+		() => ({ shouldUseFallback, startTransition }),
+		[shouldUseFallback, startTransition],
 	);
+
+	const isOverlayVisible = isFallbackActive || showSkeleton;
 
 	return (
 		<PageTransitionContext.Provider value={value}>
 			{children}
 			<div
 				className={`page-transition-overlay ${
-					isTransitioning ? "is-active" : ""
-				}`}
+					isOverlayVisible ? "is-active" : ""
+				} ${showSkeleton ? "has-skeleton" : ""}`}
 				aria-hidden="true"
-			/>
+			>
+				{showSkeleton ? (
+					<div className="page-transition-skeleton">
+						<div className="skeleton-chip" />
+						<div className="skeleton-row" />
+						<div className="skeleton-row skeleton-row-short" />
+						<div className="skeleton-row skeleton-row-medium" />
+					</div>
+				) : null}
+			</div>
 		</PageTransitionContext.Provider>
 	);
 }

@@ -20,7 +20,7 @@ function isModifiedEvent(event: React.MouseEvent<HTMLAnchorElement>) {
 }
 
 export function TransitionLink({ href, children, onClick, ...props }: LinkProps) {
-	const { shouldUseFallback, startFallback } = usePageTransition();
+	const { shouldUseFallback, startTransition } = usePageTransition();
 
 	const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
 		if (onClick) {
@@ -29,9 +29,7 @@ export function TransitionLink({ href, children, onClick, ...props }: LinkProps)
 		if (event.defaultPrevented || isModifiedEvent(event)) {
 			return;
 		}
-		if (shouldUseFallback) {
-			startFallback();
-		}
+		startTransition();
 	};
 
 	if (shouldUseFallback) {

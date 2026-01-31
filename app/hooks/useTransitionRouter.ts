@@ -8,30 +8,30 @@ import { usePageTransition } from "../components/PageTransitionProvider";
 export function useTransitionRouter() {
 	const router = useRouter();
 	const nvtRouter = useNVTRouter();
-	const { shouldUseFallback, startFallback } = usePageTransition();
+	const { shouldUseFallback, startTransition } = usePageTransition();
 
 	const push = useCallback(
 		(href: string, options?: { scroll?: boolean }) => {
+			startTransition();
 			if (shouldUseFallback) {
-				startFallback();
 				router.push(href, options);
 				return;
 			}
 			nvtRouter.push(href, options);
 		},
-		[shouldUseFallback, startFallback, router, nvtRouter],
+		[shouldUseFallback, startTransition, router, nvtRouter],
 	);
 
 	const replace = useCallback(
 		(href: string, options?: { scroll?: boolean }) => {
+			startTransition();
 			if (shouldUseFallback) {
-				startFallback();
 				router.replace(href, options);
 				return;
 			}
 			nvtRouter.replace(href, options);
 		},
-		[shouldUseFallback, startFallback, router, nvtRouter],
+		[shouldUseFallback, startTransition, router, nvtRouter],
 	);
 
 	const baseRouter = shouldUseFallback ? router : nvtRouter;
