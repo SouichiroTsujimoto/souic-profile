@@ -91,8 +91,8 @@
 	--home-divider: rgba(255, 255, 255, 0.12);
 	--home-button-border: rgba(255, 255, 255, 0.22);
 	--home-button-hover-bg: #f2f2f2;
-	--home-button-hover-bg2: rgba(255, 255, 255, 0.151);
-	--home-button-hover-color: #ffffff83;
+	--home-button-hover-bg2: rgb(234, 0, 255);
+	--home-button-hover-color: #ffffff;
 	--home-spotlight: rgba(255, 255, 255, 0.15);
 	--home-spotlight-blend: screen;
 	--home-sheen: rgba(255, 255, 255, 0.08);

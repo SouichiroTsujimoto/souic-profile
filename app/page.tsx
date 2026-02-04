@@ -3,12 +3,14 @@
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { TransitionLink } from "@/app/components/TransitionLink";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import styles from "./home.module.css";
 
 export default function Page() {
 	const cardWrapperRef = useRef<HTMLDivElement | null>(null);
 	const [isReturningToCenter, setIsReturningToCenter] = useState(false);
+	const [showQr, setShowQr] = useState(false);
+	const qrPanelId = useId();
 	const maxTilt = 15;
 	const rafIdRef = useRef<number | null>(null);
 
@@ -175,45 +177,109 @@ export default function Page() {
 				onPointerLeave={handleMouseLeave}
 				style={cardWrapperStyle}
 			>
-				{/* 名札カード本体 */}
 				<div className={styles.card}>
-					<div className={styles.cardBackdrop} aria-hidden="true" />
-					{/* 名前バー */}
-					<div className={styles.nameBar}>
-						<span className={styles.nameMeta}>2005-05-07</span>
-					</div>
-
-					{/* カードコンテンツ */}
-					<div className={styles.cardContent}>
-						{/* アイコン */}
-						<div className={styles.iconFrame}>
-							<Image
-								src="/0x24.png"
-								alt="icon"
-								width={300}
-								height={300}
-							/>
+					<div className={styles.cardInner}>
+						<div className={styles.cardHeader}>
+							<span className={styles.cardStage}>Basic</span>
+							<span className={styles.cardMeta}>2005-05-07</span>
 						</div>
 
-						{/* フッター */}
-						<div className={styles.badgeFooter}>
+						<div className={styles.cardTitleRow}>
+							<h1 className={styles.cardName}>
+								Tsujimoto Souichiro
+							</h1>
+							<div className={styles.cardHp}>
+								<span className={styles.cardHpLabel}>HP</span>
+								<span className={styles.cardHpValue}>140</span>
+								<span
+									className={styles.cardTypeOrb}
+									aria-hidden="true"
+								/>
+							</div>
+						</div>
+
+						<div className={styles.cardArtFrame}>
+							<div className={styles.cardArtInner}>
+								<Image
+									src="/icon-a.png"
+									alt="icon"
+									width={300}
+									height={300}
+									className={styles.cardArtImage}
+								/>
+							</div>
+						</div>
+
+						<div className={styles.cardInfoStrip}>
+							<span className={styles.cardInfoText}>
+								Student at Doshisha Univ. Mathematical Sciences
+							</span>
+						</div>
+
+						<div className={styles.cardMoves}>
 							<TransitionLink
 								href="/portfolio"
-								className={styles.badgeButton}
+								className={styles.moveRow}
 							>
-								&gt; Portfolio
+								<div
+									className={styles.energyDots}
+									aria-hidden="true"
+								>
+									<span className={styles.energyDot} />
+									<span className={styles.energyDot} />
+								</div>
+								<span className={styles.moveName}>
+									Portfolio
+								</span>
+								<span className={styles.movePower}>30</span>
 							</TransitionLink>
 						</div>
 
-						{/* タイトル */}
-						<h1 className={styles.badgeTitle}>
-							Tsujimoto Souichiro
-						</h1>
-
-						{/* 説明文 */}
-						<p className={styles.badgeDescription}>
-							Student at Doshisha Univ. Mathematical Sciences
-						</p>
+						<div className={styles.cardFooter}>
+							<div className={styles.footerButtons}>
+								<a
+									className={styles.footerButton}
+									href="https://github.com/SouichiroTsujimoto"
+									target="_blank"
+									rel="noreferrer"
+								>
+									GitHub
+								</a>
+								<a
+									className={styles.footerButton}
+									href="https://x.com/wuhu1sland"
+									target="_blank"
+									rel="noreferrer"
+								>
+									X
+								</a>
+								<button
+									type="button"
+									className={styles.footerButton}
+									aria-expanded={showQr}
+									aria-controls={qrPanelId}
+									onClick={() => setShowQr((prev) => !prev)}
+								>
+									QR
+								</button>
+							</div>
+							<div
+								id={qrPanelId}
+								className={`${styles.qrPanel} ${showQr ? styles.qrPanelOpen : ""}`}
+							>
+								<div className={styles.qrFrame}>
+									<Image
+										src="/qr-wuhu1sland.png"
+										alt="wuhu1s.land QR code"
+										width={140}
+										height={140}
+									/>
+								</div>
+								<span className={styles.qrCaption}>
+									wuhu1s.land
+								</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

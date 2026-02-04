@@ -1,4 +1,4 @@
-/* トップページ用 CSS Module */
+/* Home page card styles */
 
 .homeContainer {
   position: relative;
@@ -38,7 +38,6 @@
   pointer-events: none;
 }
 
-/* 名札全体のラッパー */
 .cardWrapper {
   display: flex;
   flex-direction: column;
@@ -51,7 +50,6 @@
   filter: drop-shadow(0 30px 80px var(--home-wrapper-shadow));
 }
 
-/* PC向けのみ傾きアニメーションを有効化 */
 @media screen and (min-width: 960px) {
   .cardWrapper {
     transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
@@ -63,272 +61,375 @@
   }
 }
 
-/* ストラップ部分 */
-.badgeStrap {
-  width: 2px;
-  height: 56px;
-  background: linear-gradient(
-    180deg,
-    var(--home-fg),
-    rgba(128, 128, 128, 0.12),
-    transparent
-  );
-  border-radius: 999px;
-  position: relative;
-  z-index: 10;
-  opacity: 0.7;
-}
-
-/* クリップ部分 */
-.badgeClip {
-  width: 120px;
-  height: 24px;
-  background: linear-gradient(180deg, var(--home-bar-bg), transparent);
-  border: 1px solid var(--home-card-border);
-  border-radius: 999px;
-  position: relative;
-  z-index: 15;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.badgeClip::after {
-  content: "";
-  width: 34px;
-  height: 6px;
-  background: var(--home-text-muted);
-  border-radius: 999px;
-  box-shadow: 0 0 12px var(--home-card-shadow);
-}
-
-/* 名札カード本体 */
 .card {
   background: linear-gradient(
-    160deg,
-    var(--home-card-bg-1) 0%,
-    var(--home-card-bg-2) 100%
+    145deg,
+    var(--home-card-border),
+    rgba(0, 0, 0, 0.08)
   );
-  border-radius: 18px;
-  border: 0px solid var(--home-card-border);
+  border-radius: 22px;
+  border: 1px solid var(--home-card-border);
   box-shadow:
     0 40px 120px var(--home-card-shadow-strong),
     inset 0 0 0 1px var(--home-card-border-inner);
   width: 360px;
-  min-height: 400px;
+  min-height: 520px;
   position: relative;
   overflow: hidden;
+  padding: 10px;
   transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, var(--home-sheen), transparent 40%);
-  opacity: 0.6;
-  z-index: 1;
-  pointer-events: none;
 }
 
 .card::after {
   content: "";
   position: absolute;
-  inset: 14px;
-  border: 1px solid var(--home-card-border-inner);
-  border-radius: 12px;
-  z-index: 1;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at var(--mx, 50%) var(--my, 50%),
+      rgba(255, 255, 255, 0.35),
+      transparent 60%
+    ),
+    linear-gradient(120deg, transparent 35%, var(--home-sheen), transparent 60%);
+  opacity: 0.45;
+  mix-blend-mode: var(--home-spotlight-blend);
   pointer-events: none;
 }
 
-/* タブレット向けのスタイル */
+.cardInner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: linear-gradient(
+    160deg,
+    var(--home-card-bg-1) 0%,
+    var(--home-card-bg-2) 100%
+  );
+  box-shadow: inset 0 0 0 1px var(--home-card-border-inner);
+}
+
+.cardInner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 35%),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      transparent 40%
+    );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 @media screen and (min-width: 481px) {
   .card {
     width: 400px;
-    min-height: 520px;
-  }
-}
-
-/* PC向けのスタイル */
-@media screen and (min-width: 960px) {
-  .card {
-    width: 420px;
     min-height: 560px;
   }
 }
 
-/* カード上部の名前バー */
-.nameBar {
-  background: var(--home-bar-bg);
-  padding: 18px 20px 8px 20px;
-  display: flex;
-  gap: 12px;
-  border-bottom: 1px solid var(--home-bar-border);
-  text-transform: uppercase;
-  position: relative;
-  z-index: 2;
+@media screen and (min-width: 960px) {
+  .card {
+    width: 420px;
+    min-height: 600px;
+  }
 }
 
-.nameInitial {
-  color: var(--home-bg);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  background: var(--home-fg);
-  width: 26px;
-  height: 26px;
-  border-radius: 999px;
-  display: inline-flex;
+.cardHeader {
+  display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.nameMeta {
+  justify-content: space-between;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.65rem;
   color: var(--home-text-muted);
-  font-size: 0.8rem;
-  letter-spacing: 0.5em;
-  margin-left: auto;
-}
-
-/* カードコンテンツ */
-.cardContent {
-  padding: 24px 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
-/* アイコン枠 */
-.iconFrame {
-  width: 300px;
-  height: 300px;
-  border: 0px solid var(--home-icon-border);
-  border-radius: 10px;
-  padding: 0px;
-  background: var(--home-icon-bg);
-  margin-bottom: 16px;
-  box-shadow:
-    inset 0 0 0 1px var(--home-card-border-inner),
-    0 10px 24px var(--home-icon-shadow);
-  align-self: center;
-  overflow: hidden;
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+.cardStage {
+  background: var(--home-bar-bg);
+  border: 1px solid var(--home-bar-border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-weight: 700;
+  color: var(--home-fg);
+  letter-spacing: 0.16em;
 }
 
-.iconFrame img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 6px;
+.cardMeta {
+  font-size: 0.6rem;
+  letter-spacing: 0.45em;
 }
 
-/* タイトル */
-.badgeTitle {
+.cardTitleRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.cardName {
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--home-fg);
-  margin: 0 0 8px 0;
-  line-height: 1.3;
-  letter-spacing: 0.04em;
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
 }
 
-/* 説明文 */
-.badgeDescription {
-  font-size: 0.9rem;
-  color: var(--home-text-muted);
-  margin: 0 0 8px 0;
-  line-height: 1.6;
-}
-
-/* 区切り線 */
-.badgeDivider {
-  width: 100%;
-  border: none;
-  border-top: 1px solid var(--home-divider);
-  margin: 8px 0;
-}
-
-/* フッター部分 */
-.badgeFooter {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: auto;
-  padding-bottom: 20px;
-  gap: 12px;
-}
-
-.badgeLogo {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--home-fg);
-  letter-spacing: 0.35em;
-}
-
-/* リンクボタン */
-.badgeButton {
-  background: transparent;
-  background-size: 220% 100%;
-  background-position: 95% 0%;
-  color: var(--home-fg);
-  padding: 8px 20px;
-  border-radius: 999px;
-  border: 1px solid var(--home-button-border);
-  font-size: 1.0rem;
-  font-weight: 600;
-  text-decoration: none;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  cursor: pointer;
-  display: flex;
-  width: 100%;
-}
-
-.badgeButton:hover {
-  letter-spacing: 0.5em;
-  background: var(--home-button-hover-bg2);
-  color: var(--home-button-hover-color);
-  transform: translateY(-1px);
-}
-
-/* ソーシャルリンク */
-.socialLinks {
-  display: flex;
-  gap: 12px;
-  margin-top: 16px;
-  width: 100%;
-  justify-content: flex-start;
-}
-
-.socialLink {
+.cardHp {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: var(--home-bar-bg);
-  border-radius: 10px;
-  border: 1px solid var(--home-card-border);
-  transition: all 0.2s ease;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--home-fg);
 }
 
-.socialLink:hover {
-  background: var(--home-button-border);
-  transform: translateY(-2px);
+.cardHpLabel {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.6rem;
 }
 
-.socialLink img {
+.cardHpValue {
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+
+.cardTypeOrb {
   width: 20px;
   height: 20px;
-  filter: brightness(0) invert(1);
+  border-radius: 50%;
+  border: 1px solid var(--home-card-border-inner);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255),
+    var(--home-button-hover-bg2) 45%,var(--home-button-hover-bg2) 75%
+  );
+  box-shadow: inset 0 0 0 1px var(--home-card-border-inner);
 }
 
-/* カラーオーバーレイ（3D効果用） - 無効化 */
-.cardColor {
-  display: none;
+.cardArtFrame {
+  border-radius: 12px;
+  padding: 6px;
+  background: linear-gradient(180deg, var(--home-bar-bg), transparent);
+  border: 1px solid var(--home-card-border-inner);
+  box-shadow:
+    inset 0 0 0 1px var(--home-card-border-inner),
+    0 10px 24px var(--home-icon-shadow);
+  position: relative;
+  z-index: 1;
+}
+
+.cardArtInner {
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--home-icon-bg);
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+}
+
+.cardArtImage {
+  object-position: -20px 10px;
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  display: block;
+  /* filter: invert(100%); */
+  /* opacity: 0.75; */
+}
+
+.cardInfoStrip {
+  /* border-radius: 12px; */
+  /* border: 1px solid var(--home-bar-border); */
+  /* background: var(--home-bar-bg); */
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 0.52rem;
+  color: var(--home-text-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.cardInfoText {
+  display: inline-block;
+}
+
+.cardMoves {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.moveRow {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--home-divider);
+  background: linear-gradient(90deg, var(--home-bar-bg), transparent);
+  text-decoration: none;
+  color: var(--home-fg);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.moveRow:hover {
+  transform: translateY(-1px);
+  border-color: var(--home-button-border);
+  box-shadow: 0 8px 20px var(--home-card-shadow);
+  background: var(--home-button-hover-bg2);
+  color: var(--home-button-hover-color);
+}
+
+.moveRow:focus-visible {
+  outline: 2px solid var(--home-button-border);
+  outline-offset: 3px;
+}
+
+.energyDots {
+  display: flex;
+  gap: 4px;
+}
+
+.energyDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid var(--home-card-border-inner);
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255),
+    var(--home-button-hover-bg2) 50%,
+    var(--home-button-hover-bg2) 80%
+  );
+  box-shadow: inset 0 0 0 1px var(--home-card-border-inner);
+}
+
+.moveName {
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+}
+
+.movePower {
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+}
+
+.cardFooter {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--home-divider);
+  padding-top: 12px;
+  margin-bottom: 0;
+  font-size: 0.65rem;
+  color: var(--home-text-muted);
+  position: relative;
+  z-index: 1;
+}
+
+.footerButtons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.footerButton {
+  appearance: none;
+  border: 1px solid var(--home-button-border);
+  border-radius: 999px;
+  padding: 8px 18px;
+  background: linear-gradient(90deg, var(--home-bar-bg), transparent);
+  color: var(--home-fg);
+  font-weight: 900;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  /* text-transform: uppercase; */
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.footerButton:hover {
+  transform: translateY(-1px);
+  border-color: var(--home-button-border);
+  background: var(--home-button-hover-bg2);
+  color: var(--home-button-hover-color);
+  box-shadow: 0 8px 20px var(--home-card-shadow);
+}
+
+.footerButton:focus-visible {
+  outline: 2px solid var(--home-button-border);
+  outline-offset: 3px;
+}
+
+.qrPanel {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  border-radius: 14px;
+  border: 1px dashed var(--home-divider);
+  padding: 12px;
+  background: linear-gradient(180deg, var(--home-bar-bg), transparent);
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, max-height 0.25s ease, transform 0.2s ease;
+  overflow: hidden;
+}
+
+.qrPanelOpen {
+  opacity: 1;
+  max-height: 260px;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.qrFrame {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  border: 1px solid var(--home-card-border-inner);
+  background: var(--home-card-bg-1);
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px var(--home-card-border-inner);
+}
+
+.qrFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.qrCaption {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
