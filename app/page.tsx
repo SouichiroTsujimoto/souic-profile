@@ -231,7 +231,7 @@ export default function Page() {
 								<span className={styles.moveName}>
 									Portfolio
 								</span>
-								<span className={styles.movePower}>30</span>
+								<span className={styles.movePower}>50</span>
 							</TransitionLink>
 						</div>
 
