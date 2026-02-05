@@ -73,7 +73,7 @@
     0 40px 120px var(--home-card-shadow-strong),
     inset 0 0 0 1px var(--home-card-border-inner);
   width: 360px;
-  min-height: 480px;
+  min-height: 460px;
   position: relative;
   overflow: hidden;
   padding: 10px;
@@ -132,14 +132,14 @@
 @media screen and (min-width: 481px) {
   .card {
     width: 400px;
-    min-height: 520px;
+    min-height: 500px;
   }
 }
 
 @media screen and (min-width: 960px) {
   .card {
     width: 420px;
-    min-height: 560px;
+    min-height: 540px;
   }
 }
 
@@ -180,10 +180,10 @@
 }
 
 .cardName {
+  margin-left: 5px;
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--home-fg);
-  margin: 0;
   line-height: 1.2;
   letter-spacing: 0.03em;
 }
@@ -331,7 +331,15 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 700;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
 }
 
 .moveRow:hover {
@@ -341,6 +349,7 @@
   background: var(--home-button-hover-bg2);
   color: var(--home-button-hover-color);
 }
+
 
 .moveRow:focus-visible {
   outline: 2px solid var(--home-button-border);
@@ -380,9 +389,9 @@
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
   border-top: 1px solid var(--home-divider);
-  padding-top: 12px;
+  padding-top: 20px;
   margin-bottom: 0;
   font-size: 0.65rem;
   color: var(--home-text-muted);
@@ -400,17 +409,30 @@
   appearance: none;
   border: 1px solid var(--home-button-border);
   border-radius: 999px;
-  padding: 8px 18px;
+  padding: 8px 14px;
   background: linear-gradient(90deg, var(--home-bar-bg), transparent);
   color: var(--home-fg);
   font-weight: 900;
   font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  /* text-transform: uppercase; */
-  text-align: left;
+  letter-spacing: 0.08em;
+  text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.footerButtonIcon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  margin: 0 auto;
 }
 
 .footerButton:hover {
@@ -421,6 +443,8 @@
   box-shadow: 0 8px 20px var(--home-card-shadow);
 }
 
+
+
 .footerButton:focus-visible {
   outline: 2px solid var(--home-button-border);
   outline-offset: 3px;
@@ -430,6 +454,7 @@
   display: grid;
   place-items: center;
   gap: 6px;
+  margin-top: 0;
   border-radius: 14px;
   border: 1px dashed var(--home-divider);
   padding: 12px;
@@ -447,6 +472,7 @@
   max-height: 260px;
   transform: translateY(0);
   pointer-events: auto;
+  margin-top: 8px;
 }
 
 .qrFrame {

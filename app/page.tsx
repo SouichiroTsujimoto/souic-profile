@@ -236,16 +236,36 @@ export default function Page() {
 									href="https://github.com/SouichiroTsujimoto"
 									target="_blank"
 									rel="noreferrer"
+									aria-label="GitHub"
 								>
-									GitHub
+									<svg
+										className={styles.footerButtonIcon}
+										viewBox="0 0 24 24"
+										aria-hidden="true"
+									>
+										<path
+											fill="currentColor"
+											d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.1.68-.22.68-.48 0-.24-.01-.87-.02-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.15-4.56-5.12 0-1.13.39-2.06 1.03-2.79-.1-.26-.45-1.33.1-2.77 0 0 .85-.28 2.78 1.06A9.4 9.4 0 0 1 12 7.1a9.4 9.4 0 0 1 2.53.35c1.93-1.34 2.78-1.06 2.78-1.06.55 1.44.2 2.51.1 2.77.64.73 1.03 1.66 1.03 2.79 0 3.98-2.34 4.86-4.57 5.11.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .26.18.58.69.48A10.05 10.05 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"
+										/>
+									</svg>
 								</a>
 								<a
 									className={styles.footerButton}
 									href="https://x.com/wuhu1sland"
 									target="_blank"
 									rel="noreferrer"
+									aria-label="X"
 								>
-									X
+									<svg
+										className={styles.footerButtonIcon}
+										viewBox="0 0 24 24"
+										aria-hidden="true"
+									>
+										<path
+											fill="currentColor"
+											d="M18.9 2H22l-6.77 7.73L23 22h-6.46l-5.07-7.05L5.25 22H2l7.25-8.27L1 2h6.63l4.6 6.35L18.9 2Zm-1.13 18.06h1.8L7.17 3.84H5.22l12.55 16.22Z"
+										/>
+									</svg>
 								</a>
 								<button
 									type="button"
@@ -253,8 +273,18 @@ export default function Page() {
 									aria-expanded={showQr}
 									aria-controls={qrPanelId}
 									onClick={() => setShowQr((prev) => !prev)}
+									aria-label="QR code"
 								>
-									QR
+									<svg
+										className={styles.footerButtonIcon}
+										viewBox="0 0 24 24"
+										aria-hidden="true"
+									>
+										<path
+											fill="currentColor"
+											d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm10 0h2v2h-2v-2Zm2 2h2v2h-2v-2Zm-2 2h2v2h-2v-2Zm2 2h4v2h-4v-2Zm2-6h2v4h-2v-4Z"
+										/>
+									</svg>
 								</button>
 							</div>
 							<div

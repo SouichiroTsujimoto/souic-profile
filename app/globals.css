@@ -25,7 +25,7 @@
 	--home-divider: rgba(15, 16, 18, 0.1);
 	--home-button-border: rgba(15, 16, 18, 0.18);
 	--home-button-hover-bg: #1a1a1a;
-	--home-button-hover-bg2: rgb(34, 255, 0);
+	--home-button-hover-bg2: rgb(60, 255, 0);
 	--home-button-hover-color: #000000;
 	--home-spotlight: rgba(15, 16, 18, 0.06);
 	--home-spotlight-blend: multiply;
@@ -46,6 +46,7 @@
 	--portfolio-text-muted: rgba(20, 20, 23, 0.68);
 	--portfolio-text-subtle: rgba(20, 20, 23, 0.5);
 	--portfolio-chip-bg: rgb(34, 255, 0);
+	--portfolio-chip-color: rgb(21, 21, 21);
 	--portfolio-chip-bg2: rgba(255, 255, 255, 1);
 	--portfolio-chip-bg3: rgba(15, 16, 18, 0.05);
 	--portfolio-chip-border: rgba(15, 16, 18, 0.12);
@@ -91,8 +92,8 @@
 	--home-divider: rgba(255, 255, 255, 0.12);
 	--home-button-border: rgba(255, 255, 255, 0.22);
 	--home-button-hover-bg: #f2f2f2;
-	--home-button-hover-bg2: rgb(234, 0, 255);
-	--home-button-hover-color: #ffffff;
+	--home-button-hover-bg2: rgba(101, 101, 101, 0.779);
+	--home-button-hover-color: rgb(228, 228, 228);
 	--home-spotlight: rgba(255, 255, 255, 0.15);
 	--home-spotlight-blend: screen;
 	--home-sheen: rgba(255, 255, 255, 0.08);
@@ -111,7 +112,8 @@
 	--portfolio-border-strong: rgba(255, 255, 255, 0.18);
 	--portfolio-text-muted: rgba(255, 255, 255, 0.72);
 	--portfolio-text-subtle: rgba(255, 255, 255, 0.55);
-	--portfolio-chip-bg: rgb(234, 0, 255);
+	--portfolio-chip-bg: rgb(200, 200, 200);
+	--portfolio-chip-color: rgb(21, 21, 21);
 	--portfolio-chip-bg2: rgba(0, 0, 0, 1);
 	--portfolio-chip-bg3: rgba(255, 255, 255, 0.08);
 	--portfolio-chip-border: rgba(255, 255, 255, 0.16);

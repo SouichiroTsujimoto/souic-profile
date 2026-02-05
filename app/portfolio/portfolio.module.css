@@ -494,6 +494,7 @@
 .projectLink:hover {
   transform: translateY(-1px);
   background: var(--portfolio-chip-bg);
+  color: var(--portfolio-chip-color);
 }
 
 .projectImageMain {
