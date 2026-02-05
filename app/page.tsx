@@ -189,8 +189,6 @@ export default function Page() {
 								Tsujimoto Souichiro
 							</h1>
 							<div className={styles.cardHp}>
-								<span className={styles.cardHpLabel}>HP</span>
-								<span className={styles.cardHpValue}>140</span>
 								<span
 									className={styles.cardTypeOrb}
 									aria-hidden="true"
@@ -221,17 +219,13 @@ export default function Page() {
 								href="/portfolio"
 								className={styles.moveRow}
 							>
-								<div
-									className={styles.energyDots}
+								<span
+									className={styles.moveIcon}
 									aria-hidden="true"
-								>
-									<span className={styles.energyDot} />
-									<span className={styles.energyDot} />
-								</div>
+								/>
 								<span className={styles.moveName}>
 									Portfolio
 								</span>
-								<span className={styles.movePower}>50</span>
 							</TransitionLink>
 						</div>
 
