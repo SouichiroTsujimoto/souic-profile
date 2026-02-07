@@ -35,7 +35,7 @@ export const projects: Project[] = [
 		path: "Optime",
 		title: "Optime",
 		description:
-			"RSSを用いた投票結果の通知機能や、settings.jsonによる投票設定などの機能を持つ、調整さんライクな予定投票サイトです。\n\nSF研究会での上映会の日程決定に使うことを目的に作成し始めました。\n\nバックエンドはAWSの勉強も兼ねて、マルチAZ構成で構築しています。",
+			"RSSを用いた投票結果の通知機能や、settings.jsonによる投票設定などの機能を持つ、調整さんライクな予定投票サイトです。\n\nSF研究会での上映会の日程決定に使うことを目的に作成し始めました。\n\nバックエンドはAWSの勉強も兼ねて、マルチAZ構成で構築しています。\n\n【工事中】(AWS費用が思ったより嵩んだため、一時的にバックエンドを停止中です。)",
 		images: [
 			"/Optime-1.webp",
 			"/Optime-2.webp",
