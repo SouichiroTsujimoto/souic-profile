@@ -36,7 +36,7 @@ export const projects: Project[] = [
     title: "Dialup",
     description:
       "WebSocket-firstのファイルベースルーティングWebフレームワークです。\nページアクセス時に構築したwebsocketセッションが全ページに渡って継続します。\nhtmlやjsonのやり取りをhttpではなくwebsocketで行うことで、オーバーヘッドの削減を実現しています。",
-    images: ["/dialup4.png", "/dialup2.png", "/dialup.png"],
+    images: ["/dialup4.webp", "/dialup2.webp", "/dialup.webp"],
     technologies: ["Elixir", "idiomorph"],
     githubUrl: "https://github.com/SouichiroTsujimoto/dialup",
     githubUrlText: "GitHub",
