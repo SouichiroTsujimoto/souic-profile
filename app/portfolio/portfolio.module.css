@@ -383,6 +383,21 @@
   color: var(--portfolio-fg);
 }
 
+.timelineTitleLink {
+  text-decoration: none;
+}
+
+.timelineTitleLink .timelineTitle {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--portfolio-border-strong);
+  transition: opacity 0.15s ease;
+}
+
+.timelineTitleLink:hover .timelineTitle {
+  opacity: 0.7;
+}
+
 .timelineDescription {
   font-size: 0.85rem;
   color: var(--portfolio-text-muted);
