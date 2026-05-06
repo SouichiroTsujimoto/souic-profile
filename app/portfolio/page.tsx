@@ -81,7 +81,7 @@ export default function PortfolioPage() {
 													<br />
 													同志社大学 理工学部
 													<br />
-													数理システム学科 2回生
+													数理システム学科 3回生
 													<br />
 													同志社SF研究会(DSFA)
 													2025年度会長
