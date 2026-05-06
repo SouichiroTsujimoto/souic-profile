@@ -6,6 +6,7 @@ import {
 	useContext,
 	useEffect,
 	useMemo,
+	useRef,
 	useState,
 } from "react";
 
@@ -25,63 +26,73 @@ const ThemeContext = createContext<ThemeContextType>({
 	mounted: false,
 });
 
+const getSystemTheme = (): "light" | "dark" => {
+	if (typeof window === "undefined") return "dark";
+	return window.matchMedia("(prefers-color-scheme: dark)").matches
+		? "dark"
+		: "light";
+};
+
+const readResolvedFromDom = (): "light" | "dark" => {
+	if (typeof document === "undefined") return "dark";
+	return document.documentElement.classList.contains("light")
+		? "light"
+		: "dark";
+};
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
 	const [theme, setThemeState] = useState<Theme>("system");
-	const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("dark");
+	const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">(() =>
+		readResolvedFromDom(),
+	);
 	const [mounted, setMounted] = useState(false);
+	const themeRef = useRef<Theme>("system");
 
-	const getSystemTheme = useCallback((): "light" | "dark" => {
-		if (typeof window === "undefined") return "dark";
-		return window.matchMedia("(prefers-color-scheme: dark)").matches
-			? "dark"
-			: "light";
-	}, []);
-
-	const applyTheme = useCallback(
-		(newTheme: Theme) => {
-			const resolved = newTheme === "system" ? getSystemTheme() : newTheme;
-			setResolvedTheme(resolved);
-
-			const root = document.documentElement;
+	const applyTheme = useCallback((next: Theme) => {
+		const resolved = next === "system" ? getSystemTheme() : next;
+		const root = document.documentElement;
+		if (!root.classList.contains(resolved)) {
 			root.classList.remove("light", "dark");
 			root.classList.add(resolved);
-		},
-		[getSystemTheme],
-	);
+		}
+		setResolvedTheme(resolved);
+	}, []);
 
 	const setTheme = useCallback(
-		(newTheme: Theme) => {
-			setThemeState(newTheme);
-			localStorage.setItem("theme", newTheme);
-			applyTheme(newTheme);
+		(next: Theme) => {
+			themeRef.current = next;
+			setThemeState(next);
+			try {
+				localStorage.setItem("theme", next);
+			} catch {}
+			applyTheme(next);
 		},
 		[applyTheme],
 	);
 
 	useEffect(() => {
-		const savedTheme = localStorage.getItem("theme") as Theme | null;
-		const initialTheme = savedTheme || "system";
-		setThemeState(initialTheme);
-		applyTheme(initialTheme);
+		const saved = (() => {
+			try {
+				return localStorage.getItem("theme") as Theme | null;
+			} catch {
+				return null;
+			}
+		})();
+		const initial: Theme = saved ?? "system";
+		themeRef.current = initial;
+		setThemeState(initial);
+		applyTheme(initial);
 		setMounted(true);
 
 		const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 		const handleChange = () => {
-			if (theme === "system") {
+			if (themeRef.current === "system") {
 				applyTheme("system");
 			}
 		};
-
 		mediaQuery.addEventListener("change", handleChange);
 		return () => mediaQuery.removeEventListener("change", handleChange);
-	}, [applyTheme, theme]);
-
-	// システムテーマの変更を監視
-	useEffect(() => {
-		if (theme === "system") {
-			applyTheme("system");
-		}
-	}, [theme, applyTheme]);
+	}, [applyTheme]);
 
 	const value = useMemo(
 		() => ({ theme, resolvedTheme, setTheme, mounted }),

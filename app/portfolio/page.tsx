@@ -2,6 +2,8 @@ import ThemeToggle from "@/app/components/ThemeToggle";
 import { TransitionLink } from "@/app/components/TransitionLink";
 import { ArrowUturnLeftIcon as UturnIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { Suspense } from "react";
+import ArticlesGrid from "./ArticlesGrid";
 import CareerTimeline from "./CareerTimeline";
 import PortfolioKeyboardNavigation from "./PortfolioKeyboardNavigation";
 import SplitText from "./SplitText";
@@ -32,7 +34,7 @@ export default function PortfolioPage() {
 			<ThemeToggle />
 			<PortfolioKeyboardNavigation />
 			<div
-				className={`max-w-5xl mx-auto px-4 py-8 ${styles.contentWrapper}`}
+				className={`max-w-5xl mx-auto px-4 pt-8 pb-32 ${styles.contentWrapper}`}
 			>
 				{/* ヘッダー */}
 				<header className="mb-10 mt-16 sm:mt-8">
@@ -49,7 +51,6 @@ export default function PortfolioPage() {
 							<TransitionLink
 								href="/portfolio/profile"
 								className="block cursor-pointer"
-								prefetch={true}
 							>
 								<div
 									className={`h-60 sm:h-80 mt-8 text-left relative overflow-y-hidden ${styles.heroCard} ${styles.heroImageCard}`}
@@ -97,7 +98,6 @@ export default function PortfolioPage() {
 							<TransitionLink
 								href="/portfolio/career"
 								className="block cursor-pointer"
-								prefetch={true}
 							>
 								<div
 									className={`mt-8 ${styles.heroCard} ${styles.timelineCard}`}
@@ -128,7 +128,6 @@ export default function PortfolioPage() {
 										key={project.id}
 										href={`/portfolio/${project.path}`}
 										className={styles.projectCard}
-										prefetch={true}
 									>
 										<div className="flex flex-row h-full min-h-[200px]">
 											<div
@@ -193,17 +192,21 @@ export default function PortfolioPage() {
 								);
 							}
 						})}
-						<div className="md:col-span-2 flex justify-center">
-							<TransitionLink
-								href="/"
-								className={`text-sm font-bold transition mt-7 mb-7 ${styles.backLink}`}
-							>
-								<UturnIcon className="w-7 h-7" />
-							</TransitionLink>
-						</div>
 					</div>
+
+					<Suspense fallback={null}>
+						<ArticlesGrid />
+					</Suspense>
 				</main>
 			</div>
+
+			<TransitionLink
+				href="/"
+				aria-label="トップに戻る"
+				className={styles.backFab}
+			>
+				<UturnIcon className="w-6 h-6" />
+			</TransitionLink>
 		</div>
 	);
 }

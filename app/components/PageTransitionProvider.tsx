@@ -21,6 +21,9 @@ const PageTransitionContext = createContext<PageTransitionContextValue>({
 	startTransition: () => {},
 });
 
+const FALLBACK_MAX_MS = 1500;
+const SKELETON_DELAY_MS = 320;
+
 export function PageTransitionProvider({
 	children,
 }: {
@@ -34,22 +37,19 @@ export function PageTransitionProvider({
 	const fallbackTimerRef = useRef<number | null>(null);
 
 	useEffect(() => {
-		const supportsViewTransition = "startViewTransition" in document;
-		const media = window.matchMedia("(pointer: coarse), (max-width: 768px)");
+		const supportsViewTransition =
+			typeof document !== "undefined" &&
+			"startViewTransition" in document;
+		const media = window.matchMedia(
+			"(pointer: coarse), (max-width: 768px)",
+		);
 
 		const update = () => {
 			setShouldUseFallback(!supportsViewTransition || media.matches);
 		};
-
 		update();
-
-		if (media.addEventListener) {
-			media.addEventListener("change", update);
-			return () => media.removeEventListener("change", update);
-		}
-
-		media.addListener(update);
-		return () => media.removeListener(update);
+		media.addEventListener("change", update);
+		return () => media.removeEventListener("change", update);
 	}, []);
 
 	const clearTimers = useCallback(() => {
@@ -75,14 +75,14 @@ export function PageTransitionProvider({
 
 		skeletonTimerRef.current = window.setTimeout(() => {
 			setShowSkeleton(true);
-		}, 320);
+		}, SKELETON_DELAY_MS);
 
 		if (shouldUseFallback) {
 			setIsFallbackActive(true);
 			fallbackTimerRef.current = window.setTimeout(() => {
 				setIsFallbackActive(false);
 				setShowSkeleton(false);
-			}, 2000);
+			}, FALLBACK_MAX_MS);
 		}
 	}, [shouldUseFallback, clearTimers]);
 

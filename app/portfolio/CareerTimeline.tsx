@@ -1,5 +1,3 @@
-"use client";
-
 import styles from "./portfolio.module.css";
 import { careerEvents } from "./careerEvents";
 

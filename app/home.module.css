@@ -129,13 +129,12 @@
 .cardInner::after {
     content: "";
     position: absolute;
-    inset: -10px; /* ブラーのエッジ滲みを防ぐため少し広げて overflow: hidden でクリップ */
+    inset: -10px; /* edge bleed guard */
     z-index: -1;
     background-image: url("/newsouic.webp");
     background-size: cover;
     background-position: center;
-    filter: blur(0px); /* ブラー強度（お好みで調整） */
-    opacity: 0.5; /* 透明度（お好みで調整） */
+    opacity: 0.5;
     pointer-events: none;
 }
 

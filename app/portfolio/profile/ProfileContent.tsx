@@ -50,16 +50,12 @@ export default function ProfileContent() {
 			>
 				<div
 					className={`${styles.overlayPanel} ${styles.imagePanel} text-left`}
-					style={{
-						backgroundImage: "url(/icon2.webp)",
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-					}}
 				>
-					{/* 背景全体をぼかすオーバーレイ */}
+					{/* 背景画像そのものに blur を適用（backdrop-filter のラグ回避） */}
 					<div
-						className="absolute inset-0 backdrop-blur-lg"
-						style={{ zIndex: 1 }}
+						aria-hidden="true"
+						className={styles.profileBlurredBg}
+						style={{ backgroundImage: "url(/icon2.webp)" }}
 					/>
 
 					<button
@@ -94,7 +90,7 @@ export default function ProfileContent() {
 								<div className="space-y-1">
 									<p>
 										同志社大学 理工学部 数理システム学科
-										2回生
+										3回生
 									</p>
 									<p>同志社SF研究会(DSFA) 2025年度会長</p>
 									<p>京大マイコンクラブ(KMC) 49代入会</p>
@@ -114,8 +110,6 @@ export default function ProfileContent() {
 										"C++",
 										"Next.js",
 										"AWS",
-										"Neovim",
-										"Cursor",
 										"Kea/Stork",
 									].map((skill) => (
 										<span

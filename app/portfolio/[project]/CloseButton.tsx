@@ -1,3 +1,5 @@
+"use client";
+
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
 import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
 import styles from "../portfolio.module.css";
