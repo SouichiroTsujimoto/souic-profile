@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useTransitionRouter as useNVTRouter } from "next-view-transitions";
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { usePageTransition } from "../components/PageTransitionProvider";
 

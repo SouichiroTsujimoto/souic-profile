@@ -1,7 +1,7 @@
 "use client";
 
-import NextLink from "next/link";
 import { Link as ViewTransitionLink } from "next-view-transitions";
+import NextLink from "next/link";
 import type { ComponentProps } from "react";
 import { usePageTransition } from "./PageTransitionProvider";
 
@@ -19,7 +19,12 @@ function isModifiedEvent(event: React.MouseEvent<HTMLAnchorElement>) {
 	);
 }
 
-export function TransitionLink({ href, children, onClick, ...props }: LinkProps) {
+export function TransitionLink({
+	href,
+	children,
+	onClick,
+	...props
+}: LinkProps) {
 	const { shouldUseFallback, startTransition } = usePageTransition();
 
 	const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {

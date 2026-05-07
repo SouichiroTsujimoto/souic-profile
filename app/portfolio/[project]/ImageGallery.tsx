@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import SelectedImage from "./selectedImage";
 import styles from "../portfolio.module.css";
+import SelectedImage from "./selectedImage";
 
 interface ImageGalleryProps {
 	images: string[];

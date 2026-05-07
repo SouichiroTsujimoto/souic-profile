@@ -1,5 +1,16 @@
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { TransitionLink } from "@/app/components/TransitionLink";
+import {
+	PROFILE_AFFILIATION_DSFA,
+	PROFILE_AFFILIATION_KMC,
+	PROFILE_AFFILIATION_SCHOOL_LINE_1,
+	PROFILE_AFFILIATION_SCHOOL_LINE_2,
+	SITE_DISPLAY_NAME_JA,
+	SITE_PROFILE_AVATAR_SRC,
+	SITE_PUBLIC_HANDLE,
+	calculateAge,
+	formatProfileBirthDateJa,
+} from "@/app/lib/siteProfile";
 import { ArrowUturnLeftIcon as UturnIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { Suspense } from "react";
@@ -9,22 +20,6 @@ import PortfolioKeyboardNavigation from "./PortfolioKeyboardNavigation";
 import SplitText from "./SplitText";
 import styles from "./portfolio.module.css";
 import { projects } from "./projects";
-
-function calculateAge(): number {
-	const birthDate = new Date("2005-05-07");
-	const today = new Date();
-	let age = today.getFullYear() - birthDate.getFullYear();
-	const monthDiff = birthDate.getMonth() - today.getMonth();
-
-	if (
-		monthDiff > 0 ||
-		(monthDiff === 0 && birthDate.getDate() > today.getDate())
-	) {
-		age--;
-	}
-
-	return age;
-}
 
 export default function PortfolioPage() {
 	const age = calculateAge();
@@ -55,7 +50,7 @@ export default function PortfolioPage() {
 								<div
 									className={`h-60 sm:h-80 mt-8 text-left relative overflow-y-hidden ${styles.heroCard} ${styles.heroImageCard}`}
 									style={{
-										backgroundImage: "url(/icon2.webp)",
+										backgroundImage: `url(${SITE_PROFILE_AVATAR_SRC})`,
 										backgroundSize: "cover",
 										backgroundPosition: "center",
 									}}
@@ -69,25 +64,28 @@ export default function PortfolioPage() {
 										>
 											<div className="text-left ">
 												<h2 className="text-2xl md:text-4xl sm:text-3xl font-extrabold leading-9 sm:leading-11">
-													辻本宗一郎
+													{SITE_DISPLAY_NAME_JA}
 													<br />
-													wuhu1sland
+													{SITE_PUBLIC_HANDLE}
 												</h2>
 												<p className="text-xs sm:text-sm mt-2 sm:mt-9">
-													生年月日:2005年5月7日(
-													{age}
+													生年月日:
+													{formatProfileBirthDateJa()}
+													({age}
 													歳)
 													<br />
 													<br />
-													同志社大学 理工学部
+													{
+														PROFILE_AFFILIATION_SCHOOL_LINE_1
+													}
 													<br />
-													数理システム学科 3回生
+													{
+														PROFILE_AFFILIATION_SCHOOL_LINE_2
+													}
 													<br />
-													同志社SF研究会(DSFA)
-													2025年度会長
+													{PROFILE_AFFILIATION_DSFA}
 													<br />
-													京大マイコンクラブ(KMC)
-													49代入会
+													{PROFILE_AFFILIATION_KMC}
 												</p>
 											</div>
 										</div>

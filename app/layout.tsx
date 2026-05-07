@@ -1,11 +1,16 @@
+import {
+	SITE_METADATA_DESCRIPTION,
+	SITE_PROFILE_AVATAR_SRC,
+	SITE_PUBLIC_HANDLE,
+} from "@/app/lib/siteProfile";
 import type { Metadata, Viewport } from "next";
 import Providers from "./components/Providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-	title: "wuhu1sland",
-	description: "辻本宗一郎のプロフィールサイト",
-	icons: { icon: "/icon2.webp" },
+	title: SITE_PUBLIC_HANDLE,
+	description: SITE_METADATA_DESCRIPTION,
+	icons: { icon: SITE_PROFILE_AVATAR_SRC },
 };
 
 export const viewport: Viewport = {

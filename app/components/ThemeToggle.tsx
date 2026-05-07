@@ -14,7 +14,10 @@ export default function ThemeToggle() {
 	// マウント前は何も表示しない（ハイドレーションエラー防止）
 	if (!mounted) {
 		return (
-			<div className={styles.themeToggle} style={{ visibility: "hidden" }}>
+			<div
+				className={styles.themeToggle}
+				style={{ visibility: "hidden" }}
+			>
 				<span className={styles.themeToggleTrack}>
 					<span className={styles.themeToggleThumb} />
 				</span>

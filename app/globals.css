@@ -3,263 +3,258 @@
 /* ライトモード（デフォルト） */
 :root,
 :root.light {
-    --background: #ffffff;
-    --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
 
-    /* トップページ用 */
-    --home-bg: #f4f5f7;
-    --home-fg: #545454;
-    --home-text-muted: #6b6b6b;
-    --home-card-bg-1: rgba(255, 255, 255, 0.96);
-    --home-card-bg-2: rgba(240, 242, 245, 0.96);
-    --home-card-border: rgb(255, 255, 255);
-    --home-card-border-inner: rgba(15, 16, 18, 0.06);
-    --home-card-shadow: rgba(15, 16, 18, 0.12);
-    --home-card-shadow-strong: rgba(15, 16, 18, 0.18);
-    --home-wrapper-shadow: rgba(15, 16, 18, 0.15);
-    --home-bar-bg: rgba(15, 16, 18, 0.03);
-    --home-bar-border: rgba(15, 16, 18, 0.06);
-    --home-icon-bg: #f0f2f5;
-    --home-icon-border: rgba(15, 16, 18, 0.08);
-    --home-icon-shadow: rgba(15, 16, 18, 0.1);
-    --home-divider: rgba(15, 16, 18, 0.1);
-    --home-button-border: rgba(15, 16, 18, 0.18);
-    --home-button-hover-bg: #1a1a1a;
-    --home-button-hover-bg2: rgba(246, 246, 246, 0.426);
-    --home-button-hover-color: #000000;
-    --home-spotlight: rgba(15, 16, 18, 0.06);
-    --home-spotlight-blend: multiply;
-    --home-sheen: rgba(255, 255, 255, 0.5);
-    --home-grid: rgba(15, 16, 18, 0.08);
-    --transition-skeleton: rgba(15, 16, 18, 0.08);
-    --transition-skeleton-highlight: rgba(255, 255, 255, 0.5);
-    --home-card-glass: rgba(255, 255, 255, 1);
-    --home-glass-bg: rgba(255, 255, 255, 0.12);
-    --home-glass-hover-bg: rgba(255, 255, 255, 0.22);
-    --home-glass-border: rgba(255, 255, 255, 0.55);
-    --home-glass-highlight: rgba(255, 255, 255, 0.75);
-    --home-glass-shadow: rgba(0, 0, 0, 0.1);
-    --home-glass-tint: rgba(180, 200, 255, 0.12);
+	/* トップページ用 */
+	--home-bg: #f4f5f7;
+	--home-fg: #545454;
+	--home-text-muted: #6b6b6b;
+	--home-card-bg-1: rgba(255, 255, 255, 0.96);
+	--home-card-bg-2: rgba(240, 242, 245, 0.96);
+	--home-card-border: rgb(255, 255, 255);
+	--home-card-border-inner: rgba(15, 16, 18, 0.06);
+	--home-card-shadow: rgba(15, 16, 18, 0.12);
+	--home-card-shadow-strong: rgba(15, 16, 18, 0.18);
+	--home-wrapper-shadow: rgba(15, 16, 18, 0.15);
+	--home-bar-bg: rgba(15, 16, 18, 0.03);
+	--home-bar-border: rgba(15, 16, 18, 0.06);
+	--home-icon-bg: #f0f2f5;
+	--home-icon-border: rgba(15, 16, 18, 0.08);
+	--home-icon-shadow: rgba(15, 16, 18, 0.1);
+	--home-divider: rgba(15, 16, 18, 0.1);
+	--home-button-border: rgba(15, 16, 18, 0.18);
+	--home-button-hover-bg: #1a1a1a;
+	--home-button-hover-bg2: rgba(246, 246, 246, 0.426);
+	--home-button-hover-color: #000000;
+	--home-spotlight: rgba(15, 16, 18, 0.06);
+	--home-spotlight-blend: multiply;
+	--home-sheen: rgba(255, 255, 255, 0.5);
+	--home-grid: rgba(15, 16, 18, 0.08);
+	--transition-skeleton: rgba(15, 16, 18, 0.08);
+	--transition-skeleton-highlight: rgba(255, 255, 255, 0.5);
+	--home-card-glass: rgba(255, 255, 255, 1);
+	--home-glass-bg: rgba(255, 255, 255, 0.12);
+	--home-glass-hover-bg: rgba(255, 255, 255, 0.22);
+	--home-glass-border: rgba(255, 255, 255, 0.55);
+	--home-glass-highlight: rgba(255, 255, 255, 0.75);
+	--home-glass-shadow: rgba(0, 0, 0, 0.1);
+	--home-glass-tint: rgba(180, 200, 255, 0.12);
 
-    /* ポートフォリオ用 */
-    --portfolio-bg: #f4f5f7;
-    --portfolio-fg: #141417;
-    --portfolio-surface-1: #ffffff;
-    --portfolio-surface-2: #eef0f3;
-    --portfolio-panel-bg: rgba(255, 255, 255, 0.94);
-    --portfolio-border: rgba(15, 16, 18, 0.08);
-    --portfolio-border-strong: rgba(15, 16, 18, 0.15);
-    --portfolio-text-muted: rgba(20, 20, 23, 0.68);
-    --portfolio-text-subtle: rgba(20, 20, 23, 0.5);
-    --portfolio-chip-bg: rgb(34, 255, 0);
-    --portfolio-chip-color: rgb(21, 21, 21);
-    --portfolio-chip-bg2: rgba(255, 255, 255, 1);
-    --portfolio-chip-bg3: rgba(15, 16, 18, 0.05);
-    --portfolio-chip-border: rgba(15, 16, 18, 0.12);
-    --portfolio-glow-1: rgba(15, 16, 18, 0.06);
-    --portfolio-glow-2: rgba(15, 16, 18, 0.05);
-    --portfolio-grid: rgba(15, 16, 18, 0.04);
-    --portfolio-spotlight: rgba(15, 16, 18, 0.08);
-    --portfolio-image-overlay-top: rgba(0, 0, 0, 0.15);
-    --portfolio-image-overlay-bottom: rgba(0, 0, 0, 0.55);
-    --portfolio-image-text: #f5f5f5;
-    --portfolio-sheen: rgba(255, 255, 255, 0.35);
-    --portfolio-inner-highlight: rgba(255, 255, 255, 0.6);
-    --portfolio-shadow-soft: rgba(15, 16, 18, 0.1);
-    --portfolio-shadow-strong: rgba(15, 16, 18, 0.18);
-    --portfolio-shadow-inset: rgba(15, 16, 18, 0.15);
-    --portfolio-overlay-blend: multiply;
-    --portfolio-modal-bg: rgba(15, 16, 18, 0.55);
-    --portfolio-skeleton: rgba(15, 16, 18, 0.08);
-    --portfolio-error: #cc3a3a;
+	/* ポートフォリオ用 */
+	--portfolio-bg: #f4f5f7;
+	--portfolio-fg: #141417;
+	--portfolio-surface-1: #ffffff;
+	--portfolio-surface-2: #eef0f3;
+	--portfolio-panel-bg: rgba(255, 255, 255, 0.94);
+	--portfolio-border: rgba(15, 16, 18, 0.08);
+	--portfolio-border-strong: rgba(15, 16, 18, 0.15);
+	--portfolio-text-muted: rgba(20, 20, 23, 0.68);
+	--portfolio-text-subtle: rgba(20, 20, 23, 0.5);
+	--portfolio-chip-bg: rgb(34, 255, 0);
+	--portfolio-chip-color: rgb(21, 21, 21);
+	--portfolio-chip-bg2: rgba(255, 255, 255, 1);
+	--portfolio-chip-bg3: rgba(15, 16, 18, 0.05);
+	--portfolio-chip-border: rgba(15, 16, 18, 0.12);
+	--portfolio-glow-1: rgba(15, 16, 18, 0.06);
+	--portfolio-glow-2: rgba(15, 16, 18, 0.05);
+	--portfolio-grid: rgba(15, 16, 18, 0.04);
+	--portfolio-spotlight: rgba(15, 16, 18, 0.08);
+	--portfolio-image-overlay-top: rgba(0, 0, 0, 0.15);
+	--portfolio-image-overlay-bottom: rgba(0, 0, 0, 0.55);
+	--portfolio-image-text: #f5f5f5;
+	--portfolio-sheen: rgba(255, 255, 255, 0.35);
+	--portfolio-inner-highlight: rgba(255, 255, 255, 0.6);
+	--portfolio-shadow-soft: rgba(15, 16, 18, 0.1);
+	--portfolio-shadow-strong: rgba(15, 16, 18, 0.18);
+	--portfolio-shadow-inset: rgba(15, 16, 18, 0.15);
+	--portfolio-overlay-blend: multiply;
+	--portfolio-modal-bg: rgba(15, 16, 18, 0.55);
+	--portfolio-skeleton: rgba(15, 16, 18, 0.08);
+	--portfolio-error: #cc3a3a;
 }
 
 /* ダークモード */
 :root.dark {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+	--background: #0a0a0a;
+	--foreground: #ededed;
 
-    /* トップページ用 */
-    --home-bg: #000000;
-    --home-fg: #e7e7e7;
-    --home-text-muted: #b8b8b8;
-    --home-card-bg-1: rgba(22, 22, 24, 0.98);
-    --home-card-bg-2: rgba(10, 10, 11, 0.98);
-    --home-card-border: rgba(255, 255, 255, 0.12);
-    --home-card-border-inner: rgba(255, 255, 255, 0.08);
-    --home-card-shadow: rgba(0, 0, 0, 0.7);
-    --home-card-shadow-strong: rgba(0, 0, 0, 0.8);
-    --home-wrapper-shadow: rgba(0, 0, 0, 0.7);
-    --home-bar-bg: rgba(255, 255, 255, 0.04);
-    --home-bar-border: rgba(255, 255, 255, 0.08);
-    --home-icon-bg: #0e0e0f;
-    --home-icon-border: rgba(255, 255, 255, 0.2);
-    --home-icon-shadow: rgba(0, 0, 0, 0.5);
-    --home-divider: rgba(255, 255, 255, 0.12);
-    --home-button-border: rgba(255, 255, 255, 0.22);
-    --home-button-hover-bg: #4a97179d;
-    --home-button-hover-bg2: rgba(2, 2, 2, 0.393);
-    --home-button-hover-color: rgb(228, 228, 228);
-    --home-spotlight: rgba(255, 255, 255, 0.15);
-    --home-spotlight-blend: screen;
-    --home-sheen: rgba(255, 255, 255, 0.08);
-    --home-grid: rgba(255, 255, 255, 0.06);
-    --home-card-glass: rgb(0, 0, 0);
-    --home-glass-bg: rgba(8, 10, 18, 0.32);
-    --home-glass-hover-bg: rgba(8, 10, 18, 0.52);
-    --home-glass-border: rgba(255, 255, 255, 0.13);
-    --home-glass-highlight: rgba(255, 255, 255, 0.09);
-    --home-glass-shadow: rgba(0, 0, 0, 0.6);
-    --home-glass-tint: rgba(60, 100, 200, 0.1);
-    --transition-skeleton: rgba(255, 255, 255, 0.12);
-    --transition-skeleton-highlight: rgba(255, 255, 255, 0.2);
+	/* トップページ用 */
+	--home-bg: #000000;
+	--home-fg: #e7e7e7;
+	--home-text-muted: #b8b8b8;
+	--home-card-bg-1: rgba(22, 22, 24, 0.98);
+	--home-card-bg-2: rgba(10, 10, 11, 0.98);
+	--home-card-border: rgba(255, 255, 255, 0.12);
+	--home-card-border-inner: rgba(255, 255, 255, 0.08);
+	--home-card-shadow: rgba(0, 0, 0, 0.7);
+	--home-card-shadow-strong: rgba(0, 0, 0, 0.8);
+	--home-wrapper-shadow: rgba(0, 0, 0, 0.7);
+	--home-bar-bg: rgba(255, 255, 255, 0.04);
+	--home-bar-border: rgba(255, 255, 255, 0.08);
+	--home-icon-bg: #0e0e0f;
+	--home-icon-border: rgba(255, 255, 255, 0.2);
+	--home-icon-shadow: rgba(0, 0, 0, 0.5);
+	--home-divider: rgba(255, 255, 255, 0.12);
+	--home-button-border: rgba(255, 255, 255, 0.22);
+	--home-button-hover-bg: #4a97179d;
+	--home-button-hover-bg2: rgba(2, 2, 2, 0.393);
+	--home-button-hover-color: rgb(228, 228, 228);
+	--home-spotlight: rgba(255, 255, 255, 0.15);
+	--home-spotlight-blend: screen;
+	--home-sheen: rgba(255, 255, 255, 0.08);
+	--home-grid: rgba(255, 255, 255, 0.06);
+	--home-card-glass: rgb(0, 0, 0);
+	--home-glass-bg: rgba(8, 10, 18, 0.32);
+	--home-glass-hover-bg: rgba(8, 10, 18, 0.52);
+	--home-glass-border: rgba(255, 255, 255, 0.13);
+	--home-glass-highlight: rgba(255, 255, 255, 0.09);
+	--home-glass-shadow: rgba(0, 0, 0, 0.6);
+	--home-glass-tint: rgba(60, 100, 200, 0.1);
+	--transition-skeleton: rgba(255, 255, 255, 0.12);
+	--transition-skeleton-highlight: rgba(255, 255, 255, 0.2);
 
-    /* ポートフォリオ用 */
-    --portfolio-bg: #000000;
-    --portfolio-fg: #e7e7e7;
-    --portfolio-surface-1: #161618;
-    --portfolio-surface-2: #0a0a0b;
-    --portfolio-panel-bg: rgba(10, 10, 12, 0.96);
-    --portfolio-border: rgba(255, 255, 255, 0.12);
-    --portfolio-border-strong: rgba(255, 255, 255, 0.18);
-    --portfolio-text-muted: rgba(255, 255, 255, 0.72);
-    --portfolio-text-subtle: rgba(255, 255, 255, 0.55);
-    --portfolio-chip-bg: rgb(200, 200, 200);
-    --portfolio-chip-color: rgb(21, 21, 21);
-    --portfolio-chip-bg2: rgba(0, 0, 0, 1);
-    --portfolio-chip-bg3: rgba(255, 255, 255, 0.08);
-    --portfolio-chip-border: rgba(255, 255, 255, 0.16);
-    --portfolio-glow-1: rgba(255, 255, 255, 0.06);
-    --portfolio-glow-2: rgba(255, 255, 255, 0.05);
-    --portfolio-grid: rgba(255, 255, 255, 0.05);
-    --portfolio-spotlight: rgba(255, 255, 255, 0.12);
-    --portfolio-image-overlay-top: rgba(0, 0, 0, 0.2);
-    --portfolio-image-overlay-bottom: rgba(0, 0, 0, 0.65);
-    --portfolio-image-text: #f5f5f5;
-    --portfolio-sheen: rgba(255, 255, 255, 0.12);
-    --portfolio-inner-highlight: rgba(255, 255, 255, 0.04);
-    --portfolio-shadow-soft: rgba(0, 0, 0, 0.55);
-    --portfolio-shadow-strong: rgba(0, 0, 0, 0.7);
-    --portfolio-shadow-inset: rgba(0, 0, 0, 0.4);
-    --portfolio-overlay-blend: screen;
-    --portfolio-modal-bg: rgba(0, 0, 0, 0.7);
-    --portfolio-skeleton: rgba(255, 255, 255, 0.08);
-    --portfolio-error: #ff6b6b;
+	/* ポートフォリオ用 */
+	--portfolio-bg: #000000;
+	--portfolio-fg: #e7e7e7;
+	--portfolio-surface-1: #161618;
+	--portfolio-surface-2: #0a0a0b;
+	--portfolio-panel-bg: rgba(10, 10, 12, 0.96);
+	--portfolio-border: rgba(255, 255, 255, 0.12);
+	--portfolio-border-strong: rgba(255, 255, 255, 0.18);
+	--portfolio-text-muted: rgba(255, 255, 255, 0.72);
+	--portfolio-text-subtle: rgba(255, 255, 255, 0.55);
+	--portfolio-chip-bg: rgb(200, 200, 200);
+	--portfolio-chip-color: rgb(21, 21, 21);
+	--portfolio-chip-bg2: rgba(0, 0, 0, 1);
+	--portfolio-chip-bg3: rgba(255, 255, 255, 0.08);
+	--portfolio-chip-border: rgba(255, 255, 255, 0.16);
+	--portfolio-glow-1: rgba(255, 255, 255, 0.06);
+	--portfolio-glow-2: rgba(255, 255, 255, 0.05);
+	--portfolio-grid: rgba(255, 255, 255, 0.05);
+	--portfolio-spotlight: rgba(255, 255, 255, 0.12);
+	--portfolio-image-overlay-top: rgba(0, 0, 0, 0.2);
+	--portfolio-image-overlay-bottom: rgba(0, 0, 0, 0.65);
+	--portfolio-image-text: #f5f5f5;
+	--portfolio-sheen: rgba(255, 255, 255, 0.12);
+	--portfolio-inner-highlight: rgba(255, 255, 255, 0.04);
+	--portfolio-shadow-soft: rgba(0, 0, 0, 0.55);
+	--portfolio-shadow-strong: rgba(0, 0, 0, 0.7);
+	--portfolio-shadow-inset: rgba(0, 0, 0, 0.4);
+	--portfolio-overlay-blend: screen;
+	--portfolio-modal-bg: rgba(0, 0, 0, 0.7);
+	--portfolio-skeleton: rgba(255, 255, 255, 0.08);
+	--portfolio-error: #ff6b6b;
 }
 
 @theme inline {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --font-sans: var(--font-geist-sans);
-    --font-mono: var(--font-geist-mono);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
 }
 
 body {
-    background-color: var(--background);
-    background-image:
-        linear-gradient(var(--home-grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--home-grid) 1px, transparent 1px);
-    background-size: 60px 60px;
-    color: var(--foreground);
-    font-family: "Hiragino Sans", sans-serif, Arial, Helvetica;
-    transition:
-        background-color 0.3s ease,
-        color 0.3s ease;
+	background-color: var(--background);
+	background-image: linear-gradient(var(--home-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--home-grid) 1px, transparent 1px);
+	background-size: 60px 60px;
+	color: var(--foreground);
+	font-family: "Hiragino Sans", sans-serif, Arial, Helvetica;
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .page-transition-overlay {
-    position: fixed;
-    inset: 0;
-    background-color: var(--background);
-    background-image:
-        linear-gradient(var(--home-grid) 1px, transparent 1px),
-        linear-gradient(90deg, var(--home-grid) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	position: fixed;
+	inset: 0;
+	background-color: var(--background);
+	background-image: linear-gradient(var(--home-grid) 1px, transparent 1px),
+		linear-gradient(90deg, var(--home-grid) 1px, transparent 1px);
+	background-size: 60px 60px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.25s ease;
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .page-transition-overlay.is-active {
-    opacity: 1;
+	opacity: 1;
 }
 
 .page-transition-overlay.has-skeleton {
-    pointer-events: auto;
+	pointer-events: auto;
 }
 
 .page-transition-skeleton {
-    width: min(520px, 86vw);
-    padding: 24px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--home-grid);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+	width: min(520px, 86vw);
+	padding: 24px;
+	border-radius: 18px;
+	background: rgba(255, 255, 255, 0.02);
+	border: 1px solid var(--home-grid);
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
 }
 
 .skeleton-chip {
-    width: 120px;
-    height: 36px;
-    border-radius: 999px;
-    background: var(--transition-skeleton);
-    position: relative;
-    overflow: hidden;
+	width: 120px;
+	height: 36px;
+	border-radius: 999px;
+	background: var(--transition-skeleton);
+	position: relative;
+	overflow: hidden;
 }
 
 .skeleton-row {
-    height: 14px;
-    border-radius: 999px;
-    background: var(--transition-skeleton);
-    position: relative;
-    overflow: hidden;
+	height: 14px;
+	border-radius: 999px;
+	background: var(--transition-skeleton);
+	position: relative;
+	overflow: hidden;
 }
 
 .skeleton-row-short {
-    width: 46%;
+	width: 46%;
 }
 
 .skeleton-row-medium {
-    width: 68%;
+	width: 68%;
 }
 
 .skeleton-chip::after,
 .skeleton-row::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateX(-100%);
-    background: linear-gradient(
-        90deg,
-        transparent,
-        var(--transition-skeleton-highlight),
-        transparent
-    );
-    animation: skeletonShimmer 1.2s ease-in-out infinite;
+	content: "";
+	position: absolute;
+	inset: 0;
+	transform: translateX(-100%);
+	background: linear-gradient(
+		90deg,
+		transparent,
+		var(--transition-skeleton-highlight),
+		transparent
+	);
+	animation: skeletonShimmer 1.2s ease-in-out infinite;
 }
 
 @keyframes skeletonShimmer {
-    100% {
-        transform: translateX(100%);
-    }
+	100% {
+		transform: translateX(100%);
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .page-transition-overlay {
-        transition: none;
-    }
+	.page-transition-overlay {
+		transition: none;
+	}
 }
 
 .sans-serif {
-    font-family:
-        "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Segoe UI", Meiryo,
-        sans-serif;
+	font-family: "Helvetica Neue", "Hiragino Kaku Gothic ProN", "Segoe UI",
+		Meiryo, sans-serif;
 }
 
 /*
@@ -267,91 +262,91 @@ iOSでblurが効かないことを防ぐためのスタイル
 しかし、機能していない
 */
 .backdrop-blur-sm {
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	backdrop-filter: blur(8px);
 }
 
 .backdrop-blur-lg {
-    -webkit-backdrop-filter: blur(16px);
-    backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	backdrop-filter: blur(16px);
 }
 
 /* View Transitions API スタイル */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-    animation-duration: 0.4s;
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	animation-duration: 0.4s;
+	animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* フェードイン・アウト */
 ::view-transition-old(root) {
-    animation-name: fade-out;
+	animation-name: fade-out;
 }
 
 ::view-transition-new(root) {
-    animation-name: fade-in;
+	animation-name: fade-in;
 }
 
 @keyframes fade-out {
-    to {
-        opacity: 0;
-    }
+	to {
+		opacity: 0;
+	}
 }
 
 @keyframes fade-in {
-    from {
-        opacity: 0;
-    }
+	from {
+		opacity: 0;
+	}
 }
 
 /* 画像のスムーズなクロスフェード */
 ::view-transition-old(project-image),
 ::view-transition-new(project-image) {
-    animation-duration: 0.5s;
-    mix-blend-mode: normal;
-    overflow: clip;
+	animation-duration: 0.5s;
+	mix-blend-mode: normal;
+	overflow: clip;
 }
 
 /* プロジェクトカードのトランジション */
 ::view-transition-old(project-card),
 ::view-transition-new(project-card) {
-    animation-duration: 0.4s;
+	animation-duration: 0.4s;
 }
 
 /* タイトルのトランジション */
 ::view-transition-old(project-title),
 ::view-transition-new(project-title) {
-    animation-duration: 0.3s;
+	animation-duration: 0.3s;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 /* SplitText のフェードイン（CSSのみ） */
 .split-letter {
-    display: inline-block;
-    opacity: 0;
-    transform: translate3d(0, 40px, 0);
-    will-change: opacity, transform;
+	display: inline-block;
+	opacity: 0;
+	transform: translate3d(0, 40px, 0);
+	will-change: opacity, transform;
 }
 
 .split-in .split-letter {
-    animation: split-in 0.5s ease both;
-    animation-delay: var(--split-delay, 0ms);
+	animation: split-in 0.5s ease both;
+	animation-delay: var(--split-delay, 0ms);
 }
 
 @keyframes split-in {
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .split-letter {
-        opacity: 1;
-        transform: none;
-        animation: none;
-    }
+	.split-letter {
+		opacity: 1;
+		transform: none;
+		animation: none;
+	}
 }

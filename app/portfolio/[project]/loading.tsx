@@ -6,7 +6,9 @@ export default function Loading() {
 			<div
 				className={`relative z-10 ${styles.overlayContent} ${styles.projectOverlay}`}
 			>
-				<div className={`${styles.overlayPanel} ${styles.projectPanel}`}>
+				<div
+					className={`${styles.overlayPanel} ${styles.projectPanel}`}
+				>
 					<div className={styles.projectLayout}>
 						{/* 画像エリアのスケルトン */}
 						<div className={styles.projectMedia}>

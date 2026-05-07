@@ -1,10 +1,6 @@
 import "server-only";
 
-import {
-	type Article,
-	manualArticles,
-	zennUsernames,
-} from "../articles";
+import { type Article, manualArticles, zennUsernames } from "../articles";
 
 const REVALIDATE_SECONDS = 60 * 60;
 const FETCH_TIMEOUT_MS = 5_000;
@@ -83,7 +79,10 @@ const extractOgImage = (html: string): string | undefined => {
 
 const fetchOgImage = async (url: string): Promise<string | undefined> => {
 	try {
-		const res = await fetchWithTimeout(url, "souic-profile/1.0 (+ogp-fetch)");
+		const res = await fetchWithTimeout(
+			url,
+			"souic-profile/1.0 (+ogp-fetch)",
+		);
 		if (!res.ok) return undefined;
 		const html = await res.text();
 		const raw = extractOgImage(html);
@@ -131,7 +130,8 @@ export const getArticles = async (): Promise<Article[]> => {
 	const merged = [...zennArticles, ...enrichedManual];
 	merged.sort(
 		(a, b) =>
-			new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+			new Date(b.publishedAt).getTime() -
+			new Date(a.publishedAt).getTime(),
 	);
 	return merged;
 };

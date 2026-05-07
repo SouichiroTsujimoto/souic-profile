@@ -38,7 +38,10 @@ function ArticleCard({ article }: { article: Article }) {
 					/>
 				) : (
 					<div className={styles.articleEmojiBox}>
-						<span className={styles.articleEmoji} aria-hidden="true">
+						<span
+							className={styles.articleEmoji}
+							aria-hidden="true"
+						>
 							{article.emoji ?? "📝"}
 						</span>
 					</div>
@@ -56,7 +59,9 @@ function ArticleCard({ article }: { article: Article }) {
 						{PLATFORM_LABEL[article.platform]}
 					</span>
 					{typeof article.likes === "number" && article.likes > 0 ? (
-						<span className={styles.projectChip}>♥ {article.likes}</span>
+						<span className={styles.projectChip}>
+							♥ {article.likes}
+						</span>
 					) : null}
 				</div>
 			</div>

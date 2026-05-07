@@ -2,11 +2,11 @@
 
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
+import styles from "../portfolio.module.css";
 import type { Project } from "../projects";
 import CloseButton from "./CloseButton";
 import ImageGallery from "./ImageGallery";
 import KeyboardNavigation from "./KeyboardNavigation";
-import styles from "../portfolio.module.css";
 
 export default function ProjectContent({
 	project,
@@ -40,7 +40,9 @@ export default function ProjectContent({
 				onClick={(e) => e.stopPropagation()}
 				onKeyDown={(e) => e.stopPropagation()}
 			>
-				<div className={`${styles.overlayPanel} ${styles.projectPanel}`}>
+				<div
+					className={`${styles.overlayPanel} ${styles.projectPanel}`}
+				>
 					<div className={styles.projectLayout}>
 						<ImageGallery
 							images={project.images}
