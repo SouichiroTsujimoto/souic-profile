@@ -36,7 +36,7 @@ export const projects: Project[] = [
 		title: "Astrobit",
 		description:
 			"AstroのislandとしてMoonBitでUIを書くためのインテグレーションです。mizchi/signalsによる更新とSSR/ハイドレーションに対応しています。",
-		images: ["/astrobit3.webp", "/astrobit2.webp"],
+		images: ["/astrobit6.webp", "/astrobit3.webp"],
 		technologies: ["MoonBit", "Astro"],
 		installUrl: "https://mooncakes.io/docs/SouichiroTsujimoto/astrobit",
 		installUrlText: "mooncakes.io",
