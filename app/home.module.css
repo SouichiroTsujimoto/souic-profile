@@ -383,6 +383,17 @@
 	outline-offset: 3px;
 }
 
+button.moveRow {
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	box-sizing: border-box;
+	cursor: pointer;
+	font: inherit;
+	text-align: inherit;
+	appearance: none;
+}
+
 .energyDots {
 	display: flex;
 	gap: 4px;
