@@ -1,6 +1,6 @@
 # souic-profile
 
-個人ポートフォリオサイト
+[http://wuhu1s.land](http://wuhu1s.land)
 
 ## Tech Stack
 
@@ -18,8 +18,6 @@ bun install
 # 開発サーバーの起動
 bun dev
 ```
-
-[http://localhost:3000](http://localhost:3000) をブラウザで開いてください。
 
 ## Scripts
 
