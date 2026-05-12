@@ -194,14 +194,14 @@ export default function HomeCard() {
 									/>
 								</svg>
 							</a>
-							<button
-								type="button"
+							<a
 								className={styles.footerButton}
-								aria-expanded={showQr}
-								aria-controls={qrPanelId}
-								onClick={() => setShowQr((prev) => !prev)}
-								aria-label="QR code"
+								href="https://zenn.dev/wuhu1sland"
+								target="_blank"
+								rel="noreferrer"
+								aria-label="Zenn"
 							>
+								<span className="sr-only">Zenn</span>
 								<svg
 									className={styles.footerButtonIcon}
 									viewBox="0 0 24 24"
@@ -209,27 +209,10 @@ export default function HomeCard() {
 								>
 									<path
 										fill="currentColor"
-										d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm10 0h2v2h-2v-2Zm2 2h2v2h-2v-2Zm-2 2h2v2h-2v-2Zm2 2h4v2h-4v-2Zm2-6h2v4h-2v-4Z"
+										d="M.264 23.771h4.984c.264 0 .498-.147.645-.352L19.614.874c.176-.293-.029-.645-.381-.645h-4.72c-.235 0-.44.117-.557.323L.03 23.361c-.088.176.029.41.234.41zM17.445 23.419l6.479-10.408c.205-.323-.029-.733-.41-.733h-4.691c-.176 0-.352.088-.44.235l-6.655 10.643c-.176.264.029.616.352.616h4.779c.234-.001.468-.118.586-.353z"
 									/>
 								</svg>
-							</button>
-						</div>
-						<div
-							id={qrPanelId}
-							className={`${styles.qrPanel} ${showQr ? styles.qrPanelOpen : ""}`}
-						>
-							<div className={styles.qrFrame}>
-								<Image
-									src="/qr-wuhu1sland.webp"
-									alt="wuhu1s.land QR code"
-									width={280}
-									height={280}
-									sizes="140px"
-								/>
-							</div>
-							<span className={styles.qrCaption}>
-								wuhu1s.land
-							</span>
+							</a>
 						</div>
 					</div>
 				</div>

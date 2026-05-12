@@ -397,6 +397,48 @@
 	border-radius: 2px;
 }
 
+.profileAccountRow {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 16px 20px;
+}
+
+.profileAccountCol {
+	flex: 1 1 12rem;
+	min-width: 0;
+}
+
+.profileQrWrap {
+	flex: 0 0 auto;
+	margin-left: auto;
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.22);
+	padding: 6px;
+	background: rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.profileQrWrap img {
+	display: block;
+	width: 100px;
+	height: auto;
+	border-radius: 6px;
+}
+
+@media screen and (min-width: 480px) {
+	.profileQrWrap img {
+		width: 120px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.profileQrWrap img {
+		width: 140px;
+	}
+}
+
 .imagePanel .sectionTitle {
 	color: rgba(255, 255, 255, 0.7);
 }

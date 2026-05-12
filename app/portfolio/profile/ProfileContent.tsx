@@ -18,6 +18,7 @@ import {
 	profileUniversityOneLine,
 } from "@/app/lib/siteProfile";
 import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import styles from "../portfolio.module.css";
 
 const PROFILE_COPY_ROWS = [
@@ -123,54 +124,67 @@ export default function ProfileContent() {
 										アカウント
 									</span>
 								</div>
-								<div className="space-y-1">
-									<p>
-										GitHub:{" "}
-										<a href="https://github.com/SouichiroTsujimoto">
-											[SouichiroTsujimoto]
-										</a>
-									</p>
-									<p>
-										X:{" "}
-										<a href="https://x.com/wuhu1sland">
-											[@wuhu1sland]
-										</a>
-									</p>
-									{PROFILE_COPY_ROWS.map((row) => (
-										<p key={row.key}>
-											{row.prefix}:{" "}
-											<button
-												type="button"
-												className={
-													styles.profileCopyControl
-												}
-												onClick={() =>
-													copy(
-														row.key,
-														row.value,
-														`${row.ariaNoun}をコピーしました`,
-													)
-												}
-												aria-label={`${row.ariaNoun} ${row.value} をコピー`}
+								<div className={styles.profileAccountRow}>
+									<div className={styles.profileAccountCol}>
+										<div className="space-y-1">
+											<p>
+												GitHub:{" "}
+												<a href="https://github.com/SouichiroTsujimoto">
+													[SouichiroTsujimoto]
+												</a>
+											</p>
+											<p>
+												X:{" "}
+												<a href="https://x.com/wuhu1sland">
+													[@wuhu1sland]
+												</a>
+											</p>
+											{PROFILE_COPY_ROWS.map((row) => (
+												<p key={row.key}>
+													{row.prefix}:{" "}
+													<button
+														type="button"
+														className={
+															styles.profileCopyControl
+														}
+														onClick={() =>
+															copy(
+																row.key,
+																row.value,
+																`${row.ariaNoun}をコピーしました`,
+															)
+														}
+														aria-label={`${row.ariaNoun} ${row.value} をコピー`}
+													>
+														{row.value}
+													</button>
+													{copiedKey === row.key ? (
+														<span
+															className="ml-2 text-xs text-white/55"
+															aria-hidden
+														>
+															コピーしました
+														</span>
+													) : null}
+												</p>
+											))}
+											<span
+												className="sr-only"
+												aria-live="polite"
 											>
-												{row.value}
-											</button>
-											{copiedKey === row.key ? (
-												<span
-													className="ml-2 text-xs text-white/55"
-													aria-hidden
-												>
-													コピーしました
-												</span>
-											) : null}
-										</p>
-									))}
-									<span
-										className="sr-only"
-										aria-live="polite"
-									>
-										{liveMessage}
-									</span>
+												{liveMessage}
+											</span>
+										</div>
+									</div>
+									<div className={styles.profileQrWrap}>
+										<Image
+											src="/qr-wuhu1sland2.webp"
+											alt="wuhu1s.land QR code"
+											width={280}
+											height={280}
+											sizes="(max-width: 479px) 100px, (max-width: 767px) 120px, 140px"
+										/>
+									</div>
 								</div>
 							</div>
 						</div>
