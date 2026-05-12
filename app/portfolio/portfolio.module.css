@@ -241,6 +241,9 @@
 	transition: transform 0.18s ease, box-shadow 0.25s ease, background 0.2s
 		ease;
 	opacity: 50%;
+	cursor: pointer;
+	appearance: none;
+	font: inherit;
 }
 
 .backFab:hover {

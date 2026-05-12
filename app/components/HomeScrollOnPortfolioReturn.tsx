@@ -9,6 +9,7 @@ import {
 	clearPendingHomeScrollRestore,
 	consumeHomeScrollRestore,
 } from "@/app/lib/homeScrollSession";
+import { userScrollBehavior } from "@/app/lib/scrollBehaviorPreference";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useLayoutEffect } from "react";
 
@@ -33,7 +34,10 @@ export default function HomeScrollOnPortfolioReturn() {
 
 		const el = document.getElementById(PORTFOLIO_SECTION_ID);
 		requestAnimationFrame(() => {
-			el?.scrollIntoView({ behavior: "smooth", block: "start" });
+			el?.scrollIntoView({
+				behavior: userScrollBehavior(),
+				block: "start",
+			});
 		});
 
 		const t = window.setTimeout(() => {

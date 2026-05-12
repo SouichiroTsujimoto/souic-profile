@@ -2,6 +2,7 @@
 
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
 import { navigateHomeFromPortfolioOverlay } from "@/app/lib/homePortfolioNav";
+import { userScrollBehavior } from "@/app/lib/scrollBehaviorPreference";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
@@ -13,7 +14,7 @@ export default function PortfolioKeyboardNavigation() {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key !== "Escape") return;
 			if (pathname === "/") {
-				window.scrollTo({ top: 0, behavior: "smooth" });
+				window.scrollTo({ top: 0, behavior: userScrollBehavior() });
 			} else {
 				navigateHomeFromPortfolioOverlay(router);
 			}

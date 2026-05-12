@@ -1,6 +1,7 @@
 "use client";
 
 import { PORTFOLIO_SECTION_ID } from "@/app/lib/homePortfolioNav";
+import { userScrollBehavior } from "@/app/lib/scrollBehaviorPreference";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useCallback, useEffect, useState } from "react";
 
@@ -20,20 +21,63 @@ export default function HomeScrollFab({ className }: { className: string }) {
 	}, []);
 
 	useEffect(() => {
+		let raf = 0;
+		const scheduleUpdate = () => {
+			if (raf) return;
+			raf = requestAnimationFrame(() => {
+				raf = 0;
+				update();
+			});
+		};
+
 		update();
-		window.addEventListener("scroll", update, { passive: true });
-		window.addEventListener("resize", update);
+		window.addEventListener("scroll", scheduleUpdate, { passive: true });
+
+		let resizeTimer: ReturnType<typeof setTimeout> | null = null;
+		const onResize = () => {
+			if (resizeTimer) clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(() => {
+				resizeTimer = null;
+				update();
+			}, 200);
+		};
+		window.addEventListener("resize", onResize);
+
+		const vv = window.visualViewport;
+		vv?.addEventListener("resize", onResize);
+		vv?.addEventListener("scroll", scheduleUpdate);
+
 		return () => {
-			window.removeEventListener("scroll", update);
-			window.removeEventListener("resize", update);
+			if (raf) cancelAnimationFrame(raf);
+			if (resizeTimer) clearTimeout(resizeTimer);
+			window.removeEventListener("scroll", scheduleUpdate);
+			window.removeEventListener("resize", onResize);
+			vv?.removeEventListener("resize", onResize);
+			vv?.removeEventListener("scroll", scheduleUpdate);
 		};
 	}, [update]);
 
-	const href = toPortfolio ? `#${PORTFOLIO_SECTION_ID}` : "#top";
+	const behavior = userScrollBehavior();
+
+	const handleClick = () => {
+		if (toPortfolio) {
+			document
+				.getElementById(PORTFOLIO_SECTION_ID)
+				?.scrollIntoView({ behavior, block: "start" });
+		} else {
+			window.scrollTo({ top: 0, left: 0, behavior });
+		}
+	};
+
 	const label = toPortfolio ? "ポートフォリオへ" : "ページトップへ";
 
 	return (
-		<a href={href} aria-label={label} className={className}>
+		<button
+			type="button"
+			className={className}
+			aria-label={label}
+			onClick={handleClick}
+		>
 			{toPortfolio ? (
 				<ChevronDownIcon
 					className="w-6 h-6 shrink-0"
@@ -47,6 +91,6 @@ export default function HomeScrollFab({ className }: { className: string }) {
 					aria-hidden
 				/>
 			)}
-		</a>
+		</button>
 	);
 }
