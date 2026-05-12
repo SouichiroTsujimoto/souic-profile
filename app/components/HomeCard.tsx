@@ -128,6 +128,7 @@ export default function HomeCard() {
 								width={800}
 								height={1156}
 								priority
+								decoding="sync"
 								sizes="(min-width: 960px) 420px, (min-width: 481px) 400px, 360px"
 								className={styles.cardArtImage}
 							/>

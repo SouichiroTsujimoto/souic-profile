@@ -38,6 +38,13 @@
 	pointer-events: none;
 }
 
+@media (pointer: coarse) {
+	.homeContainer::after {
+		filter: blur(32px);
+		opacity: 0.28;
+	}
+}
+
 .cardWrapper {
 	display: flex;
 	flex-direction: column;
@@ -45,12 +52,12 @@
 	gap: 12px;
 	position: relative;
 	z-index: 1;
-	will-change: transform;
 	transform-style: preserve-3d;
 }
 
 @media screen and (min-width: 960px) {
 	.cardWrapper {
+		will-change: transform;
 		transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
 		transition: transform 0.08s linear;
 	}

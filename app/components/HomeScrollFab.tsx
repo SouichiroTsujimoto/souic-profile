@@ -5,9 +5,15 @@ import { userScrollBehavior } from "@/app/lib/scrollBehaviorPreference";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useCallback, useEffect, useState } from "react";
 
+const SCROLL_DEBOUNCE_MS = 160;
+
 /**
  * ヒーロー（カード）中心のときは下＝About（ポートフォリオ）へ、
  * About エリアに入ったあとは上＝ページトップへ。
+ *
+ * スクロール中に毎フレーム getBoundingClientRect するとレイアウト強制で
+ * メインスレッドが詰まり、トップへ戻った直後のカード描画が遅れることがある。
+ * scrollend + デバウンスで更新頻度を抑える。
  */
 export default function HomeScrollFab({ className }: { className: string }) {
 	const [toPortfolio, setToPortfolio] = useState(true);
@@ -21,17 +27,30 @@ export default function HomeScrollFab({ className }: { className: string }) {
 	}, []);
 
 	useEffect(() => {
-		let raf = 0;
-		const scheduleUpdate = () => {
-			if (raf) return;
-			raf = requestAnimationFrame(() => {
-				raf = 0;
+		let debounceTimer: ReturnType<typeof setTimeout> | null = null;
+
+		const flushAfterScroll = () => {
+			if (debounceTimer) {
+				clearTimeout(debounceTimer);
+				debounceTimer = null;
+			}
+			update();
+		};
+
+		const scheduleDebounced = () => {
+			if (debounceTimer) clearTimeout(debounceTimer);
+			debounceTimer = setTimeout(() => {
+				debounceTimer = null;
 				update();
-			});
+			}, SCROLL_DEBOUNCE_MS);
 		};
 
 		update();
-		window.addEventListener("scroll", scheduleUpdate, { passive: true });
+
+		window.addEventListener("scrollend", flushAfterScroll, {
+			passive: true,
+		});
+		window.addEventListener("scroll", scheduleDebounced, { passive: true });
 
 		let resizeTimer: ReturnType<typeof setTimeout> | null = null;
 		const onResize = () => {
@@ -45,15 +64,16 @@ export default function HomeScrollFab({ className }: { className: string }) {
 
 		const vv = window.visualViewport;
 		vv?.addEventListener("resize", onResize);
-		vv?.addEventListener("scroll", scheduleUpdate);
+		vv?.addEventListener("scroll", scheduleDebounced);
 
 		return () => {
-			if (raf) cancelAnimationFrame(raf);
+			if (debounceTimer) clearTimeout(debounceTimer);
 			if (resizeTimer) clearTimeout(resizeTimer);
-			window.removeEventListener("scroll", scheduleUpdate);
+			window.removeEventListener("scrollend", flushAfterScroll);
+			window.removeEventListener("scroll", scheduleDebounced);
 			window.removeEventListener("resize", onResize);
 			vv?.removeEventListener("resize", onResize);
-			vv?.removeEventListener("scroll", scheduleUpdate);
+			vv?.removeEventListener("scroll", scheduleDebounced);
 		};
 	}, [update]);
 
