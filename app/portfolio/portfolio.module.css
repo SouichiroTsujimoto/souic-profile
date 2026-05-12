@@ -31,6 +31,14 @@
 	pointer-events: none;
 }
 
+@media (pointer: coarse) {
+	.portfolioContainer::after {
+		filter: none;
+		mix-blend-mode: normal;
+		opacity: 0.2;
+	}
+}
+
 .contentWrapper {
 	position: relative;
 	z-index: 1;

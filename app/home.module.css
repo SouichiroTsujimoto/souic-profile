@@ -40,8 +40,10 @@
 
 @media (pointer: coarse) {
 	.homeContainer::after {
-		filter: blur(32px);
-		opacity: 0.28;
+		/* blur はペイント負荷が高いのでタッチではオフに近づけ、グラデのみで雰囲気を維持 */
+		filter: none;
+		mix-blend-mode: normal;
+		opacity: 0.2;
 	}
 }
 

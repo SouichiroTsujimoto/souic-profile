@@ -1,19 +1,22 @@
 "use client";
 
 import { PORTFOLIO_SECTION_ID } from "@/app/lib/homePortfolioNav";
+import { isPointerCoarse } from "@/app/lib/pointerCoarse";
 import { userScrollBehavior } from "@/app/lib/scrollBehaviorPreference";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useCallback, useEffect, useState } from "react";
 
-const SCROLL_DEBOUNCE_MS = 160;
+const SCROLL_DEBOUNCE_MS_FINE = 160;
+/** タッチでは慣性中の scroll が多いので長めにし、getBoundingClientRect の回数を抑える */
+const SCROLL_DEBOUNCE_MS_COARSE = 480;
 
 /**
  * ヒーロー（カード）中心のときは下＝About（ポートフォリオ）へ、
  * About エリアに入ったあとは上＝ページトップへ。
  *
- * スクロール中に毎フレーム getBoundingClientRect するとレイアウト強制で
- * メインスレッドが詰まり、トップへ戻った直後のカード描画が遅れることがある。
- * scrollend + デバウンスで更新頻度を抑える。
+ * スクロール中に高頻度で getBoundingClientRect するとレイアウト強制で
+ * メインスレッドが詰まりやすい。scrollend で即更新し、scroll はデバウンス。
+ * タッチ端末ではデバウンスを長くし、visualViewport の scroll は購読しない。
  */
 export default function HomeScrollFab({ className }: { className: string }) {
 	const [toPortfolio, setToPortfolio] = useState(true);
@@ -27,6 +30,11 @@ export default function HomeScrollFab({ className }: { className: string }) {
 	}, []);
 
 	useEffect(() => {
+		const coarse = isPointerCoarse();
+		const debounceMs = coarse
+			? SCROLL_DEBOUNCE_MS_COARSE
+			: SCROLL_DEBOUNCE_MS_FINE;
+
 		let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
 		const flushAfterScroll = () => {
@@ -42,12 +50,15 @@ export default function HomeScrollFab({ className }: { className: string }) {
 			debounceTimer = setTimeout(() => {
 				debounceTimer = null;
 				update();
-			}, SCROLL_DEBOUNCE_MS);
+			}, debounceMs);
 		};
 
 		update();
 
 		window.addEventListener("scrollend", flushAfterScroll, {
+			passive: true,
+		});
+		document.addEventListener("scrollend", flushAfterScroll, {
 			passive: true,
 		});
 		window.addEventListener("scroll", scheduleDebounced, { passive: true });
@@ -64,12 +75,15 @@ export default function HomeScrollFab({ className }: { className: string }) {
 
 		const vv = window.visualViewport;
 		vv?.addEventListener("resize", onResize);
-		vv?.addEventListener("scroll", scheduleDebounced);
+		if (!coarse) {
+			vv?.addEventListener("scroll", scheduleDebounced);
+		}
 
 		return () => {
 			if (debounceTimer) clearTimeout(debounceTimer);
 			if (resizeTimer) clearTimeout(resizeTimer);
 			window.removeEventListener("scrollend", flushAfterScroll);
+			document.removeEventListener("scrollend", flushAfterScroll);
 			window.removeEventListener("scroll", scheduleDebounced);
 			window.removeEventListener("resize", onResize);
 			vv?.removeEventListener("resize", onResize);
