@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
 /* ライトモード（デフォルト） */
 :root,
 :root.light {
@@ -16,7 +26,6 @@
 	--home-card-border-inner: rgba(15, 16, 18, 0.06);
 	--home-card-shadow: rgba(15, 16, 18, 0.12);
 	--home-card-shadow-strong: rgba(15, 16, 18, 0.18);
-	--home-wrapper-shadow: rgba(15, 16, 18, 0.15);
 	--home-bar-bg: rgba(15, 16, 18, 0.03);
 	--home-bar-border: rgba(15, 16, 18, 0.06);
 	--home-icon-bg: #f0f2f5;
@@ -60,8 +69,8 @@
 	--portfolio-glow-2: rgba(15, 16, 18, 0.05);
 	--portfolio-grid: rgba(15, 16, 18, 0.04);
 	--portfolio-spotlight: rgba(15, 16, 18, 0.08);
-	--portfolio-image-overlay-top: rgba(0, 0, 0, 0.15);
-	--portfolio-image-overlay-bottom: rgba(0, 0, 0, 0.55);
+	--portfolio-image-overlay-top: rgba(204, 204, 204, 0.127);
+	--portfolio-image-overlay-bottom: rgba(55, 55, 55, 0.55);
 	--portfolio-image-text: #f5f5f5;
 	--portfolio-sheen: rgba(255, 255, 255, 0.35);
 	--portfolio-inner-highlight: rgba(255, 255, 255, 0.6);
@@ -89,7 +98,6 @@
 	--home-card-border-inner: rgba(255, 255, 255, 0.08);
 	--home-card-shadow: rgba(0, 0, 0, 0.7);
 	--home-card-shadow-strong: rgba(0, 0, 0, 0.8);
-	--home-wrapper-shadow: rgba(0, 0, 0, 0.7);
 	--home-bar-bg: rgba(255, 255, 255, 0.04);
 	--home-bar-border: rgba(255, 255, 255, 0.08);
 	--home-icon-bg: #0e0e0f;
@@ -257,10 +265,6 @@ body {
 		Meiryo, sans-serif;
 }
 
-/*
-iOSでblurが効かないことを防ぐためのスタイル
-しかし、機能していない
-*/
 .backdrop-blur-sm {
 	-webkit-backdrop-filter: blur(8px);
 	backdrop-filter: blur(8px);

@@ -8,6 +8,14 @@ export interface CareerEvent {
 
 export const careerEvents: CareerEvent[] = [
 	{
+		date: "2026/05",
+		title: "Acompany internship",
+		// description:
+		// 	"JANOG57 Meeting NOCにて、ServerチームDHCP班として参加しました。",
+		icon: "🅰",
+		link: "https://www.janog.gr.jp/meeting/janog57/noc/",
+	},
+	{
 		date: "2026/02",
 		title: "JANOG57 NOC",
 		description:
@@ -20,7 +28,7 @@ export const careerEvents: CareerEvent[] = [
 		title: "LINEヤフー internship",
 		description:
 			"2025年度のサマーインターンシップで、『セキュリティプラットフォーム（認証・認可、暗号鍵、電子証明書）の開発・運用』コースに参加しました。",
-		icon: "🏢",
+		icon: "💻",
 		link: "https://techblog.lycorp.co.jp/ja/20251015a",
 	},
 	{
@@ -40,7 +48,7 @@ export const careerEvents: CareerEvent[] = [
 		date: "2024/02",
 		title: "Hashport internship",
 		description:
-			"Typescriptを用いたライブラリ開発等の業務を行っています。(継続中)",
-		icon: "🏢",
+			"Typescriptを用いたライブラリ開発などの業務",
+		icon: "🔑",
 	},
 ];

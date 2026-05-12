@@ -1,14 +1,18 @@
 "use client";
 
 import ThemeToggle from "@/app/components/ThemeToggle";
+import { useCopyWithFeedback } from "@/app/hooks/useCopyWithFeedback";
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
+import { navigateHomeFromPortfolioOverlay } from "@/app/lib/homePortfolioNav";
 import {
 	PROFILE_AFFILIATION_DSFA,
 	PROFILE_AFFILIATION_KMC,
-	PROFILE_MAIN_SKILL_TAGS,
+	SITE_CONTACT_EMAIL,
+	SITE_DISPLAY_NAME_EN,
 	SITE_DISPLAY_NAME_JA,
 	SITE_PROFILE_AVATAR_SRC,
 	SITE_PUBLIC_HANDLE,
+	SITE_SIGNAL_USERNAME,
 	calculateAge,
 	formatProfileBirthDateJa,
 	profileUniversityOneLine,
@@ -16,13 +20,29 @@ import {
 import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
 import styles from "../portfolio.module.css";
 
+const PROFILE_COPY_ROWS = [
+	{
+		key: "mail",
+		prefix: "mail",
+		ariaNoun: "メールアドレス",
+		value: SITE_CONTACT_EMAIL,
+	},
+	{
+		key: "signal",
+		prefix: "Signal",
+		ariaNoun: "Signal ユーザー名",
+		value: SITE_SIGNAL_USERNAME,
+	},
+] as const;
+
 export default function ProfileContent() {
 	const router = useTransitionRouter();
 	const age = calculateAge();
+	const { copy, copiedKey, liveMessage } = useCopyWithFeedback();
 
 	const handleBackgroundClick = (e: React.MouseEvent) => {
 		if (e.target === e.currentTarget) {
-			router.push("/portfolio");
+			navigateHomeFromPortfolioOverlay(router);
 		}
 	};
 
@@ -32,7 +52,7 @@ export default function ProfileContent() {
 			onClick={handleBackgroundClick}
 			onKeyDown={(e) => {
 				if (e.key === "Escape") {
-					router.push("/portfolio");
+					navigateHomeFromPortfolioOverlay(router);
 				}
 			}}
 			tabIndex={-1}
@@ -58,7 +78,7 @@ export default function ProfileContent() {
 					<button
 						type="button"
 						className={styles.overlayCloseButton}
-						onClick={() => router.push("/portfolio")}
+						onClick={() => navigateHomeFromPortfolioOverlay(router)}
 						aria-label="閉じる"
 					>
 						<XIcon className="w-5 h-5" />
@@ -66,12 +86,17 @@ export default function ProfileContent() {
 
 					<div className={styles.overlayBody}>
 						<div>
-							<h2 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
-								{SITE_DISPLAY_NAME_JA} <br />
-								{SITE_PUBLIC_HANDLE}
-							</h2>
+							<p className="text-1xl md:text-2xl font-extrabold leading-tight">
+								{SITE_DISPLAY_NAME_EN}
+							</p>
+							<p className="text-3xl md:text-5xl font-extrabold leading-tight">
+								{SITE_DISPLAY_NAME_JA}
+								<br />@{SITE_PUBLIC_HANDLE}
+							</p>
 
-							<div className="space-y-4 text-sm md:text-base">
+							<div
+								className={`space-y-4 text-sm md:text-base ${styles.profileContent}`}
+							>
 								<div className="mt-4">
 									<span className={styles.sectionTitle}>
 										基本情報
@@ -94,19 +119,58 @@ export default function ProfileContent() {
 								</div>
 
 								<div className="mt-4">
-									<p className={styles.sectionTitle}>
-										メインタグ
-									</p>
+									<span className={styles.sectionTitle}>
+										アカウント
+									</span>
 								</div>
-								<div className="flex flex-wrap gap-2">
-									{PROFILE_MAIN_SKILL_TAGS.map((skill) => (
-										<span
-											key={skill}
-											className={styles.tagChip}
-										>
-											{skill}
-										</span>
+								<div className="space-y-1">
+									<p>
+										GitHub:{" "}
+										<a href="https://github.com/SouichiroTsujimoto">
+											[SouichiroTsujimoto]
+										</a>
+									</p>
+									<p>
+										X:{" "}
+										<a href="https://x.com/wuhu1sland">
+											[@wuhu1sland]
+										</a>
+									</p>
+									{PROFILE_COPY_ROWS.map((row) => (
+										<p key={row.key}>
+											{row.prefix}:{" "}
+											<button
+												type="button"
+												className={
+													styles.profileCopyControl
+												}
+												onClick={() =>
+													copy(
+														row.key,
+														row.value,
+														`${row.ariaNoun}をコピーしました`,
+													)
+												}
+												aria-label={`${row.ariaNoun} ${row.value} をコピー`}
+											>
+												{row.value}
+											</button>
+											{copiedKey === row.key ? (
+												<span
+													className="ml-2 text-xs text-white/55"
+													aria-hidden
+												>
+													コピーしました
+												</span>
+											) : null}
+										</p>
 									))}
+									<span
+										className="sr-only"
+										aria-live="polite"
+									>
+										{liveMessage}
+									</span>
 								</div>
 							</div>
 						</div>

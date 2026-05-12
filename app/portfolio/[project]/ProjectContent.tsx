@@ -2,6 +2,7 @@
 
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
+import { navigateHomeFromPortfolioOverlay } from "@/app/lib/homePortfolioNav";
 import styles from "../portfolio.module.css";
 import type { Project } from "../projects";
 import CloseButton from "./CloseButton";
@@ -18,7 +19,7 @@ export default function ProjectContent({
 	const handleBackgroundClick = (e: React.MouseEvent) => {
 		// 背景（外側）をクリックした場合のみポートフォリオページに戻る
 		if (e.target === e.currentTarget) {
-			router.push("/portfolio");
+			navigateHomeFromPortfolioOverlay(router);
 		}
 	};
 
@@ -28,7 +29,7 @@ export default function ProjectContent({
 			onClick={handleBackgroundClick}
 			onKeyDown={(e) => {
 				if (e.key === "Escape") {
-					router.push("/portfolio");
+					navigateHomeFromPortfolioOverlay(router);
 				}
 			}}
 			tabIndex={-1}

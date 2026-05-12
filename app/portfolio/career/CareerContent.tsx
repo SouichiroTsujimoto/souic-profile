@@ -2,6 +2,7 @@
 
 import ThemeToggle from "@/app/components/ThemeToggle";
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
+import { navigateHomeFromPortfolioOverlay } from "@/app/lib/homePortfolioNav";
 import { XMarkIcon as XIcon } from "@heroicons/react/24/outline";
 import { careerEvents } from "../careerEvents";
 import styles from "../portfolio.module.css";
@@ -11,7 +12,7 @@ export default function CareerContent() {
 
 	const handleBackgroundClick = (e: React.MouseEvent) => {
 		if (e.target === e.currentTarget) {
-			router.push("/portfolio");
+			navigateHomeFromPortfolioOverlay(router);
 		}
 	};
 
@@ -21,7 +22,7 @@ export default function CareerContent() {
 			onClick={handleBackgroundClick}
 			onKeyDown={(e) => {
 				if (e.key === "Escape") {
-					router.push("/portfolio");
+					navigateHomeFromPortfolioOverlay(router);
 				}
 			}}
 			tabIndex={-1}
@@ -37,14 +38,14 @@ export default function CareerContent() {
 						<button
 							type="button"
 							className={styles.overlayCloseButton}
-							onClick={() => router.push("/portfolio")}
+							onClick={() => navigateHomeFromPortfolioOverlay(router)}
 							aria-label="閉じる"
 						>
 							<XIcon className="w-5 h-5" />
 						</button>
 
 						<h2 className={styles.overlayTitle}>
-							キャリアタイムライン
+							タイムライン
 						</h2>
 
 						<div

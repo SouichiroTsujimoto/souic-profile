@@ -1,5 +1,6 @@
 "use client";
 
+import { navigateHomeFromPortfolioOverlay } from "@/app/lib/homePortfolioNav";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import styles from "../portfolio.module.css";
@@ -18,7 +19,7 @@ export default function ShowError({
 	}, [error]);
 
 	const backToPortfolio = () => {
-		router.push("/portfolio");
+		navigateHomeFromPortfolioOverlay(router);
 	};
 
 	return (

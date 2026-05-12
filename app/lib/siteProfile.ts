@@ -1,8 +1,15 @@
 /** X / Zenn 等で使う公開ハンドル */
 export const SITE_PUBLIC_HANDLE = "wuhu1sland";
 
+/** プロフィール表示用（mailto ではなくコピーで共有） */
+export const SITE_CONTACT_EMAIL = "w1@wuhu1s.land";
+
+/** Signal ユーザー名（検索用。クリップボードにコピー） */
+export const SITE_SIGNAL_USERNAME = "@wuhu1sland.75";
+
 /** 日本語の表示名 */
 export const SITE_DISPLAY_NAME_JA = "辻本宗一郎";
+export const SITE_DISPLAY_NAME_EN = "Tsujimoto Souichiro";
 
 /** OGP / favicon / ポートフォリオヒーロー等で使うプロフィール画像 */
 export const SITE_PROFILE_AVATAR_SRC = "/icon2.webp";
@@ -11,7 +18,7 @@ export const SITE_METADATA_DESCRIPTION = `${SITE_DISPLAY_NAME_JA}のプロフィ
 
 export const PROFILE_PAGE_METADATA_DESCRIPTION = `${SITE_DISPLAY_NAME_JA}のプロフィール`;
 
-export const CAREER_PAGE_METADATA_DESCRIPTION = `${SITE_DISPLAY_NAME_JA}のキャリアタイムライン`;
+export const CAREER_PAGE_METADATA_DESCRIPTION = `${SITE_DISPLAY_NAME_JA}のタイムライン`;
 
 /** プロフィール表示・年齢計算で共有する生年月日（YYYY-MM-DD） */
 export const PROFILE_BIRTH_DATE_ISO = "2005-05-07";

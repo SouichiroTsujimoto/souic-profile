@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import CareerContent from "./CareerContent";
 
 export const metadata: Metadata = {
-	title: "キャリア | Portfolio",
+	title: "Career | Portfolio",
 	description: CAREER_PAGE_METADATA_DESCRIPTION,
 };
 

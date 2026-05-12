@@ -1,6 +1,6 @@
 "use client";
 
-import { TransitionLink } from "@/app/components/TransitionLink";
+import { PORTFOLIO_SECTION_ID } from "@/app/lib/homePortfolioNav";
 import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import styles from "../home.module.css";
@@ -141,16 +141,17 @@ export default function HomeCard() {
 					</div>
 
 					<div className={styles.cardMoves}>
-						<TransitionLink
-							href="/portfolio"
+						<a
+							href={`#${PORTFOLIO_SECTION_ID}`}
 							className={styles.moveRow}
+							aria-label="ポートフォリオ（About・Works）へ"
 						>
 							<span
 								className={styles.moveIcon}
 								aria-hidden="true"
 							/>
 							<span className={styles.moveName}>Portfolio</span>
-						</TransitionLink>
+						</a>
 					</div>
 
 					<div className={styles.cardFooter}>
@@ -162,6 +163,7 @@ export default function HomeCard() {
 								rel="noreferrer"
 								aria-label="GitHub"
 							>
+								<span className="sr-only">GitHub</span>
 								<svg
 									className={styles.footerButtonIcon}
 									viewBox="0 0 24 24"
@@ -180,6 +182,7 @@ export default function HomeCard() {
 								rel="noreferrer"
 								aria-label="X"
 							>
+								<span className="sr-only">X</span>
 								<svg
 									className={styles.footerButtonIcon}
 									viewBox="0 0 24 24"

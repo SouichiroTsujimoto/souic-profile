@@ -45,9 +45,8 @@
 	gap: 12px;
 	position: relative;
 	z-index: 1;
-	will-change: transform, filter;
+	will-change: transform;
 	transform-style: preserve-3d;
-	filter: drop-shadow(0 30px 80px var(--home-wrapper-shadow));
 }
 
 @media screen and (min-width: 960px) {

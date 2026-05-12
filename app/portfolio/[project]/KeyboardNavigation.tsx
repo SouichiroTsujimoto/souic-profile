@@ -1,6 +1,7 @@
 "use client";
 
 import { useTransitionRouter } from "@/app/hooks/useTransitionRouter";
+import { navigateHomeFromPortfolioOverlay } from "@/app/lib/homePortfolioNav";
 import { useEffect } from "react";
 
 export default function KeyboardNavigation() {
@@ -9,7 +10,7 @@ export default function KeyboardNavigation() {
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === "Escape") {
-				router.push("/portfolio");
+				navigateHomeFromPortfolioOverlay(router);
 			}
 		};
 
