@@ -349,12 +349,17 @@
 	grid-template-columns: auto 1fr auto;
 	align-items: center;
 	gap: 12px;
+	width: 100%;
 	padding: 18px 12px;
 	border-radius: 12px;
 	border: 1px solid var(--home-glass-border);
 	background: var(--home-glass-bg);
 	-webkit-backdrop-filter: blur(16px);
 	backdrop-filter: blur(16px);
+	appearance: none;
+	font: inherit;
+	text-align: inherit;
+	cursor: pointer;
 	text-decoration: none;
 	color: var(--home-fg);
 	letter-spacing: 0.12em;
