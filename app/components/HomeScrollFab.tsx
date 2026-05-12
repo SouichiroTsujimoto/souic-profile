@@ -1,9 +1,6 @@
 "use client";
 
-import {
-	PORTFOLIO_SECTION_ID,
-	scrollToPortfolioSection,
-} from "@/app/lib/homePortfolioNav";
+import { PORTFOLIO_SECTION_ID } from "@/app/lib/homePortfolioNav";
 import { isPointerCoarse } from "@/app/lib/pointerCoarse";
 import { userScrollBehavior } from "@/app/lib/scrollBehaviorPreference";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
@@ -98,7 +95,9 @@ export default function HomeScrollFab({ className }: { className: string }) {
 
 	const handleClick = () => {
 		if (toPortfolio) {
-			scrollToPortfolioSection();
+			document
+				.getElementById(PORTFOLIO_SECTION_ID)
+				?.scrollIntoView({ behavior, block: "start" });
 		} else {
 			window.scrollTo({ top: 0, left: 0, behavior });
 		}

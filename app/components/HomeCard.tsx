@@ -1,6 +1,6 @@
 "use client";
 
-import { scrollToPortfolioSection } from "@/app/lib/homePortfolioNav";
+import { PORTFOLIO_SECTION_ID } from "@/app/lib/homePortfolioNav";
 import Image from "next/image";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import styles from "../home.module.css";
@@ -142,18 +142,17 @@ export default function HomeCard() {
 					</div>
 
 					<div className={styles.cardMoves}>
-						<button
-							type="button"
+						<a
+							href={`#${PORTFOLIO_SECTION_ID}`}
 							className={styles.moveRow}
 							aria-label="ポートフォリオ（About・Works）へ"
-							onClick={scrollToPortfolioSection}
 						>
 							<span
 								className={styles.moveIcon}
 								aria-hidden="true"
 							/>
 							<span className={styles.moveName}>Portfolio</span>
-						</button>
+						</a>
 					</div>
 
 					<div className={styles.cardFooter}>

@@ -1,16 +1,5 @@
-import { userScrollBehavior } from "@/app/lib/scrollBehaviorPreference";
-
 /** トップ統合ページ内のポートフォリオ（About）セクション */
 export const PORTFOLIO_SECTION_ID = "about";
-
-/** 同一ページ内の About セクションへ（FAB / カードの Portfolio 行と同じ挙動） */
-export function scrollToPortfolioSection(): void {
-	if (typeof document === "undefined") return;
-	document.getElementById(PORTFOLIO_SECTION_ID)?.scrollIntoView({
-		behavior: userScrollBehavior(),
-		block: "start",
-	});
-}
 
 export const OPEN_PORTFOLIO_QUERY_KEY = "openPortfolio";
 export const OPEN_PORTFOLIO_QUERY_VALUE = "1";

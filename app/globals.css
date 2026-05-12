@@ -43,7 +43,7 @@ html {
 	--transition-skeleton: rgba(15, 16, 18, 0.08);
 	--transition-skeleton-highlight: rgba(255, 255, 255, 0.5);
 	--home-card-glass: rgba(255, 255, 255, 1);
-	--home-glass-bg: rgba(255, 255, 255, 0.12);
+	--home-glass-bg: rgba(255, 255, 255, 0.417);
 	--home-glass-hover-bg: rgba(255, 255, 255, 0.22);
 	--home-glass-border: rgba(255, 255, 255, 0.55);
 	--home-glass-highlight: rgba(255, 255, 255, 0.75);
