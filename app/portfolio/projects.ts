@@ -54,7 +54,7 @@ export const projects: Project[] = [
 		githubUrl: "https://github.com/SouichiroTsujimoto/dialup",
 		githubUrlText: "GitHub",
 		siteUrl: "https://dialup-framework.org",
-		year: "2025",
+		year: "2026",
 	},
 	{
 		id: 0.5,

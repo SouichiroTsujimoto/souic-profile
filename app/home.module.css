@@ -77,7 +77,7 @@
 	);
 	border-radius: 22px;
 	border: 1px solid var(--home-card-border);
-	box-shadow: 0 40px 120px var(--home-card-shadow-strong), inset 0 0 0 1px
+	box-shadow: 0 40px 60px var(--home-card-shadow-strong), inset 0 0 0 1px
 		var(--home-card-border-inner);
 	width: 360px;
 	min-height: 460px;

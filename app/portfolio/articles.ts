@@ -28,4 +28,10 @@ export const manualArticles: Article[] = [
 		title: "セキュリティプラットフォームのインターン体験記（インターンレポート）",
 		publishedAt: "2025-10-15",
 	},
+	{
+		platform: "blog",
+		url: "https://blog.kmc.gr.jp/entry/2026/03/07/083240",
+		title: "JANOG57ミーティングにKMC部員数名がNOCメンバーとして参加しました！",
+		publishedAt: "2026-03-07",
+	}
 ];

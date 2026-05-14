@@ -13,7 +13,7 @@ export const careerEvents: CareerEvent[] = [
 		// description:
 		// 	"JANOG57 Meeting NOCにて、ServerチームDHCP班として参加しました。",
 		icon: "🅰",
-		link: "https://www.janog.gr.jp/meeting/janog57/noc/",
+		// link: "https://www.janog.gr.jp/meeting/janog57/noc/",
 	},
 	{
 		date: "2026/02",
