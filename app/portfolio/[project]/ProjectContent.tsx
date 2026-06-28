@@ -102,6 +102,16 @@ export default function ProjectContent({
 										{project.githubUrl2Text || "GitHub"}
 									</a>
 								)}
+								{project.docsUrl && (
+									<a
+										href={project.docsUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										className={styles.projectLink}
+									>
+										{project.docsUrlText || "Hex Docs"}
+									</a>
+								)}
 								{project.siteUrl && (
 									<a
 										href={project.siteUrl}

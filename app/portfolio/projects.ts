@@ -11,6 +11,8 @@ export interface Project {
 	githubUrl2?: string;
 	githubUrl2Text?: string;
 	siteUrl?: string;
+	docsUrl?: string;
+	docsUrlText?: string;
 	movieUrl?: string;
 	installUrl?: string;
 	installUrlText?: string;
@@ -38,6 +40,8 @@ export const projects: Project[] = [
 			"AstroのislandとしてMoonBitでUIを書くためのインテグレーションです。mizchi/signalsによる更新とSSR/ハイドレーションに対応しています。",
 		images: ["/astrobit6.webp", "/astrobit3.webp"],
 		technologies: ["MoonBit", "Astro"],
+		githubUrl: "https://github.com/SouichiroTsujimoto/astrobit",
+		githubUrlText: "GitHub",
 		installUrl: "https://mooncakes.io/docs/SouichiroTsujimoto/astrobit",
 		installUrlText: "mooncakes.io",
 		siteUrl: "https://astrobit-sample.vercel.app/",
@@ -48,11 +52,13 @@ export const projects: Project[] = [
 		path: "Dialup",
 		title: "Dialup",
 		description:
-			"WebSocket-firstのファイルベースルーティングWebフレームワークです。\nページアクセス時に構築したwebsocketセッションが全ページに渡って継続します。\nhtmlやjsonのやり取りをhttpではなくwebsocketで行うことで、オーバーヘッドの削減を実現しています。",
+			"WebSocket-firstかつ HTTP MCP API を自動生成する Elixir Webフレームワークです。\n1タブにつき1つの GenServer がサーバー側に状態を持ち、ページ遷移をまたいでセッションが継続します。\n\ndialup_action と declare_action を書くだけで tools/list や tools/call が生成されます。\nブラウザの WebSocket イベントと AI エージェントからの tools/call は同じ handle_event/3 で処理するため、REST を別途設計する必要がありません。\n\nファイルベースルーティングと session/assigns の分離により Next.js ライクな開発体験を提供し、DOM 更新は idiomorph が担います。",
 		images: ["/dialup4.webp", "/dialup2.webp", "/dialup.webp"],
-		technologies: ["Elixir", "idiomorph"],
+		technologies: ["Elixir", "idiomorph", "MCP"],
 		githubUrl: "https://github.com/SouichiroTsujimoto/dialup",
 		githubUrlText: "GitHub",
+		docsUrl: "https://dialup.hexdocs.pm/",
+		docsUrlText: "Hex Docs",
 		siteUrl: "https://dialup-framework.org",
 		year: "2026",
 	},
@@ -72,7 +78,6 @@ export const projects: Project[] = [
 		githubUrlText: "GitHub (Frontend)",
 		githubUrl2: "https://github.com/SouichiroTsujimoto/Optime-backend",
 		githubUrl2Text: "GitHub (Backend)",
-		siteUrl: "https://optime-schedule.com",
 		year: "2025",
 	},
 	{
