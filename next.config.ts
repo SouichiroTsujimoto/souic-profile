@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
 			{ protocol: "https", hostname: "qiita-user-contents.imgix.net" },
 			{ protocol: "https", hostname: "assets.st-note.com" },
 			{ protocol: "https", hostname: "techblog.lycorp.co.jp" },
+			{ protocol: "https", hostname: "ogimage.blog.st-hatena.com" },
 		],
 	},
 	experimental: {

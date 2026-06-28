@@ -52,6 +52,7 @@ export default function ImageGallery({
 							style={{ maxHeight: "300px" }}
 							width={500}
 							height={300}
+							sizes="(min-width: 768px) 40vw, 100vw"
 						/>
 						<span className="sr-only">画像を拡大</span>
 					</button>
@@ -74,6 +75,7 @@ export default function ImageGallery({
 									className={`${styles.projectImageThumb} object-cover cursor-pointer h-24`}
 									width={200}
 									height={96}
+									sizes="(min-width: 768px) 20vw, 50vw"
 								/>
 								<span className="sr-only">画像を拡大</span>
 							</button>

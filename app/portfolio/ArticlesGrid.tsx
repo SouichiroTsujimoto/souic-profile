@@ -34,7 +34,6 @@ function ArticleCard({ article }: { article: Article }) {
 						height={630}
 						sizes="(min-width: 768px) 50vw, 100vw"
 						className={styles.articleThumb}
-						unoptimized
 					/>
 				) : (
 					<div className={styles.articleEmojiBox}>

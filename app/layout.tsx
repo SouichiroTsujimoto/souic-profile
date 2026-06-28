@@ -35,6 +35,11 @@ export default function RootLayout({
 					// biome-ignore lint/security/noDangerouslySetInnerHtml: theme bootstrap script must run before hydration to avoid FOUC
 					dangerouslySetInnerHTML={{ __html: themeInitScript }}
 				/>
+				<link rel="dns-prefetch" href="https://res.cloudinary.com" />
+				<link rel="dns-prefetch" href="https://static.zenn.studio" />
+				<link rel="dns-prefetch" href="https://qiita-user-contents.imgix.net" />
+				<link rel="dns-prefetch" href="https://assets.st-note.com" />
+				<link rel="dns-prefetch" href="https://ogimage.blog.st-hatena.com" />
 			</head>
 			<body>
 				<Providers>{children}</Providers>

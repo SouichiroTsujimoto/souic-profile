@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/validate-public-assets.mjs && next build",
+    "validate:assets": "node scripts/validate-public-assets.mjs",
     "lint": "bunx @biomejs/biome lint --write ./app",
     "format": "bunx @biomejs/biome format --write ./app",
     "check": "bunx @biomejs/biome check --write ./app"

@@ -51,12 +51,15 @@ export default function PortfolioLandingSection() {
 							>
 								<div
 									className={`h-60 sm:h-80 mt-8 text-left relative overflow-y-hidden ${styles.heroCard} ${styles.heroImageCard}`}
-									style={{
-										backgroundImage: `url(${SITE_PROFILE_AVATAR_SRC})`,
-										backgroundSize: "cover",
-										backgroundPosition: "center",
-									}}
 								>
+									<Image
+										src={SITE_PROFILE_AVATAR_SRC}
+										alt=""
+										fill
+										sizes="(min-width: 768px) 50vw, 100vw"
+										className="object-cover"
+										aria-hidden="true"
+									/>
 									<div
 										className="relative flex flex-col p-6"
 										style={{ zIndex: 2 }}
@@ -133,6 +136,7 @@ export default function PortfolioLandingSection() {
 														alt={project.title}
 														width={500}
 														height={500}
+														sizes="(min-width: 768px) 25vw, 50vw"
 														className="object-cover w-full h-full object-center"
 													/>
 												)}

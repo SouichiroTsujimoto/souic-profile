@@ -69,6 +69,7 @@ export default function SelectedImage({
 					className={`object-contain max-w-full max-h-full ${styles.modalImage}`}
 					width={1200}
 					height={800}
+					sizes="70vw"
 					style={{
 						width: "auto",
 						height: "auto",

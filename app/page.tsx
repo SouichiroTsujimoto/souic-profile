@@ -2,9 +2,14 @@ import HomeCard from "@/app/components/HomeCard";
 import HomeScrollOnPortfolioReturn from "@/app/components/HomeScrollOnPortfolioReturn";
 import SaveHomeScrollBeforePortfolioNav from "@/app/components/SaveHomeScrollBeforePortfolioNav";
 import ThemeToggle from "@/app/components/ThemeToggle";
-import PortfolioLandingSection from "@/app/portfolio/PortfolioLandingSection";
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import styles from "./home.module.css";
+
+const PortfolioLandingSection = dynamic(
+	() => import("@/app/portfolio/PortfolioLandingSection"),
+	{ ssr: true },
+);
 
 export default function Page() {
 	return (

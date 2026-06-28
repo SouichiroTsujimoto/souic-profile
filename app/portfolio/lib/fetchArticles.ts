@@ -16,6 +16,12 @@ interface ZennArticle {
 	article_type: string;
 }
 
+interface ZennArticleDetailResponse {
+	article?: {
+		og_image_url?: string;
+	};
+}
+
 interface ZennApiResponse {
 	articles: ZennArticle[];
 	next_page: number | null;
@@ -97,9 +103,23 @@ const fetchOgImage = async (url: string): Promise<string | undefined> => {
 	}
 };
 
+const fetchZennArticleOgImage = async (
+	slug: string,
+): Promise<string | undefined> => {
+	const url = `https://zenn.dev/api/articles/${encodeURIComponent(slug)}`;
+	try {
+		const res = await fetchWithTimeout(url, "souic-profile/1.0");
+		if (!res.ok) return undefined;
+		const data = (await res.json()) as ZennArticleDetailResponse;
+		return data.article?.og_image_url;
+	} catch {
+		return undefined;
+	}
+};
+
 const toArticle = async (entry: ZennArticle): Promise<Article> => {
 	const url = `https://zenn.dev${entry.path}`;
-	const thumbnailUrl = await fetchOgImage(url);
+	const thumbnailUrl = await fetchZennArticleOgImage(entry.slug);
 	return {
 		platform: "zenn",
 		url,
