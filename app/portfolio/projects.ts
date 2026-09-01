@@ -33,6 +33,28 @@ export const projects: Project[] = [
 		year: "2025",
 	},
 	{
+		id: 0.25,
+		path: "unagi",
+		title: "unagi",
+		description:
+			"Zennからの移行先として作った個人用技術ブログです。フルスタックGoテンプレート unigo をベースに、Echo/templ でルーティングとHTML、is-land + Preact による Islands Architecture、Tailwind CSS + daisyUI でUIを構成しています。\n\nSupabase（Postgres / Auth / Storage）と Vercel Go Runtime を組み合わせ、インフラコスト無料で運用しています。記事は別リポジトリで管理し、GitHub Actions からデプロイされます。",
+		images: ["/unagi-posts.webp", "/unagi-me.webp", "/unagi.webp"],
+		technologies: [
+			"Go",
+			"templ",
+			"Preact",
+			"Supabase",
+			"Vercel",
+			"Tailwind CSS",
+		],
+		githubUrl: "https://github.com/SouichiroTsujimoto/unagi",
+		githubUrlText: "GitHub",
+		githubUrl2: "https://github.com/SouichiroTsujimoto/unigo-template",
+		githubUrl2Text: "GitHub (unigo)",
+		siteUrl: "https://unagi.wuhu1s.land",
+		year: "2026",
+	},
+	{
 		id: 0.3,
 		path: "Astrobit",
 		title: "Astrobit",
