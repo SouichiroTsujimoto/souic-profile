@@ -1,6 +1,11 @@
 import "server-only";
 
-import { type Article, manualArticles, zennUsernames } from "../articles";
+import {
+	type Article,
+	manualArticles,
+	zennArticleMigrations,
+	zennUsernames,
+} from "../articles";
 
 const REVALIDATE_SECONDS = 60 * 60;
 const FETCH_TIMEOUT_MS = 5_000;
@@ -118,16 +123,19 @@ const fetchZennArticleOgImage = async (
 };
 
 const toArticle = async (entry: ZennArticle): Promise<Article> => {
-	const url = `https://zenn.dev${entry.path}`;
-	const thumbnailUrl = await fetchZennArticleOgImage(entry.slug);
+	const migratedUrl = zennArticleMigrations[entry.slug];
+	const url = migratedUrl ?? `https://zenn.dev${entry.path}`;
+	const thumbnailUrl = migratedUrl
+		? await fetchOgImage(url)
+		: await fetchZennArticleOgImage(entry.slug);
 	return {
-		platform: "zenn",
+		platform: migratedUrl ? "unagi" : "zenn",
 		url,
 		title: entry.title,
 		emoji: entry.emoji,
 		thumbnailUrl,
 		publishedAt: entry.published_at,
-		likes: entry.liked_count,
+		likes: migratedUrl ? undefined : entry.liked_count,
 	};
 };
 
@@ -138,7 +146,7 @@ const enrichManual = async (article: Article): Promise<Article> => {
 };
 
 /**
- * Zennと手動エントリをマージし、新しい順で返す。
+ * Zenn記事の移行先を適用して手動エントリとマージし、新しい順で返す。
  * Next.jsのfetchキャッシュを活用してISR (1h) で再生成。
  */
 export const getArticles = async (): Promise<Article[]> => {

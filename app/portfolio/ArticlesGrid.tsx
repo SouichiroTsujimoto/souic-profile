@@ -5,6 +5,7 @@ import styles from "./portfolio.module.css";
 
 const PLATFORM_LABEL: Record<ArticlePlatform, string> = {
 	zenn: "Zenn",
+	unagi: "unagi",
 	qiita: "Qiita",
 	note: "note",
 	blog: "Blog",
