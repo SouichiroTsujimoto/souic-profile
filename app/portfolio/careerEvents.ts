@@ -18,7 +18,7 @@ export const careerEvents: CareerEvent[] = [
   {
     date: "2026/05",
     title: "Acompany internship",
-    description: "CAS(Confidential AI Suite)部門でのプロダクト開発 (継続中)",
+    description: "Confidential AI Suite部門でのプロダクト開発 (継続中)",
     icon: "🅰",
     // link: "https://www.janog.gr.jp/meeting/janog57/noc/",
   },
